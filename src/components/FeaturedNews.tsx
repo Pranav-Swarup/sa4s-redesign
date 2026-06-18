@@ -2,7 +2,6 @@
 import { useState, useEffect } from 'react';
 import { ArrowRight } from 'lucide-react';
 import { Link } from 'react-router-dom';
-
 import { getLatestNewsItems, NewsItem } from '../data/newsLoader';
 
 const MARKDOWN_IMAGE_REGEX = /!\[[^\]]*?\]\(([^)\s]+)[^)]*\)/g;
@@ -30,74 +29,64 @@ const FeaturedNews = () => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const loadFeaturedNews = async () => {
-      try {
-        const latestItems = await getLatestNewsItems(3);
-        setFeaturedNews(latestItems);
-      } catch (error) {
-        console.error('Error loading featured news:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadFeaturedNews();
+    getLatestNewsItems(3)
+      .then(setFeaturedNews)
+      .catch(console.error)
+      .finally(() => setLoading(false));
   }, []);
 
   return (
-    <section className="py-16 bg-gray-50/50">
+    <section className="py-16 bg-[#0D2B6B]">
       <div className="container mx-auto px-4">
-        <div className="mb-8">
-          <h2 className="text-3xl font-bold text-gray-900 mb-4">Featured News</h2>
-          <p className="text-gray-600">Stay updated with our latest research developments and achievements</p>
+        <div className="mb-10">
+          <p className="text-xs text-[#C4A97A] tracking-[0.25em] uppercase font-medium mb-3">News</p>
+          <h2 className="font-bold text-2xl text-[#F3E4C9]">Latest from the Lab</h2>
         </div>
 
         {loading ? (
-          <div className="flex justify-center items-center py-8">
-            <div className="text-gray-600">Loading featured news...</div>
+          <div className="py-8">
+            <span className="text-sm text-[#B8CCE8]">Loading...</span>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-8">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
             {featuredNews.map((item, index) => {
-              const description = item.description || '';
-              const previewText = toPreviewText(description);
-
+              const previewText = toPreviewText(item.description || '');
               return (
-              <div key={index} className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 hover:shadow-md transition-shadow duration-200">
-                <div className="text-sm text-sa4s-teal-600 font-medium mb-2">
-                  {item.date}
-                </div>
-                <h3 className="text-lg font-semibold text-gray-900 mb-3 line-clamp-2">
-                  {item.headline}
-                </h3>
-                {previewText && (
-                  <p
-                    className="text-gray-600 mb-4 line-clamp-3"
-                  >
-                    {previewText.slice(0, 140)}{previewText.length > 140 ? '…' : ''}
-                  </p>
-                )}
-                <Link
-                  to="/news"
-                  className="inline-flex items-center text-sa4s-blue-600 hover:text-sa4s-blue-700 font-medium text-sm group"
+                <div
+                  key={index}
+                  className="flex flex-col bg-[#112F72] border border-[#1A428A] rounded-xl p-6 hover:border-[#2453A8] transition-all duration-200 group"
                 >
-                  Read more
-                  <ArrowRight className="ml-1 group-hover:translate-x-1 transition-transform duration-150" size={16} />
-                </Link>
-              </div>
-            )})}
+                  <div className="text-xs text-[#C4A97A] font-medium mb-3 tracking-wide">
+                    {item.date}
+                  </div>
+                  <h3 className="font-semibold text-sm text-[#F3E4C9] mb-3 line-clamp-2 leading-snug group-hover:text-[#B8CCE8] transition-colors duration-150">
+                    {item.headline}
+                  </h3>
+                  {previewText && (
+                    <p className="text-sm text-[#B8CCE8] mb-4 line-clamp-3 leading-relaxed flex-1">
+                      {previewText.slice(0, 140)}{previewText.length > 140 ? '…' : ''}
+                    </p>
+                  )}
+                  <Link
+                    to="/news"
+                    className="inline-flex items-center text-[#5BA3D9] hover:text-[#F3E4C9] text-sm font-medium mt-auto transition-colors duration-150 group/link"
+                  >
+                    Read more
+                    <ArrowRight className="ml-1 group-hover/link:translate-x-1 transition-transform duration-150" size={13} />
+                  </Link>
+                </div>
+              );
+            })}
           </div>
         )}
 
-        <div className="text-center">
-          <Link
-            to="/news"
-            className="inline-flex items-center bg-sa4s-teal-600 hover:bg-sa4s-teal-700 text-white px-6 py-3 rounded-lg font-medium transition-colors duration-150 group"
-          >
-            See all News
-            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-150" size={20} />
-          </Link>
-        </div>
+        <Link
+          to="/news"
+          className="inline-flex items-center border border-[#1A428A] hover:border-[#5BA3D9] text-[#B8CCE8] hover:text-[#F3E4C9] px-5 py-2.5 rounded text-sm font-medium transition-all duration-200 group"
+        >
+          All news
+          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-150" size={13} />
+        </Link>
       </div>
     </section>
   );
