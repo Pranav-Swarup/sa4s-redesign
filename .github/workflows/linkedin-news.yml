@@ -1,0 +1,58 @@
+name: Fetch LinkedIn Posts
+
+on:
+  schedule:
+    - cron: '0 9 * * 1'  # Runs every Monday at 9:00 AM UTC
+  workflow_dispatch:       # Allows manual triggering from the GitHub Actions tab
+
+jobs:
+  fetch-posts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write  # Needed to commit generated markdown files
+      
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+          
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install playwright requests beautifulsoup4 google-genai python-dotenv
+          
+      - name: Install Playwright browsers
+        run: playwright install chromium --with-deps
+          
+      - name: Run LinkedIn to News script
+        env:
+          LI_AT_COOKIE: ${{ secrets.LI_AT_COOKIE }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+        run: python linkedin_to_news.py
+          
+      - name: Commit and push generated news files
+        uses: stefanzweifel/git-auto-commit-action@v5
+        with:
+          commit_message: "chore(news): auto-update LinkedIn news entries"
+          file_pattern: "src/data/news/*.md processed_posts.json"
+          
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+          
+      - name: Install Node dependencies
+        run: npm install
+        
+      - name: Build and Deploy site
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git remote set-url origin https://x-access-token:${GITHUB_TOKEN}@github.com/${GITHUB_REPOSITORY}.git
+          npm run deploy
