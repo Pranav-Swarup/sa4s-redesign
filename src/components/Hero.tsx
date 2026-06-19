@@ -151,7 +151,7 @@ const Hero = () => {
             exit={{ opacity: 0, y: 4 }}
             transition={{ duration: 0.7 }}
           >
-            <span className="text-[9px] tracking-[0.28em] uppercase font-medium text-[#6B6455]">Scroll</span>
+            <span className="text-[9px] tracking-[0.28em] uppercase font-medium text-[#4a453b]">Scroll</span>
             <ChevronDown size={15} className="text-[#6B6455] animate-bounce" />
           </motion.div>
         )}

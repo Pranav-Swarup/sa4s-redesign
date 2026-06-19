@@ -6,6 +6,7 @@ import Hero from '../components/Hero';
 import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
 import LogoCloud from '../components/LogoCloud';
+import spotlightItems from 'virtual:spotlight';
 
 const inView = {
   initial: { opacity: 0, y: 20 },
@@ -14,37 +15,6 @@ const inView = {
   transition: { duration: 0.6, ease: 'easeOut' },
 } as const;
 
-// ── Spotlight cards (Porsche-style full-bleed) ────────────────────────────
-const spotlights = [
-  {
-    tag: 'Latest',
-    headline: '9 Papers Accepted at ICSE 2026',
-    meta: 'Rio de Janeiro, Brazil',
-    image: '/images/publications/icse2026_banner.png',
-    linkHref: '/news',
-  },
-  {
-    tag: 'Award',
-    headline: 'Best Poster at ICSA 2024',
-    meta: 'Software Architecture Conference',
-    image: '/images/home/icsa24_best_poster.jpeg',
-    linkHref: '/publications',
-  },
-  {
-    tag: 'Team',
-    headline: 'Freshers Welcome 2024',
-    meta: 'Growing the SA4S Family',
-    image: '/images/home/freshers2k24_sa4s.jpg',
-    linkHref: '/team',
-  },
-  {
-    tag: 'Conference',
-    headline: 'Research at ICSA 2024',
-    meta: 'Prague, Czech Republic',
-    image: '/images/home/ICSA-1.jpeg',
-    linkHref: '/publications',
-  },
-];
 
 // ── Research areas ─────────────────────────────────────────────────────────
 const researchAreas = [
@@ -89,22 +59,24 @@ const Index = () => {
           <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</p>
         </div>
         <div className="grid grid-cols-2 h-screen gap-[3px] p-[3px] bg-[#D8D2C4]">
-          {spotlights.map((s, i) => (
+          {spotlightItems.map((s, i) => (
             <motion.a
-              key={i}
-              href={s.linkHref}
+              key={s.date}
+              href={s.link}
               className="relative overflow-hidden group cursor-pointer block"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: i * 0.08 }}
             >
-              <img
-                src={s.image}
-                alt={s.headline}
-                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
-                loading={i < 2 ? 'eager' : 'lazy'}
-              />
+              {s.image && (
+                <img
+                  src={s.image}
+                  alt={s.title}
+                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+                  loading={i < 2 ? 'eager' : 'lazy'}
+                />
+              )}
               {/* Gradient overlay */}
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/5" />
               {/* Hover highlight border */}
@@ -112,13 +84,17 @@ const Index = () => {
 
               {/* Card content */}
               <div className="absolute bottom-0 left-0 p-7">
-                <span className="text-[10px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
-                  {s.tag}
-                </span>
+                {s.tag && (
+                  <span className="text-[10px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
+                    {s.tag}
+                  </span>
+                )}
                 <h3 className="mt-2 text-xl font-bold text-white leading-snug max-w-[17rem]">
-                  {s.headline}
+                  {s.title}
                 </h3>
-                <p className="mt-1.5 text-sm text-white/50">{s.meta}</p>
+                {s.preview && (
+                  <p className="mt-1.5 text-sm text-white/50 line-clamp-2 max-w-[17rem]">{s.preview}</p>
+                )}
                 <div className="mt-4 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
                   <span>Explore</span>
                   <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />

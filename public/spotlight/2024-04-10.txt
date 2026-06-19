@@ -1,0 +1,6 @@
+[TITLE] Research at ICSA 2024
+[TAG] Conference
+[PREVIEW] Prague, Czech Republic
+[CONTENT] Members of SA4S presented research at the International Conference on Software Architecture 2024 in Prague, Czech Republic.
+[LINK] /publications
+[IMAGE] /images/home/ICSA-1.jpeg
