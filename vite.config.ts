@@ -16,5 +16,5 @@ export default defineConfig(({ mode }) => ({
     },
   },
   //base: "https://sa4s-serc.github.io",
-  base: "/sa4s-redesign/",
+  base: "https://pranav-swarup.github.io/sa4s-redesign",
 }));

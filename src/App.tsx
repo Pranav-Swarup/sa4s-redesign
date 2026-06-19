@@ -30,7 +30,7 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
+      <BrowserRouter basename={import.meta.env.BASE_URL}>
         <Layout>
           <Suspense fallback={<div className="container mx-auto px-4 py-16 text-gray-600">Loading...</div>}>
             <Routes>
