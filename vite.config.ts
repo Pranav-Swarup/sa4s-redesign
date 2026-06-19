@@ -14,6 +14,5 @@ export default defineConfig(({ mode }) => ({
       "@": path.resolve(__dirname, "./src"),
     },
   },
-  //base: "https://sa4s-serc.github.io",
-  base: "/sa4s-redesign/",
+  base: "https://sa4s-serc.github.io",
 }));
