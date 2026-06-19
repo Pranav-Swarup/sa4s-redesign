@@ -10,7 +10,7 @@ const stats = [
 export default function PulseStrip() {
   return (
     <motion.section
-      className="bg-[#112F72] border-y border-[#1A428A] py-10"
+      className="bg-[#F0EBE1] border-y border-[#D8D2C4] py-10"
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-60px' }}
@@ -20,10 +20,10 @@ export default function PulseStrip() {
         <div className="flex justify-center gap-24">
           {stats.map((stat, i) => (
             <div key={i} className="flex flex-col items-center gap-1">
-              <span className="font-bold text-4xl text-[#F3E4C9] tabular-nums leading-none">
+              <span className="font-bold text-4xl text-[#1A1710] tabular-nums leading-none">
                 <CountUp to={stat.value} />{stat.suffix}
               </span>
-              <span className="text-sm text-[#C4A97A] font-medium tracking-wide mt-1">{stat.label}</span>
+              <span className="text-sm text-[#8B6420] font-medium tracking-wide mt-1">{stat.label}</span>
             </div>
           ))}
         </div>

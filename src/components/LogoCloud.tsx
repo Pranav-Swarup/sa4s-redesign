@@ -7,9 +7,9 @@ const logos = [
 
 const LogoCloud = () => {
   return (
-    <div className="bg-[#112F72] border-t border-[#1A428A] py-10 sm:py-14">
+    <div className="bg-[#F0EBE1] border-t border-[#D8D2C4] py-10 sm:py-14">
       <div className="mx-auto max-w-3xl px-6 lg:px-8">
-        <p className="text-center text-[10px] text-[#B8CCE8] tracking-[0.3em] uppercase font-medium mb-10">
+        <p className="text-center text-[10px] text-[#7A7060] tracking-[0.3em] uppercase font-medium mb-10">
           Part of
         </p>
         <div className="grid grid-cols-3 gap-8 items-center">

@@ -7,8 +7,6 @@ import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
 import LogoCloud from '../components/LogoCloud';
 
-// Palette: bg #0D2B6B · surface #112F72 · border #1A428A · text #F3E4C9 · muted #B8CCE8 · amber #C4A97A
-
 const inView = {
   initial: { opacity: 0, y: 20 },
   whileInView: { opacity: 1, y: 0 },
@@ -16,29 +14,39 @@ const inView = {
   transition: { duration: 0.6, ease: 'easeOut' },
 } as const;
 
-// ── Spotlight cards ────────────────────────────────────────────────────────────
+// ── Spotlight cards (Porsche-style full-bleed) ────────────────────────────
 const spotlights = [
   {
     tag: 'Latest',
     headline: '9 Papers Accepted at ICSE 2026',
-    body: 'SA4S is proud to announce a record 9 papers accepted at ICSE 2026 — spanning LLM-based software engineering, architectural decision-making, and green computing.',
-    meta: 'ICSE 2026 · Rio de Janeiro, Brazil',
-    linkText: 'See the papers',
+    meta: 'Rio de Janeiro, Brazil',
+    image: '/images/publications/icse2026_banner.png',
     linkHref: '/news',
-    image: '/images/home/ICSA-1.jpeg',
   },
   {
-    tag: 'Upcoming',
-    headline: 'Research Showcase 2025',
-    body: 'Placeholder — update this card with an upcoming conference, award, or announcement relevant to this week or month.',
-    meta: 'Coming soon · 2025',
-    linkText: 'Learn more',
-    linkHref: '/news',
+    tag: 'Award',
+    headline: 'Best Poster at ICSA 2024',
+    meta: 'Software Architecture Conference',
+    image: '/images/home/icsa24_best_poster.jpeg',
+    linkHref: '/publications',
+  },
+  {
+    tag: 'Team',
+    headline: 'Freshers Welcome 2024',
+    meta: 'Growing the SA4S Family',
     image: '/images/home/freshers2k24_sa4s.jpg',
+    linkHref: '/team',
+  },
+  {
+    tag: 'Conference',
+    headline: 'Research at ICSA 2024',
+    meta: 'Prague, Czech Republic',
+    image: '/images/home/ICSA-1.jpeg',
+    linkHref: '/publications',
   },
 ];
 
-// ── Research areas ─────────────────────────────────────────────────────────────
+// ── Research areas ─────────────────────────────────────────────────────────
 const researchAreas = [
   {
     icon: <Brain size={18} />,
@@ -70,85 +78,78 @@ const Index = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#0D2B6B]">
+    <div className="bg-[#FAF7F2]">
 
       {/* ── Hero ──────────────────────────────────── */}
       <Hero />
 
-      {/* ── Spotlight cards ───────────────────────── */}
-      <motion.section className="py-16 bg-[#0D2B6B]" {...inView}>
-        <div className="container mx-auto px-4">
-          <p className="text-xs text-[#C4A97A] tracking-[0.25em] uppercase font-medium mb-8">Spotlight</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-            {spotlights.map((s, i) => (
-              <motion.div
-                key={i}
-                className="flex flex-col border border-[#1A428A] rounded-xl overflow-hidden bg-[#112F72] hover:border-[#2453A8] transition-all duration-200 group"
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: '-40px' }}
-                transition={{ duration: 0.55, delay: i * 0.1, ease: 'easeOut' }}
-              >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <img
-                    src={s.image}
-                    alt={s.headline}
-                    className="w-full h-full object-cover group-hover:scale-[1.02] transition-transform duration-500"
-                    loading="lazy"
-                  />
-                  <div className="absolute inset-0 bg-[#0D2B6B]/30" />
-                  <span className="absolute top-3 left-3 bg-[#0D2B6B]/70 text-[#F3E4C9] text-[10px] font-medium tracking-widest uppercase px-2.5 py-1 rounded">
-                    {s.tag}
-                  </span>
-                </div>
-
-                {/* Content */}
-                <div className="p-6 flex flex-col gap-3 flex-1">
-                  <h3 className="font-bold text-lg text-[#F3E4C9] leading-snug">
-                    {s.headline}
-                  </h3>
-                  <p className="text-sm text-[#B8CCE8] leading-relaxed flex-1">
-                    {s.body}
-                  </p>
-                  <p className="text-xs text-[#C4A97A] font-medium tracking-wide">
-                    {s.meta}
-                  </p>
-                  <a
-                    href={s.linkHref}
-                    className="inline-flex items-center gap-1.5 text-[#5BA3D9] hover:text-[#F3E4C9] text-sm font-medium transition-colors duration-150 group/link w-fit"
-                  >
-                    {s.linkText}
-                    <ArrowRight size={14} className="group-hover/link:translate-x-1 transition-transform duration-150" />
-                  </a>
-                </div>
-              </motion.div>
-            ))}
-          </div>
+      {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
+      <section className="w-full">
+        <div className="px-6 pt-14 pb-5">
+          <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</p>
         </div>
-      </motion.section>
+        <div className="grid grid-cols-2 h-screen gap-[3px] p-[3px] bg-[#D8D2C4]">
+          {spotlights.map((s, i) => (
+            <motion.a
+              key={i}
+              href={s.linkHref}
+              className="relative overflow-hidden group cursor-pointer block"
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.65, delay: i * 0.08 }}
+            >
+              <img
+                src={s.image}
+                alt={s.headline}
+                className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+                loading={i < 2 ? 'eager' : 'lazy'}
+              />
+              {/* Gradient overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/5" />
+              {/* Hover highlight border */}
+              <div className="absolute inset-0 ring-inset ring-0 group-hover:ring-[1.5px] ring-white/25 transition-all duration-400" />
+
+              {/* Card content */}
+              <div className="absolute bottom-0 left-0 p-7">
+                <span className="text-[10px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
+                  {s.tag}
+                </span>
+                <h3 className="mt-2 text-xl font-bold text-white leading-snug max-w-[17rem]">
+                  {s.headline}
+                </h3>
+                <p className="mt-1.5 text-sm text-white/50">{s.meta}</p>
+                <div className="mt-4 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
+                  <span>Explore</span>
+                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />
+                </div>
+              </div>
+            </motion.a>
+          ))}
+        </div>
+      </section>
 
       {/* ── SustAInd ──────────────────────────────── */}
-      <motion.section className="pb-12 bg-[#0D2B6B]" {...inView}>
+      <motion.section className="pt-12 pb-12 bg-[#FAF7F2]" {...inView}>
         <div className="container mx-auto px-4">
           <a
             href="https://sa4s-serc.github.io/sustaind/"
             target="_blank"
             rel="noreferrer"
-            className="group flex flex-col md:flex-row gap-5 items-start md:items-center border border-[#1A428A] hover:border-[#C4A97A]/50 rounded-xl p-7 bg-[#112F72] hover:bg-[#132F76] transition-all duration-200"
+            className="group flex flex-col md:flex-row gap-5 items-start md:items-center border border-[#D8D2C4] hover:border-[#2D6A4F]/40 rounded-xl p-7 bg-[#F0EBE1] hover:bg-[#EAE4D6] transition-all duration-200"
           >
-            <div className="flex-shrink-0 w-10 h-10 rounded border border-[#C4A97A]/30 flex items-center justify-center text-[#C4A97A]">
+            <div className="flex-shrink-0 w-10 h-10 rounded border border-[#2D6A4F]/25 flex items-center justify-center text-[#2D6A4F]">
               <Globe2 size={18} />
             </div>
             <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-base text-[#F3E4C9] mb-1.5">SustAInd</h3>
-              <p className="text-sm text-[#B8CCE8] leading-relaxed max-w-2xl">
+              <h3 className="font-bold text-base text-[#1A1710] mb-1.5">SustAInd</h3>
+              <p className="text-sm text-[#6B6455] leading-relaxed max-w-2xl">
                 Sustainable AI for India — low-carbon, cost-aware, production-ready ML systems built for the next billion users.
               </p>
             </div>
             <ExternalLink
               size={16}
-              className="text-[#C4A97A]/40 group-hover:text-[#C4A97A] transition-colors duration-200 flex-shrink-0 mt-1 md:mt-0"
+              className="text-[#2D6A4F]/30 group-hover:text-[#2D6A4F] transition-colors duration-200 flex-shrink-0 mt-1 md:mt-0"
             />
           </a>
         </div>
@@ -158,11 +159,11 @@ const Index = () => {
       <PulseStrip />
 
       {/* ── Research areas ────────────────────────── */}
-      <section className="py-16 bg-[#0D2B6B]">
+      <section className="py-16 bg-[#FAF7F2]">
         <div className="container mx-auto px-4">
           <motion.div className="mb-10" {...inView}>
-            <p className="text-xs text-[#C4A97A] tracking-[0.25em] uppercase font-medium mb-3">Research</p>
-            <h2 className="font-bold text-2xl text-[#F3E4C9]">What We Work On</h2>
+            <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-3">Research</p>
+            <h2 className="font-bold text-2xl text-[#1A1710]">What We Work On</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -170,23 +171,23 @@ const Index = () => {
               <motion.button
                 key={area.abbr}
                 onClick={() => navigate('/research')}
-                className="group flex gap-4 text-left border border-[#1A428A] hover:border-[#2453A8] rounded-xl p-6 bg-[#112F72] hover:bg-[#132F76] transition-all duration-200 w-full"
+                className="group flex gap-4 text-left border border-[#D8D2C4] hover:border-[#2D6A4F]/45 rounded-xl p-6 bg-[#F0EBE1] hover:bg-[#EAE4D6] transition-all duration-200 w-full"
                 initial={{ opacity: 0, y: 16 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, margin: '-40px' }}
                 transition={{ duration: 0.5, delay: i * 0.08, ease: 'easeOut' }}
               >
-                <div className="flex-shrink-0 mt-0.5 text-[#5BA3D9] group-hover:text-[#F3E4C9] transition-colors duration-200">
+                <div className="flex-shrink-0 mt-0.5 text-[#2D6A4F] group-hover:text-[#1D5038] transition-colors duration-200">
                   {area.icon}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="text-xs text-[#C4A97A] tracking-widest uppercase font-medium mb-2">
+                  <div className="text-xs text-[#2D6A4F] tracking-widest uppercase font-semibold mb-2">
                     {area.abbr}
                   </div>
-                  <h3 className="font-semibold text-base text-[#F3E4C9] mb-2 leading-snug">
+                  <h3 className="font-semibold text-base text-[#1A1710] mb-2 leading-snug">
                     {area.title}
                   </h3>
-                  <p className="text-sm text-[#B8CCE8] leading-relaxed">{area.desc}</p>
+                  <p className="text-sm text-[#6B6455] leading-relaxed">{area.desc}</p>
                 </div>
               </motion.button>
             ))}
@@ -201,7 +202,7 @@ const Index = () => {
           >
             <button
               onClick={() => navigate('/research')}
-              className="inline-flex items-center border border-[#1A428A] hover:border-[#5BA3D9] text-[#B8CCE8] hover:text-[#F3E4C9] px-5 py-2.5 rounded text-sm font-medium transition-all duration-200 group"
+              className="inline-flex items-center border border-[#D8D2C4] hover:border-[#2D6A4F] text-[#6B6455] hover:text-[#1A1710] px-5 py-2.5 rounded text-sm font-medium transition-all duration-200 group"
             >
               All research areas
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-150" size={14} />
