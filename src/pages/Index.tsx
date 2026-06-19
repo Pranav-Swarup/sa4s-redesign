@@ -7,6 +7,7 @@ import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
 import LogoCloud from '../components/LogoCloud';
 import spotlightItems from 'virtual:spotlight';
+import { publicUrl } from '../lib/utils';
 
 const inView = {
   initial: { opacity: 0, y: 20 },
@@ -71,7 +72,7 @@ const Index = () => {
             >
               {s.image && (
                 <img
-                  src={s.image}
+                  src={publicUrl(s.image)}
                   alt={s.title}
                   className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
                   loading={i < 2 ? 'eager' : 'lazy'}

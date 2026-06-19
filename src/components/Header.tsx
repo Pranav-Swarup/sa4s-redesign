@@ -2,6 +2,7 @@
 import { useState } from 'react';
 import { NavLink } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
+import { publicUrl } from '../lib/utils';
 
 const navItems = [
   { name: 'Home',         path: '/' },
@@ -34,7 +35,7 @@ const Header = () => {
         <div className="flex items-center justify-between h-16">
 
           <NavLink to="/" className="flex items-center space-x-3">
-            <img src="/images/logos/sa4s.png" alt="SA4S Logo" className="w-9 h-9 object-contain" />
+            <img src={publicUrl("/images/logos/sa4s.png")} alt="SA4S Logo" className="w-9 h-9 object-contain" />
             <div className="hidden sm:block">
               <div className="font-semibold text-[#EDE8DF] text-sm tracking-wide">SA4S Research Group</div>
               <div className="text-[10px] text-[#8DB8A2] tracking-wider uppercase">SERC - IIIT Hyderabad</div>

@@ -5,6 +5,7 @@ import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
 
 import { getAllNewsItems, NewsItem } from '../data/newsLoader';
+import { publicUrl } from '../lib/utils';
 
 const News = () => {
   const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
@@ -128,9 +129,10 @@ const News = () => {
                         <ReactMarkdown
                           rehypePlugins={[rehypeRaw]}
                           components={{
-                            img: ({ className, ...props }) => (
+                            img: ({ className, src, ...props }) => (
                               <img
                                 {...props}
+                                src={src ? publicUrl(src) : undefined}
                                 className={`block my-6 w-full rounded-lg border border-gray-200 ${className ?? ''}`.trim()}
                                 loading="lazy"
                               />

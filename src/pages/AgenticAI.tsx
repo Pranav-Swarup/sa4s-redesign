@@ -1,5 +1,6 @@
 import { ArrowRight, BookOpen, FolderKanban, Handshake, Mic } from "lucide-react";
 import { Link } from "react-router-dom";
+import { publicUrl } from "../lib/utils";
 
 import CountUp from "../components/CountUp";
 import LifecycleMap from "../components/LifecycleMap";
@@ -209,7 +210,7 @@ const AgenticAI = () => {
                 className="group flex flex-col items-center gap-3 rounded-2xl border border-gray-200 bg-white px-10 py-6 shadow-sm transition hover:shadow-md"
               >
                 <img
-                  src="/images/collabpic/montycloud.png"
+                  src={publicUrl("/images/collabpic/montycloud.png")}
                   alt="MontyCloud"
                   className="h-16 w-auto object-contain transition group-hover:scale-105"
                 />
@@ -230,7 +231,7 @@ const AgenticAI = () => {
                 className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-200 bg-white px-8 py-6 shadow-sm transition hover:shadow-md"
               >
                 <img
-                  src="/images/collabpic/s2group.png"
+                  src={publicUrl("/images/collabpic/s2group.png")}
                   alt="S2 Research Group"
                   className="h-14 w-auto object-contain transition group-hover:scale-105"
                 />
@@ -244,7 +245,7 @@ const AgenticAI = () => {
                 className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-200 bg-white px-8 py-6 shadow-sm transition hover:shadow-md"
               >
                 <img
-                  src="/images/collabpic/sdu.png"
+                  src={publicUrl("/images/collabpic/sdu.png")}
                   alt="SDU"
                   className="h-14 w-auto object-contain transition group-hover:scale-105"
                 />
@@ -258,7 +259,7 @@ const AgenticAI = () => {
                 className="group flex flex-col items-center gap-2 rounded-2xl border border-gray-200 bg-white px-8 py-6 shadow-sm transition hover:shadow-md"
               >
                 <img
-                  src="/images/collabpic/framelab.png"
+                  src={publicUrl("/images/collabpic/framelab.png")}
                   alt="FrameLab"
                   className="h-14 w-auto object-contain transition group-hover:scale-105"
                 />

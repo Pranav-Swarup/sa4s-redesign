@@ -2,5 +2,5 @@
 [TAG] Latest
 [PREVIEW] Rio de Janeiro, Brazil
 [CONTENT] SA4S Research Group had 9 papers accepted at the International Conference on Software Engineering 2026, held in Rio de Janeiro, Brazil.
-[LINK] /news
+[LINK] https://pranav-swarup.github.io/sa4s-redesign/news
 [IMAGE] /images/publications/icse2026_banner.png

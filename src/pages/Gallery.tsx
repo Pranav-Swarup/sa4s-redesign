@@ -1,6 +1,7 @@
 
 import { useState } from 'react';
 import { X, ChevronLeft, ChevronRight } from 'lucide-react';
+import { publicUrl } from '../lib/utils';
 
 interface GalleryImage {
   id: string;
@@ -83,7 +84,7 @@ const Gallery = () => {
               className="group relative block w-full rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-shadow duration-300 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sa4s-teal-500"
             >
               <img
-                src={image.src}
+                src={publicUrl(image.src)}
                 alt={image.alt}
                 className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
               />
@@ -133,7 +134,7 @@ const Gallery = () => {
 
             {/* Image */}
             <img
-              src={galleryImages[selectedImageIndex].src}
+              src={publicUrl(galleryImages[selectedImageIndex].src)}
               alt={galleryImages[selectedImageIndex].alt}
               className="max-w-full max-h-full object-contain"
             />

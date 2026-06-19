@@ -3,6 +3,7 @@ import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { ChevronDown, Play, Pause } from 'lucide-react';
 import BonsaiTree from './BonsaiTree';
+import { publicUrl } from '../lib/utils';
 
 const TAGLINE = "building the next generation of intelligent, energy-efficient software";
 const FIXED_SEED = 97225; // tune this to pick your favourite tree
@@ -134,7 +135,7 @@ const Hero = () => {
             </button>
             <audio
               ref={audioRef}
-              src="/LLMs%20for%20Architectural%20Design%20Decisions.mp3"
+              src={publicUrl("/LLMs%20for%20Architectural%20Design%20Decisions.mp3")}
               onEnded={() => setPodcastPlaying(false)}
             />
           </motion.div>

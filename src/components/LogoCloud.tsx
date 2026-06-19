@@ -1,3 +1,4 @@
+import { publicUrl } from '../lib/utils';
 
 const logos = [
   { src: '/images/logos/iiit-new.png', alt: 'IIIT Hyderabad' },
@@ -17,7 +18,7 @@ const LogoCloud = () => {
             <div key={logo.alt} className="flex items-center justify-center p-4">
               <img
                 className="max-h-14 w-full object-contain opacity-50 hover:opacity-80 transition-opacity duration-200"
-                src={logo.src}
+                src={publicUrl(logo.src)}
                 alt={logo.alt}
               />
             </div>

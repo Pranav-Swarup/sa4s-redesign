@@ -1,5 +1,6 @@
 
 import { ExternalLink, Github, FileText, Youtube } from 'lucide-react';
+import { publicUrl } from '../lib/utils';
 
 interface ShowcaseItem {
   id: string;
@@ -93,7 +94,7 @@ const Showcases = () => {
                   <div className="w-full lg:w-1/2">
                     <div className="aspect-video overflow-hidden rounded-lg shadow-lg bg-gray-100">
                       <img
-                        src={showcase.image}
+                        src={publicUrl(showcase.image)}
                         alt={showcase.imageAlt}
                         className="w-full h-full object-contain hover:scale-105 transition-transform duration-300"
                       />

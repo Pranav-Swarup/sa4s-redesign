@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Mail, Linkedin } from "lucide-react";
 import { categories, defaultPhoto, teamMembers } from "../data/teamData";
+import { publicUrl } from "../lib/utils";
 
 const Team = () => {
   const [activeCategory, setActiveCategory] = useState("All");
@@ -45,7 +46,7 @@ const Team = () => {
               className="bg-white border border-gray-200 rounded-lg p-4 text-center shadow-sm hover:shadow-md transition-all duration-200"
             >
               <img
-                src={member.photo === "" ? defaultPhoto : member.photo}
+                src={publicUrl(member.photo === "" ? defaultPhoto : member.photo)}
                 alt={member.name}
                 className="w-32 h-32 rounded-full mx-auto mb-4 object-cover"
               />

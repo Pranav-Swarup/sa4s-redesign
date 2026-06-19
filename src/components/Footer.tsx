@@ -1,5 +1,6 @@
 
 import { Github, Youtube } from 'lucide-react';
+import { publicUrl } from '../lib/utils';
 
 const Footer = () => {
   return (
@@ -11,7 +12,7 @@ const Footer = () => {
             <div className="flex items-center space-x-3 mb-4">
               <div className="w-16 h-16 flex items-center justify-center">
                 <img 
-                  src="/images/logos/sa4s.png" 
+                  src={publicUrl("/images/logos/sa4s.png")}
                   alt="SA4S Logo" 
                   className="h-full w-auto object-contain"
                 />
@@ -42,7 +43,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-200 mt-8 pt-8 text-center">
           <p className="text-gray-500 text-sm">
-            © 2024 SA4S @ SERC, IIIT-Hyderabad.
+            © 2026 SA4S @ SERC - IIIT-Hyderabad
           </p>
         </div>
       </div>
