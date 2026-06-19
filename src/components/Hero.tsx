@@ -1,7 +1,7 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Play, Pause } from 'lucide-react';
 import BonsaiTree from './BonsaiTree';
 
 const TAGLINE = "building the next generation of intelligent, energy-efficient software";
@@ -11,8 +11,24 @@ const Hero = () => {
   const [seed, setSeed] = useState(FIXED_SEED);
   const [showScrollHint, setShowScrollHint] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [podcastStarted, setPodcastStarted] = useState(false);
+  const [podcastPlaying, setPodcastPlaying] = useState(false);
+  const audioRef = useRef<HTMLAudioElement>(null);
 
   const regen = () => setSeed(Date.now());
+
+  const togglePodcast = () => {
+    const audio = audioRef.current;
+    if (!audio) return;
+    if (!podcastStarted) setPodcastStarted(true);
+    if (podcastPlaying) {
+      audio.pause();
+      setPodcastPlaying(false);
+    } else {
+      audio.play().catch(() => {});
+      setPodcastPlaying(true);
+    }
+  };
 
   useEffect(() => {
     const timer = setTimeout(() => setShowScrollHint(true), 3500);
@@ -26,7 +42,7 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100vh-4rem)] bg-[#FAF7F2] overflow-hidden">
+    <section className="relative min-h-[calc(100vh-6rem)] bg-[#FAF7F2] overflow-hidden">
 
       {/* ── Bonsai — absolute right, bottom-anchored, bleeds left ── */}
       <div
@@ -47,7 +63,7 @@ const Hero = () => {
 
       {/* ── Left text column — z above canvas ──────────────────── */}
       <div
-        className="relative z-10 flex flex-col justify-center min-h-[calc(100vh-4rem)] w-1/2 px-10 xl:px-16 py-12 gap-5 lg:gap-8"
+        className="relative z-10 flex flex-col justify-center min-h-[calc(100vh-6rem)] w-1/2 px-10 xl:px-16 py-12 gap-5 lg:gap-8"
       >
 
         {/* Garamond tagline */}
@@ -90,8 +106,38 @@ const Hero = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.7 }}
           >
-            SA4S at SERC, IIIT Hyderabad
+            Research Group at SERC, IIIT Hyderabad
           </motion.p>
+
+          {/* Podcast button */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 2.2 }}
+            className="mt-5"
+          >
+            <button
+              onClick={togglePodcast}
+              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-sm font-medium shadow-sm"
+              aria-label={podcastPlaying ? 'Pause podcast' : 'Play podcast'}
+            >
+              <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-[#C8C2B6]/60">
+                {podcastPlaying ? <Pause size={12} /> : <Play size={12} className="ml-0.5" />}
+              </span>
+              <span
+                className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
+                  podcastStarted ? 'max-w-0 opacity-0' : 'max-w-[8rem] opacity-100'
+                }`}
+              >
+                Our Podcast
+              </span>
+            </button>
+            <audio
+              ref={audioRef}
+              src="/LLMs%20for%20Architectural%20Design%20Decisions.mp3"
+              onEnded={() => setPodcastPlaying(false)}
+            />
+          </motion.div>
         </div>
       </div>
 

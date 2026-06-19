@@ -84,7 +84,7 @@ const Index = () => {
       <Hero />
 
       {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
-      <section className="w-full">
+      <section id="spotlight" className="w-full">
         <div className="px-6 pt-14 pb-5">
           <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</p>
         </div>

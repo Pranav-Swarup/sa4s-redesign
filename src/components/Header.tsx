@@ -24,20 +24,20 @@ const Header = () => {
   const linkClass = (isActive: boolean) =>
     `px-3 py-2 rounded text-sm font-medium transition-all duration-150 ${
       isActive
-        ? 'text-[#F3E4C9] bg-[#1A428A]'
-        : 'text-[#B8CCE8] hover:text-[#F3E4C9] hover:bg-[#112F72]'
+        ? 'text-[#EDE8DF] bg-[#1F4A30]'
+        : 'text-[#8DB8A2] hover:text-[#EDE8DF] hover:bg-[#142E1E]'
     }`;
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0D2B6B] border-b border-[#1A428A]">
+    <header className="fixed top-0 left-0 right-0 z-50 bg-[#0C2118] border-b border-[#1C4030]">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
 
           <NavLink to="/" className="flex items-center space-x-3">
             <img src="/images/logos/sa4s.png" alt="SA4S Logo" className="w-9 h-9 object-contain" />
             <div className="hidden sm:block">
-              <div className="font-semibold text-[#F3E4C9] text-sm tracking-wide">SA4S @ SERC</div>
-              <div className="text-[10px] text-[#B8CCE8] tracking-wider uppercase">IIIT Hyderabad</div>
+              <div className="font-semibold text-[#EDE8DF] text-sm tracking-wide">SA4S Research Group</div>
+              <div className="text-[10px] text-[#8DB8A2] tracking-wider uppercase">SERC - IIIT Hyderabad</div>
             </div>
           </NavLink>
 
@@ -51,7 +51,7 @@ const Header = () => {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded text-[#B8CCE8] hover:text-[#F3E4C9] hover:bg-[#112F72] transition-colors duration-150"
+            className="lg:hidden p-2 rounded text-[#8DB8A2] hover:text-[#EDE8DF] hover:bg-[#142E1E] transition-colors duration-150"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={22} /> : <Menu size={22} />}
@@ -59,7 +59,7 @@ const Header = () => {
         </div>
 
         {isMenuOpen && (
-          <div className="lg:hidden py-4 border-t border-[#1A428A] bg-[#0D2B6B]">
+          <div className="lg:hidden py-4 border-t border-[#1C4030] bg-[#0C2118]">
             <nav className="flex flex-col space-y-1">
               {navItems.map((item) => (
                 <NavLink
