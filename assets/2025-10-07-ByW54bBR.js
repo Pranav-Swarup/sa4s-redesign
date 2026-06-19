@@ -1,0 +1,19 @@
+const e=`---
+date: "7 October 2025"
+headline: "Showcasing moya at the NASSCOM Agentic AI Confluence"
+---
+
+We had an inspiring day at the **NASSCOM Agentic AI Confluence**, joining a thought-provoking roundtable on *"State of AI Research in India: The Promise, Pitfalls and Path Ahead."* The discussions reaffirmed the exciting opportunities ahead for India’s AI ecosystem and highlighted the vital role of research-driven innovation.
+
+Our team also presented **moya**, the multi-agent framework we co-developed with **MontyCloud**. Out of roughly 150 submissions, moya was one of just 16 artefacts shortlisted—an incredible validation of the impact this collaboration is creating for cloud-native operations.
+
+<img src='/images/pic/nasscom_agentic_1.jpeg' class='img-responsive' alt='Team presenting moya at the NASSCOM Agentic AI Confluence'/>
+Sreemaee Akshathala and Amey Karan at our poster, sharing moya with attendees.
+
+<img src='/images/pic/nasscom_agentic_2.jpeg' class='img-responsive' alt='Roundtable participants at the NASSCOM Agentic AI Confluence'/>
+Snapshots from the roundtable on the state of AI research in India.
+
+Huge congratulations and thanks to **Sreemaee Akshathala** and **Amey Karan** for championing the poster presentation, and heartfelt appreciation to everyone who stopped by to learn more. Having our partners from MontyCloud with us made the showcase even more special.
+
+*Events like the NASSCOM Agentic AI Confluence underscore the collective momentum behind responsible, impactful AI research in India—and we are excited to be part of that journey.*
+`;export{e as default};

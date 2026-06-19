@@ -1,0 +1,8 @@
+const a=`---
+date: "7 June 2024"
+headline: "Best Poster Award @ ICSA! - Hiya Bhatt, Shrikara A, Adyansh Kakran."
+---
+
+# Best Poster Award @ ICSA! - Hiya Bhatt, Shrikara A, Adyansh Kakran.
+
+<img src='/images/pic/icsa24_best_poster.jpeg' class='img-responsive' alt='ICSA 2024 Best Poster Award'/>`;export{a as default};

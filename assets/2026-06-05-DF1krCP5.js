@@ -1,0 +1,26 @@
+const e=`---
+date: "05 June 2026"
+headline: "SA4S Research Group Advances Sustainable Software Development with Energy-Aware Tools"
+sourceUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7468600827499388928"
+---
+
+![Post Image](https://media.licdn.com/dms/image/v2/D5622AQGDk01OHp9hRA/feedshare-shrink_800/B56Z6XM4QzKsAg-/0/1780653196880?e=2147483647&v=beta&t=wqXWsEl3C-YWIC3apWiV4iaXbdyEQm_TBAhHZ8sw9-k)
+
+The **SA4S research group** at IIIT Hyderabad announced the acceptance of its latest research on design-time energy estimation at the **International Conference on Evaluation and Assessment in Software Engineering (EASE) 2026**.
+
+The research, led by SA4S members **Shailender Goyal** and **Akhila Matathammal**, is part of the Anusandhan National Research Foundation (ANRF) **SustAInd** project. The work addresses a critical challenge in sustainable software engineering: enabling developers to identify energy inefficiencies during the development phase rather than after deployment.
+
+### 🔋 Key Research Contributions
+
+The study introduces a comprehensive approach to making energy efficiency a primary concern during software design:
+
+*   **PowerLens:** A novel measurement methodology designed to obtain precise energy measurements for fine-grained code blocks.
+*   **Empirical Data:** The team developed datasets linking the energy consumption of code blocks to static characteristics, based on an analysis of more than 18,000 Python programs.
+*   **Predictive Modeling:** The research demonstrates that energy consumption is encoded in the structure of source code, influenced by factors such as control flow, operator composition, and nesting patterns. Using lightweight machine learning models, the system can estimate energy consumption before code execution.
+
+### 🛠️ Practical Implementation: WattWise
+
+To bridge the gap between research and practice, the group developed [**WattWise**](https://www.linkedin.com/feed/update/urn:li:activity:7468600827499388928), a VS Code plugin that integrates energy-awareness directly into the developer workflow. The tool allows practitioners to reason about the energy impact of their architectural and coding decisions in real-time.
+
+**Shailender Goyal** will present the group's findings at EASE 2026. This work marks a significant step in the SA4S group's mission to establish energy efficiency as a first-class architectural concern in modern software engineering.
+`;export{e as default};

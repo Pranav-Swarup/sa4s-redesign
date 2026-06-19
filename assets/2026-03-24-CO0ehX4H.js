@@ -1,0 +1,22 @@
+const e=`---
+date: "24 March 2026"
+headline: "SA4S Group Explores AI Planning and Agentic AI During Research Visit"
+sourceUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7442219196559814656"
+---
+
+![Post Image](https://media.licdn.com/dms/image/v2/D5622AQFVyecnCjPh3Q/feedshare-shrink_800/B56Z0gS63EKcAc-/0/1774363324223?e=2147483647&v=beta&t=c930qBk7lhuIaPMRSWzjku2g1iO2Jpvcr4Fb3N5dUxU)
+
+The **SA4S research group** at the Software Engineering Research Center (SERC), IIIT Hyderabad, recently hosted a research visit focused on the intersection of **AI Planning**, **Agentic AI**, and **Software Engineering**. The visit provided an opportunity for intensive technical exchange regarding the group's current research directions.
+
+### 🔬 Research Focus: Green AI and Architectural Sustainability
+
+Led by **Karthik Vaidhyanathan**, the SA4S group engaged in discussions surrounding their ongoing work in **Green AI** and the development of sustainable software architectures. The sessions explored how AI Planning techniques can be integrated with software engineering practices to improve system adaptation and resource efficiency.
+
+Key highlights of the visit included:
+
+*   **Student Research Reviews:** SA4S research students presented their ongoing projects, receiving technical feedback and comments to refine their research methodologies.
+*   **Thematic Discussions:** The group explored topics including **LLM4SE**, **Agentic AI**, and the architectural implications of generative AI in modern software systems.
+*   **Knowledge Exchange:** Group members gained insights into the field of AI Planning, discussing its potential applications in architecting self-adaptive systems.
+
+The visit underscores the SA4S group's dedication to fostering academic collaboration and advancing research in sustainable, AI-driven software engineering.
+`;export{e as default};

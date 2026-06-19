@@ -1,0 +1,14 @@
+const e=`---
+date: "12 July 2025"
+headline: "SA4S Celebrates First Cohort of Honors Graduates at 24th IIITH Convocation"
+sourceUrl: "https://www.linkedin.com/feed/update/urn:li:activity:7349859041407365120"
+---
+
+![Post Image](https://media.licdn.com/dms/image/v2/D5622AQFv8qnx5DU_KA/feedshare-shrink_800/B56Zf_x0wwHUAg-/0/1752342946931?e=2147483647&v=beta&t=yNxWG9UQ_JnVagoii8Yy9IZUBXj3lNgJdStGAkX2Z8A)
+
+The 24th Convocation of IIIT Hyderabad marked a significant milestone for the Software Architecture for Sustainability (SA4S) research group with the graduation of its first cohort of honors students.
+
+SA4S members **Arya Marda**, **Meghana Tedla**, and **Shrikara A.** successfully completed their honors program under the supervision of **Karthik Vaidhyanathan**. Their graduation represents the first set of undergraduate researchers from the group to complete their degree requirements with a focus on sustainable software architecture. 
+
+The SA4S group recognizes their contributions to the lab’s research initiatives and extends its best wishes to the graduates as they transition to their professional careers and further academic pursuits.
+`;export{e as default};

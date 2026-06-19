@@ -1,0 +1,11 @@
+const e=`---
+date: "25 September 2025"
+headline: "Rudra Dhar and Akhila Matathammal Invited to ISAPS 2025 in the Netherlands"
+---
+
+We are thrilled to share that **Rudra Dhar** and **Akhila Matathammal** have been selected to attend the premier [International Software Architecture PhD School (ISAPS) 2025](https://www.lorentzcenter.nl/international-software-architecture-phd-school-25-isaps.html), which will take place at the Lorentz Center in Leiden, Netherlands, from **3–7 November 2025**.
+
+This highly competitive school gathers emerging researchers from around the world to collaborate with leading experts in software architecture. Rudra and Akhila will represent SA4S while engaging in advanced workshops, interactive sessions, and hands-on design studios focused on cutting-edge architectural challenges.
+
+Please join us in congratulating them on this outstanding achievement and wishing them an inspiring week of learning, collaboration, and innovation at ISAPS 2025!
+`;export{e as default};

@@ -1,0 +1,38 @@
+const e=`---
+date: "20 January 2026"
+headline: "9 Papers Accepted at ICSE 2026"
+---
+
+<div style="text-align: center; margin-bottom: 2rem;">
+  <img src="/images/publications/icse2026_banner.png" alt="ICSE 2026 Banner" style="width: 100%; border-radius: 8px; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);" />
+</div>
+
+We are thrilled to announce that **9 papers** from the SA4S research group have been accepted at **ICSE 2026**, the premier conference in software engineering!
+
+This achievement highlights our team's innovative research in **Agentic AI**, **Sustainable Computing**, and **Self-Adaptive Systems**.
+
+### 🌟 Featured Papers
+
+Here are some of the highlighted papers accepted this year:
+
+*   **[POLARIS: Is Multi-Agentic Reasoning the Next Wave in Engineering Self-Adaptive Systems?](/blogs/2512.04702v2)**  
+    *Accepted at SEAMS 2026 Main Track*
+
+*   **[SWEnergy: An Empirical Study on Energy Efficiency in Agentic Issue Resolution Frameworks with SLMs](/blogs/2512.09543v2)**  
+    *Accepted at ICSE 2026 Agent Workshop*
+
+*   **[Architecting AgentOps Needs CHANGE](/blogs/2601.06456v1)**  
+    *Accepted at CAIN 2026 Research Track*
+
+*   **[Beyond Task Completion: An Assessment Framework for Evaluating Agentic AI Systems](/blogs/2512.12791v2)**  
+    *Accepted at ICSE 2026 Agent Workshop*
+
+*   **[Generating Energy-Efficient Code via Large-Language Models – Where are we now?](/blogs/2509.10099v1)**  
+    *Accepted at ICSE 2026 Main Track*
+
+...and **4 more** papers! We will share details on the remaining papers soon.
+
+> "This is a testament to our team's hard work and dedication to pushing the boundaries of software engineering research."
+
+Congratulations to all the authors! 🚀
+`;export{e as default};

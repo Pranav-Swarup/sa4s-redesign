@@ -1,0 +1,11 @@
+const e=`---
+date: "04 February 2026"
+headline: "Sreemaee Akshathala Selected for IndiaAI Fellowship in Agentic AI"
+---
+
+![Post Image](https://media.licdn.com/dms/image/v2/D5622AQEuWmoEd4SDgA/feedshare-shrink_800/B56ZwpkLlOH0Ag-/0/1770223877049?e=2147483647&v=beta&t=W9_1eXGh99TKBx_0ZY6_ZnqlrdKDIpGNaFoZe27Hwq0)
+
+Sreemaee Akshathala, an MS by Research student in the SA4S research group, has been selected for the prestigious **IndiaAI Fellowship**. She will be working under the project titled **"Architecting Agentic AI Systems."**
+
+This fellowship highlights strong national support for foundational research in Agentic AI and recognizes significant student contributions at a national level. The achievement marks a proud moment for the SA4S group and the Software Engineering Research Center (SERC) at IIIT Hyderabad.
+`;export{e as default};
