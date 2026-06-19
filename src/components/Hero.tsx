@@ -7,6 +7,8 @@ import { publicUrl } from '../lib/utils';
 
 const TAGLINE = "building the next generation of intelligent, energy-efficient software";
 const FIXED_SEED = 97225; // tune this to pick your favourite tree
+const CANVAS_W = 100 * 10;  // COLS * CHAR_W
+const CANVAS_H = 40 * 20;   // ROWS * CHAR_H
 
 const Hero = () => {
   const [seed, setSeed] = useState(FIXED_SEED);
@@ -43,33 +45,27 @@ const Hero = () => {
   }, []);
 
   return (
-    <section className="relative min-h-[calc(100vh-6rem)] bg-[#FAF7F2] overflow-hidden">
+    /*
+     * Mobile:  flex-col — text (flex-1) stacks above tree (flex-shrink-0 at bottom).
+     * Desktop: block — tree is absolute bottom-right, scaled to min(55vw, natural size).
+     */
+    <section className="relative bg-[#FAF7F2] overflow-hidden flex flex-col min-h-[calc(100vh-4rem)] lg:block lg:min-h-[calc(100vh-6rem)]">
 
-      {/* ── Bonsai — absolute right, bottom-anchored, bleeds left ── */}
-      <div
-        className="absolute bottom-8 right-0 pointer-events-none"
-        style={{ zIndex: 0 }}
-      >
-        <BonsaiTree seed={seed} onClick={regen} />
-      </div>
-
-      {/* ── Subtle refresh button near tree ────────────────────── */}
+      {/* ── Subtle refresh button ─────────────────────────────────── */}
       <button
         onClick={regen}
-        className="absolute top-20 right-20 z-20 text-2xl leading-none text-[#c4beb5] hover:text-[#7A7060] transition-colors duration-400 bg-transparent border-none cursor-pointer select-none"
+        className="absolute top-20 right-5 lg:right-20 z-20 text-2xl leading-none text-[#c4beb5] hover:text-[#7A7060] transition-colors duration-400 bg-transparent border-none cursor-pointer select-none"
         aria-label="Regenerate bonsai tree"
       >
         ⟳
       </button>
 
-      {/* ── Left text column — z above canvas ──────────────────── */}
-      <div
-        className="relative z-10 flex flex-col justify-center min-h-[calc(100vh-6rem)] w-1/2 px-10 xl:px-16 py-12 gap-5 lg:gap-8"
-      >
+      {/* ── Text column — comes first in DOM so it's above tree on mobile ── */}
+      <div className="relative z-10 flex flex-col justify-center flex-1 lg:flex-none lg:min-h-[calc(100vh-6rem)] lg:w-1/2 w-full px-6 lg:px-10 xl:px-16 py-8 lg:py-12 gap-5 lg:gap-8">
 
-        {/* Garamond tagline */}
+        {/* Garamond tagline — smaller on mobile to leave room for tree */}
         <motion.p
-          className="font-garamond italic text-4xl md:text-5xl xl:text-[3.1rem] text-[#1A1710] leading-[1.18]"
+          className="font-garamond italic text-xl leading-snug sm:text-2xl md:text-3xl lg:text-4xl xl:text-[3.1rem] lg:leading-[1.18] text-[#1A1710]"
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5, ease: [0.25, 0, 0, 1], delay: 0.1 }}
@@ -81,7 +77,7 @@ const Hero = () => {
         <div className="select-none">
           <div
             className="font-black leading-none tracking-tight text-[#2D6A4F]"
-            style={{ fontSize: 'clamp(5rem, 10vw, 9rem)' }}
+            style={{ fontSize: 'clamp(3.5rem, 10vw, 9rem)' }}
             aria-label="SA4S"
           >
             {['S', 'A', '4', 'S'].map((char, i) => (
@@ -142,7 +138,22 @@ const Hero = () => {
         </div>
       </div>
 
-      {/* ── Scroll indicator ────────────────────────────────────── */}
+      {/* ── Bonsai ───────────────────────────────────────────────────
+           Mobile:  flex-shrink-0 item → sits at bottom of the column,
+                    centered, 85 vw wide (capped at 500 px).
+           Desktop: absolute bottom-0 right-0, scaled to min(55vw, 1000px).
+      ── */}
+      <div className="flex-shrink-0 flex justify-center pointer-events-none z-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[min(55vw,1000px)]">
+        <div className="w-[85vw] max-w-[500px] lg:w-full lg:max-w-none">
+          <BonsaiTree
+            seed={seed}
+            onClick={regen}
+            style={{ width: '100%', height: 'auto', aspectRatio: `${CANVAS_W} / ${CANVAS_H}` }}
+          />
+        </div>
+      </div>
+
+      {/* ── Scroll indicator ─────────────────────────────────────── */}
       <AnimatePresence>
         {showScrollHint && !scrolled && (
           <motion.div

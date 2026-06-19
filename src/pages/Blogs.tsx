@@ -5,6 +5,7 @@ import { Search, Calendar, User, ArrowRight } from 'lucide-react';
 import { Input } from '@/components/ui/input';
 import { Button } from '@/components/ui/button';
 import { allPosts } from '@/lib/posts';
+import { publicUrl } from '@/lib/utils';
 import { 
   DropdownMenu, 
   DropdownMenuContent, 
@@ -109,7 +110,7 @@ const BlogCardImage = ({ src, alt }: { src: string; alt: string }) => {
   return (
     <div className="w-full aspect-[4/3] bg-gray-100">
       <img
-        src={src}
+        src={publicUrl(src)}
         alt={alt}
         className="w-full h-full object-contain"
         onError={() => setHasError(true)}

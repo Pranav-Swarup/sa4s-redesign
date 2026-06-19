@@ -2,6 +2,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { ExternalLink } from 'lucide-react';
 import { useEffect, useState } from "react";
 import * as bibtexParse from "bibtex-parse-js";
+import { publicUrl } from "@/lib/utils";
 
 interface Publication {
   id: string;
@@ -233,7 +234,7 @@ const Publications = () => {
   useEffect(() => {
     const loadBibtex = async () => {
       try {
-        const res = await fetch("/dblp.bib"); // served from /public/dblp.bib
+        const res = await fetch(`${import.meta.env.BASE_URL}dblp.bib`); // served from /public/dblp.bib
         if (!res.ok) throw new Error("Failed to load .bib file");
         console.log("Fetched .bib file successfully");
 
@@ -269,7 +270,7 @@ const Publications = () => {
             {conferences.map((conference) => (
               <div key={conference.name} className="flex-shrink-0">
                 <img
-                  src={conference.logo}
+                  src={publicUrl(conference.logo)}
                   alt={conference.name}
                   className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity duration-150"
                 />

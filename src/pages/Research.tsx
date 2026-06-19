@@ -1,4 +1,5 @@
 import React from 'react';
+import { publicUrl } from '@/lib/utils';
 
 const researchAreas = [
   {
@@ -59,7 +60,7 @@ const Research: React.FC = () => {
               <div key={collaborator.name} className="flex justify-center">
                 <img
                   className="max-h-24 w-full object-contain"
-                  src={collaborator.logo}
+                  src={publicUrl(collaborator.logo)}
                   alt={collaborator.name}
                 />
               </div>

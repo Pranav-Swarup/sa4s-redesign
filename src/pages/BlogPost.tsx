@@ -6,6 +6,7 @@ import remarkGfm from 'remark-gfm';
 import rehypeRaw from 'rehype-raw';
 import { blogPosts } from '@/lib/posts';
 import { useEffect, useState } from 'react';
+import { publicUrl } from '@/lib/utils';
 
 
       
@@ -142,12 +143,11 @@ export default function BlogPost() {
                 li: ({node, ...props}) => <li className="mb-2" {...props} />,
                 a: ({node, ...props}) => <a className="text-sa4s-teal-600 hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
                 img: ({node, ...props}) => {
-                  // Handle image paths correctly for the public directory
-                  const src = props.src?.startsWith('/') ? props.src : `/${props.src}`;
+                  const src = props.src ? publicUrl(props.src) : '';
                   return (
                     <div className="my-6">
-                      <img 
-                        src={src} 
+                      <img
+                        src={src}
                         alt={props.alt || ''} 
                         className="rounded-lg shadow-md w-full" 
                       />

@@ -1,5 +1,5 @@
 
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, type CSSProperties } from 'react';
 
 // ─── Canvas grid config ────────────────────────────────────────────────────
 // CHAR_WIDTH=1, CHAR_HEIGHT=2 (matches pybonsai's terminal aspect assumptions)
@@ -270,9 +270,10 @@ interface Props {
   className?: string;
   seed?: number;
   onClick?: () => void;
+  style?: CSSProperties;
 }
 
-export default function BonsaiTree({ className = '', seed, onClick }: Props) {
+export default function BonsaiTree({ className = '', seed, onClick, style }: Props) {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const rafRef = useRef(0);
   const timerRef = useRef(0);
@@ -327,7 +328,7 @@ export default function BonsaiTree({ className = '', seed, onClick }: Props) {
   return (
     <canvas
       ref={canvasRef}
-      style={{ width: COLS * CHAR_W, height: ROWS * CHAR_H, pointerEvents: 'auto', cursor: onClick ? 'pointer' : 'default' }}
+      style={{ width: COLS * CHAR_W, height: ROWS * CHAR_H, pointerEvents: 'auto', cursor: onClick ? 'pointer' : 'default', ...style }}
       className={className}
       onClick={onClick}
       aria-hidden="true"
