@@ -1,4 +1,5 @@
 
+import { Mail } from 'lucide-react';
 import { publicUrl } from '../lib/utils';
 
 const Footer = () => {
@@ -28,6 +29,13 @@ const Footer = () => {
               <div className="font-semibold text-white/90 text-sm tracking-wide">SA4S Research Group</div>
               <div className="text-[10px] text-white/60 tracking-wider uppercase mt-0.5">SERC · IIIT Hyderabad</div>
             </div>
+            <a
+              href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+              className="mt-1 inline-flex items-center gap-2 px-4 py-1.5 bg-[#1F4A30] text-[#EDE8DF] rounded-full text-xs font-medium hover:bg-[#2D6A4F] transition-colors duration-200"
+            >
+              <Mail size={12} />
+              Subscribe to Updates
+            </a>
           </div>
 
           {/* Right — Contact */}

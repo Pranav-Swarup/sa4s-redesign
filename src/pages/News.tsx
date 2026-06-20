@@ -1,6 +1,6 @@
 
 import { useState, useEffect, useRef } from 'react';
-import { ArrowLeft, Calendar, ExternalLink } from 'lucide-react';
+import { ArrowLeft, Calendar, ExternalLink, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import ReactMarkdown from 'react-markdown';
 import rehypeRaw from 'rehype-raw';
@@ -57,6 +57,22 @@ const News = () => {
           <p className="mt-3 text-[#8DB8A2]">
             Developments, achievements, and announcements from the SA4S research group.
           </p>
+        </div>
+      </div>
+
+      {/* Subscribe strip */}
+      <div className="bg-[#F0EBE1] border-b border-[#D8D2C4]">
+        <div className="container mx-auto px-4 py-5 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-sm text-[#6B6455] text-center sm:text-left">
+            Get research updates, paper releases, and lab news directly in your inbox. Unsubscribe anytime.
+          </p>
+          <a
+            href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
+          >
+            <Mail size={14} />
+            Subscribe to Updates
+          </a>
         </div>
       </div>
 

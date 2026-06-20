@@ -1,7 +1,7 @@
 
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Brain, Cpu, Zap, Leaf, ArrowRight } from 'lucide-react';
+import { Brain, Cpu, Zap, Leaf, ArrowRight, Mail } from 'lucide-react';
 import Hero from '../components/Hero';
 import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
@@ -54,6 +54,22 @@ const Index = () => {
 
       {/* ── Hero ──────────────────────────────────── */}
       <Hero />
+
+      {/* ── Subscribe — mobile only, above spotlight ──────── */}
+      <div className="lg:hidden bg-[#F0EBE1] border-b border-[#D8D2C4] px-6 py-10 text-center">
+        <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-3">Newsletter</p>
+        <p className="text-sm text-[#6B6455] mb-5 max-w-xs mx-auto leading-relaxed">
+          Research updates, paper releases, and lab news from SA4S.
+        </p>
+        <a
+          href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+          className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
+        >
+          <Mail size={14} />
+          Subscribe to Updates
+        </a>
+        <p className="text-[11px] text-[#9A9080] mt-3">Unsubscribe anytime.</p>
+      </div>
 
       {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
       <section id="spotlight" className="w-full">
@@ -111,6 +127,23 @@ const Index = () => {
 
       {/* ── Stats strip ───────────────────────────── */}
       <PulseStrip />
+
+      {/* ── Subscribe strip — desktop only, below stats ───── */}
+      <div className="hidden lg:block bg-[#F0EBE1] border-b border-[#D8D2C4]">
+        <div className="container mx-auto px-4 py-5 flex items-center justify-between gap-8">
+          <div>
+            <p className="text-sm font-semibold text-[#1A1710]">Stay in touch with our group</p>
+            <p className="text-xs text-[#6B6455] mt-0.5">Research updates, paper releases, and lab news. Unsubscribe anytime.</p>
+          </div>
+          <a
+            href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+            className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
+          >
+            <Mail size={14} />
+            Subscribe to Updates
+          </a>
+        </div>
+      </div>
 
       {/* ── Research areas ────────────────────────── */}
       <section className="py-16 bg-[#FAF7F2]">
