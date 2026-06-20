@@ -71,63 +71,92 @@ const Index = () => {
         <p className="text-[11px] text-[#9A9080] mt-3">Unsubscribe anytime.</p>
       </div>
 
-      {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
+      {/* ── Spotlight grid ── */}
       <section id="spotlight" className="w-full">
-        <div className="px-4 py-4 lg:px-[clamp(6rem,14vw,12rem)] lg:py-8">
-        <div className="grid grid-cols-2 gap-3 lg:gap-5">
-          {spotlightItems.map((s, i) => {
-            const isLastOdd = spotlightItems.length % 2 === 1 && i === spotlightItems.length - 1;
-            return (
+        {/* Mobile: single column, image + title below */}
+        <div className="lg:hidden flex flex-col gap-5 px-4 py-4">
+          {spotlightItems.map((s, i) => (
             <motion.div
               key={s.date}
-              className={`relative overflow-hidden rounded-xl group cursor-pointer aspect-video ${isLastOdd ? 'col-span-2 w-1/2 mx-auto' : ''}`}
-              initial={{ opacity: 0 }}
-              whileInView={{ opacity: 1 }}
+              initial={{ opacity: 0, y: 12 }}
+              whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.65, delay: i * 0.08 }}
+              transition={{ duration: 0.5, delay: i * 0.06 }}
             >
-              <Link to={`/spotlight?item=${s.date}`} className="absolute inset-0 z-10" aria-label={s.title} />
-              {s.image && (
-                <img
-                  src={publicUrl(s.image)}
-                  alt={s.title}
-                  className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
-                  loading={i < 2 ? 'eager' : 'lazy'}
-                />
-              )}
-              {/* Bottom gradient for tag/preview/explore */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
-              {/* Top gradient for title banner */}
-              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/5 to-transparent" />
-              {/* Hover highlight border */}
-              <div className="absolute inset-0 ring-inset ring-0 group-hover:ring-[1.5px] ring-white/25 transition-all duration-400" />
-
-              {/* Title — top banner */}
-              <div className="absolute top-0 left-0 right-0 p-5">
-                <h3 className="text-base font-bold text-white leading-snug">
-                  {s.title}
-                </h3>
-              </div>
-
-              {/* Bottom content — tag, preview, explore */}
-              <div className="absolute bottom-0 left-0 p-6">
-                {s.tag && (
-                  <span className="text-[11px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
-                    {s.tag}
-                  </span>
-                )}
-                {s.preview && (
-                  <p className="mt-2 text-sm text-white/60 line-clamp-2 max-w-[17rem]">{s.preview}</p>
-                )}
-                <div className="mt-3 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
-                  <span>Explore</span>
-                  <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />
+              <Link to={`/spotlight?item=${s.date}`} className="block">
+                <div className="relative aspect-video overflow-hidden rounded-xl">
+                  {s.image && (
+                    <img
+                      src={publicUrl(s.image)}
+                      alt={s.title}
+                      className="absolute inset-0 w-full h-full object-cover"
+                      loading={i < 2 ? 'eager' : 'lazy'}
+                    />
+                  )}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-black/5 to-transparent" />
+                  {s.tag && (
+                    <span className="absolute bottom-3 left-3 text-[10px] tracking-[0.2em] uppercase font-semibold text-[#52B788]">
+                      {s.tag}
+                    </span>
+                  )}
                 </div>
-              </div>
+                <div className="pt-2.5 px-0.5">
+                  <h3 className="text-sm font-semibold text-[#1A1710] leading-snug">{s.title}</h3>
+                </div>
+              </Link>
             </motion.div>
-            );
-          })}
+          ))}
         </div>
+
+        {/* Desktop: 2-column grid with overlay text */}
+        <div className="hidden lg:block px-[clamp(6rem,14vw,12rem)] py-8">
+          <div className="grid grid-cols-2 gap-5">
+            {spotlightItems.map((s, i) => {
+              const isLastOdd = spotlightItems.length % 2 === 1 && i === spotlightItems.length - 1;
+              return (
+                <motion.div
+                  key={s.date}
+                  className={isLastOdd ? 'col-span-2 w-1/2 mx-auto' : ''}
+                  initial={{ opacity: 0 }}
+                  whileInView={{ opacity: 1 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.65, delay: i * 0.08 }}
+                >
+                  <div className="relative aspect-video overflow-hidden rounded-xl group cursor-pointer">
+                    <Link to={`/spotlight?item=${s.date}`} className="absolute inset-0 z-10" aria-label={s.title} />
+                    {s.image && (
+                      <img
+                        src={publicUrl(s.image)}
+                        alt={s.title}
+                        className="absolute inset-0 w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-700 ease-out"
+                        loading={i < 2 ? 'eager' : 'lazy'}
+                      />
+                    )}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/5 to-transparent" />
+                    <div className="absolute inset-0 ring-inset ring-0 group-hover:ring-[1.5px] ring-white/25 transition-all duration-400" />
+                    <div className="absolute top-0 left-0 right-0 p-5">
+                      <h3 className="text-base font-bold text-white leading-snug">{s.title}</h3>
+                    </div>
+                    <div className="absolute bottom-0 left-0 p-6">
+                      {s.tag && (
+                        <span className="text-[11px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
+                          {s.tag}
+                        </span>
+                      )}
+                      {s.preview && (
+                        <p className="mt-2 text-sm text-white/60 line-clamp-2 max-w-[17rem]">{s.preview}</p>
+                      )}
+                      <div className="mt-3 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
+                        <span>Explore</span>
+                        <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />
+                      </div>
+                    </div>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
         </div>
       </section>
 

@@ -120,6 +120,15 @@ All colors MUST be HSL.
   background: radial-gradient(ellipse at 50% 0%, transparent 55%, rgba(0,0,0,0.18) 100%);
 }
 
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to   { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-block;
+  animation: marquee 14s linear infinite;
+}
+
 /* Safari compatibility: explicit -webkit- prefixes for backdrop-filter */
 @supports (-webkit-backdrop-filter: blur(1px)) {
   .backdrop-blur-sm {

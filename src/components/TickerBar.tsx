@@ -1,5 +1,5 @@
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import allSpotlightItems from 'virtual:spotlight';
 const spotlightItems = allSpotlightItems.filter((s) => s.homepage);
@@ -9,6 +9,9 @@ const INTERVAL_MS = 4000;
 const TickerBar = () => {
   const [index, setIndex] = useState(0);
   const [visible, setVisible] = useState(false);
+  const [isOverflowing, setIsOverflowing] = useState(false);
+  const textRef = useRef<HTMLSpanElement>(null);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const show = setTimeout(() => setVisible(true), 1800);
@@ -21,11 +24,18 @@ const TickerBar = () => {
     return () => clearInterval(id);
   }, [visible]);
 
+  useEffect(() => {
+    if (!textRef.current || !containerRef.current) return;
+    setIsOverflowing(textRef.current.scrollWidth > containerRef.current.clientWidth);
+  }, [index, visible]);
+
   const scrollToSpotlight = () => {
     document.getElementById('spotlight')?.scrollIntoView({ behavior: 'smooth' });
   };
 
   const item = spotlightItems[index];
+
+  const label = item ? [item.tag, item.title].filter(Boolean).join(' · ') : '';
 
   return (
     <div
@@ -34,12 +44,45 @@ const TickerBar = () => {
       title="View spotlight"
       aria-label="Scroll to spotlight section"
     >
-      <div className="flex items-center justify-center h-full px-4">
+      {/* ── Mobile: marquee if overflowing, else centered ── */}
+      <div ref={containerRef} className="flex lg:hidden items-center h-full overflow-hidden px-4">
+        <AnimatePresence mode="wait">
+          {visible && item && (
+            <motion.div
+              key={index}
+              className="w-full overflow-hidden"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.4 }}
+            >
+              {isOverflowing ? (
+                <div className="marquee-track whitespace-nowrap text-[12px] tracking-[0.06em] text-[#1A3D2A]">
+                  <span ref={textRef} className="inline-block pr-16">{label}</span>
+                  <span className="inline-block pr-16" aria-hidden>{label}</span>
+                </div>
+              ) : (
+                <span
+                  ref={textRef}
+                  className="block text-center text-[12px] tracking-[0.08em] text-[#1A3D2A] select-none"
+                >
+                  {item.tag && <span className="font-bold text-[#1D5038] uppercase tracking-[0.15em]">{item.tag}</span>}
+                  {item.tag && <span className="text-[#2D6A4F] text-[8px] mx-2">◆</span>}
+                  {item.title}
+                </span>
+              )}
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+
+      {/* ── Desktop: existing fade transition ── */}
+      <div className="hidden lg:flex items-center justify-center h-full px-4">
         <AnimatePresence mode="wait">
           {visible && item && (
             <motion.span
               key={index}
-              className="flex items-center gap-2.5 text-[12px] lg:text-[14px] tracking-[0.08em] select-none"
+              className="flex items-center gap-2.5 text-[14px] tracking-[0.08em] select-none"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
