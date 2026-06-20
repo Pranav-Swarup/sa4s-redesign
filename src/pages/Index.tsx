@@ -62,7 +62,7 @@ const Index = () => {
           Research updates, paper releases, and lab news from SA4S.
         </p>
         <a
-          href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+          href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
         >
           <Mail size={14} />
@@ -136,7 +136,7 @@ const Index = () => {
             <p className="text-xs text-[#6B6455] mt-0.5">Research updates, paper releases, and lab news. Unsubscribe anytime.</p>
           </div>
           <a
-            href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+            href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
           >
             <Mail size={14} />

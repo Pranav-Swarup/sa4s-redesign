@@ -30,7 +30,7 @@ const Footer = () => {
               <div className="text-[10px] text-white/60 tracking-wider uppercase mt-0.5">SERC · IIIT Hyderabad</div>
             </div>
             <a
-              href="mailto:sa4s@iiit.ac.in?subject=Subscribe%20to%20SA4S%20Updates"
+              href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
               className="mt-1 inline-flex items-center gap-2 px-4 py-1.5 bg-[#1F4A30] text-[#EDE8DF] rounded-full text-xs font-medium hover:bg-[#2D6A4F] transition-colors duration-200"
             >
               <Mail size={12} />
