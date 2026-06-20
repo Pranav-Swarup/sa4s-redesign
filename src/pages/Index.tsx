@@ -1,7 +1,7 @@
 
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Globe2, Brain, Cpu, Zap, Leaf, ArrowRight, ExternalLink } from 'lucide-react';
+import { Brain, Cpu, Zap, Leaf, ArrowRight } from 'lucide-react';
 import Hero from '../components/Hero';
 import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
@@ -63,15 +63,15 @@ const Index = () => {
         <div className="lg:px-[clamp(3rem,8vw,7rem)]">
         <div className="grid grid-cols-2 h-screen gap-[3px] lg:gap-[clamp(0.375rem,0.6vw,0.75rem)] p-[3px] lg:p-0 bg-[#D8D2C4] lg:bg-transparent">
           {spotlightItems.map((s, i) => (
-            <motion.a
+            <motion.div
               key={s.date}
-              href={s.link}
               className="relative overflow-hidden group cursor-pointer block"
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: i * 0.08 }}
             >
+              <Link to="/spotlight" className="absolute inset-0 z-10" aria-label={s.title} />
               {s.image && (
                 <img
                   src={publicUrl(s.image)}
@@ -103,37 +103,11 @@ const Index = () => {
                   <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />
                 </div>
               </div>
-            </motion.a>
+            </motion.div>
           ))}
         </div>
         </div>
       </section>
-
-      {/* ── SustAInd ──────────────────────────────── */}
-      <motion.section className="pt-12 pb-12 bg-[#FAF7F2]" {...inView}>
-        <div className="container mx-auto px-4">
-          <a
-            href="https://sa4s-serc.github.io/sustaind/"
-            target="_blank"
-            rel="noreferrer"
-            className="group flex flex-col md:flex-row gap-5 items-start md:items-center border border-[#D8D2C4] hover:border-[#2D6A4F]/40 rounded-xl p-7 bg-[#F0EBE1] hover:bg-[#EAE4D6] transition-all duration-200"
-          >
-            <div className="flex-shrink-0 w-10 h-10 rounded border border-[#2D6A4F]/25 flex items-center justify-center text-[#2D6A4F]">
-              <Globe2 size={18} />
-            </div>
-            <div className="flex-1 min-w-0">
-              <h3 className="font-bold text-base text-[#1A1710] mb-1.5">SustAInd</h3>
-              <p className="text-sm text-[#6B6455] leading-relaxed max-w-2xl">
-                Sustainable AI for India — low-carbon, cost-aware, production-ready ML systems built for the next billion users.
-              </p>
-            </div>
-            <ExternalLink
-              size={16}
-              className="text-[#2D6A4F]/30 group-hover:text-[#2D6A4F] transition-colors duration-200 flex-shrink-0 mt-1 md:mt-0"
-            />
-          </a>
-        </div>
-      </motion.section>
 
       {/* ── Stats strip ───────────────────────────── */}
       <PulseStrip />

@@ -1,6 +1,6 @@
 [HOMEPAGE]
 [TITLE] Best Poster at ICSA 2024
 [TAG] Award
-[PREVIEW] Software Architecture Conference
-[CONTENT] SA4S won the Best Poster award at the International Conference on Software Architecture 2024.
+[PREVIEW] Software Architecture Conference, Prague
+[CONTENT] SA4S won the Best Poster Award at the International Conference on Software Architecture 2024 in Prague, Czech Republic — one of the top venues for software architecture research worldwide. The awarded poster presented our work on self-adaptive ML systems, demonstrating how architectural patterns can be applied to make machine learning pipelines more robust and energy-efficient in production. See related publications on our Publications page.
 [IMAGE] /images/home/icsa24_best_poster.jpeg

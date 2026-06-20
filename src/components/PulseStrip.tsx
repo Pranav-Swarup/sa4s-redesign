@@ -3,8 +3,8 @@ import { motion } from 'framer-motion';
 import CountUp from './CountUp';
 
 const stats = [
-  { value: 73, suffix: '+', label: 'Publications' },
-  { value: 40, suffix: '+', label: 'Researchers' },
+  { value: 70, suffix: '+', label: 'Publications' },
+  { value: 20, suffix: '+', label: 'Researchers' },
 ];
 
 export default function PulseStrip() {

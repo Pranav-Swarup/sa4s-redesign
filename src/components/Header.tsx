@@ -4,7 +4,9 @@ import { NavLink } from 'react-router-dom';
 import { Menu, X, ArrowRight } from 'lucide-react';
 import { publicUrl } from '../lib/utils';
 
-const primaryNav = [
+type NavItem = { name: string; path: string; external?: boolean };
+
+const primaryNav: NavItem[] = [
   { name: 'Home',         path: '/' },
   { name: 'Spotlight',    path: '/spotlight' },
   { name: 'Research',     path: '/research' },
@@ -12,15 +14,15 @@ const primaryNav = [
   { name: 'News',         path: '/news' },
 ];
 
-const drawerNav = [
-  { name: 'Blogs',      path: '/blogs' },
-  { name: 'Agentic AI', path: '/agenticai' },
-  { name: 'AutoSE',     path: '/autose' },
-  { name: 'Tools',      path: '/tools' },
-  { name: 'Showcases',  path: '/showcases' },
-  { name: 'Projects',   path: '/work' },
-  { name: 'Team',       path: '/team' },
-  { name: 'Gallery',    path: '/gallery' },
+const drawerNav: NavItem[] = [
+  { name: 'Tools & Systems', path: '/tools' },
+  { name: 'Agentic AI',      path: '/agenticai' },
+  { name: 'AutoSE',          path: '/autose' },
+  { name: 'SustAInd ↗',     path: 'https://sa4s-serc.github.io/sustaind/', external: true },
+  { name: 'Blogs',           path: '/blogs' },
+  { name: 'Projects',        path: '/work' },
+  { name: 'Team',            path: '/team' },
+  { name: 'Gallery',         path: '/gallery' },
 ];
 
 // Mobile drawer shows every page
@@ -121,44 +123,73 @@ const Header = () => {
 
         {/* Nav links */}
         <nav className="flex-1 overflow-y-auto px-8 py-8 flex flex-col gap-1">
-          {visibleDrawerItems.map((item, i) => (
-            <NavLink
-              key={item.path}
-              to={item.path}
-              onClick={close}
-              style={{
-                transitionDelay: isOpen ? `${i * 40}ms` : '0ms',
-                opacity: isOpen ? 1 : 0,
-                transform: isOpen ? 'translateX(0)' : 'translateX(20px)',
-              }}
-              className={({ isActive }) =>
-                `group flex items-center justify-between py-4 border-b transition-all duration-300 ${
-                  isActive
-                    ? 'border-[#2D6A4F] text-[#52B788]'
-                    : 'border-[#1C4030] text-[#F0EBE1] hover:text-white hover:border-[#2D6A4F]'
-                }`
-              }
-            >
-              {({ isActive }) => (
-                <>
-                  <span
-                    style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
-                    className={`text-lg md:text-2xl font-normal tracking-wide transition-all duration-150 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}
-                  >
-                    {item.name}
-                  </span>
-                  <ArrowRight
-                    size={16}
-                    className={`transition-all duration-150 ${
-                      isActive
-                        ? 'opacity-100 translate-x-0'
-                        : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'
-                    }`}
-                  />
-                </>
-              )}
-            </NavLink>
-          ))}
+          {visibleDrawerItems.map((item, i) => {
+            const sharedStyle = {
+              transitionDelay: isOpen ? `${i * 40}ms` : '0ms',
+              opacity: isOpen ? 1 : 0,
+              transform: isOpen ? 'translateX(0)' : 'translateX(20px)',
+            };
+            const label = (
+              <span
+                style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
+                className="text-xl md:text-2xl font-normal tracking-wide transition-all duration-150 group-hover:translate-x-1"
+              >
+                {item.name}
+              </span>
+            );
+
+            if (item.external) {
+              return (
+                <a
+                  key={item.path}
+                  href={item.path}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={close}
+                  style={sharedStyle}
+                  className="group flex items-center justify-between py-4 border-b border-[#1C4030] text-[#F0EBE1] hover:text-white hover:border-[#2D6A4F] transition-all duration-300"
+                >
+                  {label}
+                  <ArrowRight size={16} className="opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-150" />
+                </a>
+              );
+            }
+
+            return (
+              <NavLink
+                key={item.path}
+                to={item.path}
+                onClick={close}
+                style={sharedStyle}
+                className={({ isActive }) =>
+                  `group flex items-center justify-between py-4 border-b transition-all duration-300 ${
+                    isActive
+                      ? 'border-[#2D6A4F] text-[#52B788]'
+                      : 'border-[#1C4030] text-[#F0EBE1] hover:text-white hover:border-[#2D6A4F]'
+                  }`
+                }
+              >
+                {({ isActive }) => (
+                  <>
+                    <span
+                      style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
+                      className={`text-xl md:text-2xl font-normal tracking-wide transition-all duration-150 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}
+                    >
+                      {item.name}
+                    </span>
+                    <ArrowRight
+                      size={16}
+                      className={`transition-all duration-150 ${
+                        isActive
+                          ? 'opacity-100 translate-x-0'
+                          : 'opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0'
+                      }`}
+                    />
+                  </>
+                )}
+              </NavLink>
+            );
+          })}
         </nav>
 
         {/* Drawer footer */}

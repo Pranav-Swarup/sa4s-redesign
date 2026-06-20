@@ -131,6 +131,11 @@ function Detail({ item, onBack }: { item: SpotlightItem; onBack: () => void }) {
 const Spotlight = () => {
   const [selected, setSelected] = useState<SpotlightItem | null>(null);
 
+  const openItem = (item: SpotlightItem) => {
+    setSelected(item);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   return (
     <div className="bg-[#FAF7F2] min-h-screen">
       <div className="bg-[#0C2118] border-b border-[#1C4030] py-16 text-center">
@@ -156,7 +161,7 @@ const Spotlight = () => {
               className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
             >
               {allSpotlightItems.map((item) => (
-                <Card key={item.date} item={item} onClick={() => setSelected(item)} />
+                <Card key={item.date} item={item} onClick={() => openItem(item)} />
               ))}
               {allSpotlightItems.length === 0 && (
                 <p className="col-span-3 text-center text-[#6B6455] text-sm py-16">No spotlight items yet.</p>
