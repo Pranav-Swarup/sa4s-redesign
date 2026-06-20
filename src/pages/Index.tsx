@@ -56,7 +56,7 @@ const Index = () => {
       <Hero />
 
       {/* ── Subscribe — mobile only, above spotlight ──────── */}
-      <div className="lg:hidden bg-[#F0EBE1] border-b border-[#D8D2C4] px-6 py-10 text-center">
+      <div className="lg:hidden bg-[#F0EBE1] border-b border-[#D8D2C4] px-6 py-6 text-center">
         <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-3">Newsletter</p>
         <p className="text-sm text-[#6B6455] mb-5 max-w-xs mx-auto leading-relaxed">
           Research updates, paper releases, and lab news from SA4S.
@@ -73,9 +73,6 @@ const Index = () => {
 
       {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
       <section id="spotlight" className="w-full">
-        <div className="px-6 lg:px-[clamp(3rem,8vw,7rem)] pt-14 pb-6 text-center">
-          <h2 className="text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</h2>
-        </div>
         <div className="lg:px-[clamp(3rem,8vw,7rem)]">
         <div className="grid grid-cols-2 h-screen gap-[3px] lg:gap-[clamp(0.375rem,0.6vw,0.75rem)] p-[3px] lg:p-0 bg-[#D8D2C4] lg:bg-transparent">
           {spotlightItems.map((s, i) => (

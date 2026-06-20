@@ -19,7 +19,7 @@ const BG = [250, 247, 242] as const;
 // Leaves:   forest green  R:~G*0.25  G:110-195  B:~G*0.25
 // Pot:      clay   (138, 108, 68)
 const BRANCH_COLOR: ColorRange = [[90, 140], [45, 70], [10, 25]];
-const POT_RGB: RGB = [138, 108, 68];
+const POT_RGB: RGB = [250, 247, 242];
 
 const BRANCH_CHARS = '~;:=';
 const LEAF_CHARS = '&%#*@';
