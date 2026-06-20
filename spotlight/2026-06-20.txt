@@ -1,7 +1,6 @@
 [HOMEPAGE]
 [TITLE] Tutorial at ICSA 26: Two sides of the same coin
 [TAG] Conference
-[PREVIEW] A half-day tutorial at ICSA 2026, Amsterdam, bridging agents for SA tasks and architecting robust agentic systems
 [CONTENT] Karthik Vaidhyanathan and Henry Muccini (University of L'Aquila) are presenting a half-day tutorial at ICSA 2026 in Amsterdam on June 23rd, 09:00–12:30. The tutorial takes two perspectives on the rise of LLM agents in software engineering: how agents can serve as powerful tools for architectural tasks, and how to architect robust, trustworthy agentic systems.
 
 The session covers three content blocks: LLM agents fundamentals, agents for software architecture tasks (ADR generation, view generation, quality assessment), and designing reliable multi-agent systems — with two live demos including the MOYA framework for agentic architectural patterns.

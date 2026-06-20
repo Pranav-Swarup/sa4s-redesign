@@ -1,6 +1,5 @@
 [HOMEPAGE]
 [TITLE] 9 Papers Accepted at ICSE 2026
 [TAG] Latest
-[PREVIEW] Rio de Janeiro, Brazil
 [CONTENT] SA4S had 9 papers accepted at ICSE 2026 — the world's premier software engineering conference — held in Rio de Janeiro, Brazil. The accepted papers span agentic AI for software engineering, sustainable ML systems, self-adaptive architectures, and LLM-assisted development workflows. This represents one of our strongest showings at a single venue and reflects the breadth of research happening across the group. Browse the full list on our Publications page.
 [IMAGE] /images/publications/icse2026_banner.png

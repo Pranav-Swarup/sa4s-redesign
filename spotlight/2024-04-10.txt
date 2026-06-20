@@ -1,5 +1,4 @@
 [TITLE] Research at ICSA 2024
 [TAG] Conference
-[PREVIEW] Prague, Czech Republic
 [CONTENT] Members of SA4S presented research at the International Conference on Software Architecture 2024 in Prague, Czech Republic. ICSA is the flagship IEEE conference on software architecture, and our presence there reflects the group's continued engagement with the international research community. The presentations covered self-adaptive systems and architectural tactics for ML-enabled software. See the full list of papers on our Publications page.
 [IMAGE] /images/home/ICSA-1.jpeg

@@ -1,7 +1,6 @@
 [HOMEPAGE]
 [TITLE] Welcoming Our 2026 Cohort to SA4S
 [TAG] Lab News
-[PREVIEW] Five new researchers join the group this year
 [CONTENT] We are excited to welcome five new members to the SA4S research group in 2026 — Shreyash, Pranav, Aditya, Anagha, and Neha. They bring fresh perspectives to the projects they will work on in the years ahead. Visit our Team page to learn more about everyone in the group.
 [IMAGE] /images/spotlight/2026sercdinner.jpg
 [DATE] 2026-06-20
