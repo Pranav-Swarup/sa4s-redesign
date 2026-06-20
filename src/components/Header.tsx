@@ -6,15 +6,15 @@ import { publicUrl } from '../lib/utils';
 
 const navItems = [
   { name: 'Home',         path: '/' },
+  { name: 'Research',     path: '/research' },
+  { name: 'Publications', path: '/publications' },
+  { name: 'News',         path: '/news' },
+  { name: 'Blogs',        path: '/blogs' },
   { name: 'Agentic AI',   path: '/agenticai' },
   { name: 'AutoSE',       path: '/autose' },
-  { name: 'News',         path: '/news' },
   { name: 'Tools',        path: '/tools' },
   { name: 'Showcases',    path: '/showcases' },
   { name: 'Projects',     path: '/work' },
-  { name: 'Publications', path: '/publications' },
-  { name: 'Blogs',        path: '/blogs' },
-  { name: 'Research',     path: '/research' },
   { name: 'Team',         path: '/team' },
   { name: 'Gallery',      path: '/gallery' },
 ];
@@ -26,7 +26,7 @@ const Header = () => {
     `px-3 py-2 rounded text-sm font-medium transition-all duration-150 ${
       isActive
         ? 'text-[#EDE8DF] bg-[#1F4A30]'
-        : 'text-[#8DB8A2] hover:text-[#EDE8DF] hover:bg-[#142E1E]'
+        : 'text-[#C4DDD1] hover:text-[#EDE8DF] hover:bg-[#142E1E]'
     }`;
 
   return (

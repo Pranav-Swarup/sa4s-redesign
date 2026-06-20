@@ -66,7 +66,7 @@ const Research: React.FC = () => {
             {collaborators.map((collaborator) => (
               <div key={collaborator.name} className="flex justify-center">
                 <img
-                  className="max-h-20 w-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-200"
+                  className="max-h-20 w-full object-contain transition-transform duration-200 hover:scale-110"
                   src={publicUrl(collaborator.logo)}
                   alt={collaborator.name}
                 />

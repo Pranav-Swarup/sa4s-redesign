@@ -194,7 +194,7 @@ const AgenticAI = () => {
                 <img
                   src={publicUrl("/images/collabpic/montycloud.png")}
                   alt="MontyCloud"
-                  className="h-14 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-200"
+                  className="h-14 w-auto object-contain transition-transform duration-200 group-hover:scale-110"
                 />
               </a>
             </div>
@@ -215,7 +215,7 @@ const AgenticAI = () => {
                   rel="noreferrer"
                   className="group flex flex-col items-center gap-2 rounded-xl border border-[#D8D2C4] bg-[#FAF7F2] px-8 py-5 hover:border-[#2D6A4F]/40 transition-all duration-150"
                 >
-                  <img src={publicUrl(c.src)} alt={c.alt} className="h-12 w-auto object-contain opacity-70 group-hover:opacity-100 transition-opacity duration-200" />
+                  <img src={publicUrl(c.src)} alt={c.alt} className="h-12 w-auto object-contain transition-transform duration-200 group-hover:scale-110" />
                   <span className="text-xs text-[#6B6455]">{c.label}</span>
                 </a>
               ))}

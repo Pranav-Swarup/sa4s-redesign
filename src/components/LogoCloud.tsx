@@ -17,7 +17,7 @@ const LogoCloud = () => {
           {logos.map((logo) => (
             <div key={logo.alt} className="flex items-center justify-center p-4">
               <img
-                className="max-h-14 w-full object-contain opacity-50 hover:opacity-80 transition-opacity duration-200"
+                className="max-h-14 w-full object-contain transition-transform duration-200 hover:scale-110"
                 src={publicUrl(logo.src)}
                 alt={logo.alt}
               />
