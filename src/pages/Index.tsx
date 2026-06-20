@@ -1,7 +1,7 @@
 
 import { useNavigate, Link } from 'react-router-dom';
 import { motion } from 'framer-motion';
-import { Brain, Cpu, Zap, Leaf, ArrowRight, Mail } from 'lucide-react';
+import { Layers, Activity, Network, Code2, ArrowRight, Mail } from 'lucide-react';
 import Hero from '../components/Hero';
 import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
@@ -21,25 +21,25 @@ const inView = {
 // ── Research areas ─────────────────────────────────────────────────────────
 const researchAreas = [
   {
-    icon: <Brain size={18} />,
+    icon: <Layers size={18} />,
     title: 'AI for Software Architecture (Design-Time)',
     abbr: 'AI4SA Design',
     desc: 'Using LLMs and AI agents to support architectural decision-making, ADR generation, view generation, and architecture knowledge management before systems are deployed.',
   },
   {
-    icon: <Zap size={18} />,
+    icon: <Activity size={18} />,
     title: 'AI for Software Architecture (Run-Time)',
     abbr: 'AI4SA Runtime',
     desc: 'Building self-adaptive systems that monitor, reason about, and reconfigure themselves at runtime to meet quality goals around performance, energy, and reliability.',
   },
   {
-    icon: <Cpu size={18} />,
+    icon: <Network size={18} />,
     title: 'Architecting AI Systems',
     abbr: 'Arch4AI',
     desc: 'Studying how to design and structure AI-enabled and agentic systems well, from ML pipelines and multi-agent architectures to sustainable MLOps and production deployment patterns.',
   },
   {
-    icon: <Leaf size={18} />,
+    icon: <Code2 size={18} />,
     title: 'Code Generation',
     abbr: 'CodeGen',
     desc: 'Evaluating and advancing the ability of AI agents to generate functional software components, including microservices, serverless functions, and architecture-conformant code at scale.',
@@ -148,9 +148,6 @@ const Index = () => {
                           {s.tag}
                         </span>
                       )}
-                      {s.preview && (
-                        <p className="mt-2 text-sm text-white/60 line-clamp-2 max-w-[17rem]">{s.preview}</p>
-                      )}
                       <div className="mt-3 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
                         <span>Explore</span>
                         <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />
@@ -219,7 +216,7 @@ const Index = () => {
           </div>
 
           <motion.div
-            className="mt-7 flex justify-center md:justify-start"
+            className="mt-7 flex justify-center"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

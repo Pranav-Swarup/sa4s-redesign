@@ -155,7 +155,8 @@ function decodeLatex(str: string): string {
   };
 
   for (const [latex, char] of Object.entries(accentMap)) {
-    str = str.replace(new RegExp(latex, "g"), char);
+    const escaped = latex.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+    str = str.replace(new RegExp(escaped, "g"), char);
   }
 
   // Handle nested forms like {\'{a}} or {\~{n}}
@@ -208,6 +209,7 @@ const VENUE_OVERRIDES: Record<string, { venue: string; year?: number }> = {
 /** Title fixups for known typos in DBLP BibTeX data. */
 const TITLE_FIXUPS: Record<string, string> = {
   "DBLP:journals/corr/abs-2601-14132": "Toward Self-coding Information Systems",
+  "DBLP:conf/ecsa/BhattBRV25": "HarmonE: A Self-Adaptive Approach to Architecting Sustainable MLOps",
 };
 
 function parseBibContent(bibContent: string): YearlyPublications[] {

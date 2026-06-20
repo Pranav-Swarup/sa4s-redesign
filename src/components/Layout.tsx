@@ -1,5 +1,5 @@
 
-import { ReactNode } from 'react';
+import { ReactNode, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import Header from './Header';
 import TickerBar from './TickerBar';
@@ -12,6 +12,10 @@ interface LayoutProps {
 const Layout = ({ children }: LayoutProps) => {
   const { pathname } = useLocation();
   const showTicker = pathname === '/';
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'instant' });
+  }, [pathname]);
 
   return (
     <div className="min-h-screen flex flex-col">

@@ -1,7 +1,8 @@
 
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ChevronDown, Play, Pause } from 'lucide-react';
+import { ChevronDown, Play, Pause, ArrowRight } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import BonsaiTree from './BonsaiTree';
 import { publicUrl } from '../lib/utils';
 
@@ -98,7 +99,7 @@ const Hero = () => {
 
         {/* Garamond tagline — order 6 mobile, order 1 desktop */}
         <motion.p
-          className="font-garamond italic text-2xl leading-snug sm:text-3xl md:text-3xl lg:text-4xl xl:text-[3.1rem] lg:leading-[1.18] text-[#1A1710] order-[6] lg:order-[1]"
+          className="font-garamond text-2xl leading-snug sm:text-3xl md:text-3xl lg:text-4xl xl:text-[3.1rem] lg:leading-[1.18] text-[#1A1710] order-[6] lg:order-[1]"
           initial={{ opacity: 0, x: -16 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 1.5, ease: [0.25, 0, 0, 1], delay: 0.1 }}
@@ -109,16 +110,23 @@ const Hero = () => {
         {/* Tagline→podcast spacer — 4 parts */}
         <div className="flex-[4] min-h-0 order-[8] lg:hidden" />
 
-        {/* Podcast button */}
+        {/* Podcast + Research buttons */}
         <motion.div
-          className="order-[10] lg:order-[5]"
+          className="order-[10] lg:order-[5] flex flex-col lg:flex-row items-center gap-2 lg:gap-3 px-6 lg:px-0"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 2.2 }}
         >
+          <Link
+            to="/research"
+            className="order-first lg:order-last w-full lg:w-auto inline-flex justify-center items-center gap-1.5 lg:gap-2 px-3 py-2 lg:px-5 lg:py-2.5 rounded-full bg-[#2D6A4F] text-[#EDE8DF] hover:bg-[#1D5038] transition-all duration-200 text-xs lg:text-sm font-medium shadow-sm group"
+          >
+            Explore our research
+            <ArrowRight size={12} className="group-hover:translate-x-0.5 transition-transform duration-150" />
+          </Link>
           <button
             onClick={togglePodcast}
-            className="inline-flex items-center gap-2 lg:gap-3 px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-xs lg:text-sm font-medium shadow-sm"
+            className="w-full lg:w-auto inline-flex justify-center items-center gap-2 lg:gap-3 px-3 py-2 lg:px-5 lg:py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-xs lg:text-sm font-medium shadow-sm"
             aria-label={podcastPlaying ? 'Pause podcast' : 'Play podcast'}
           >
             <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-[#C8C2B6]/60">

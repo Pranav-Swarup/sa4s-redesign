@@ -39,7 +39,7 @@ const TickerBar = () => {
 
   return (
     <div
-      className="fixed top-16 left-0 right-0 z-40 h-9 lg:h-12 bg-[#A8D8BA] border-b border-[#6CB898] overflow-hidden cursor-pointer"
+      className="fixed top-16 left-0 right-0 z-40 h-11 lg:h-12 bg-[#A8D8BA] border-b border-[#6CB898] overflow-hidden cursor-pointer"
       onClick={visible ? scrollToSpotlight : undefined}
       title="View spotlight"
       aria-label="Scroll to spotlight section"

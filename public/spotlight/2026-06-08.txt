@@ -1,7 +1,6 @@
 [HOMEPAGE]
 [TITLE] Can AI Agents Generate Microservices?
 [TAG] Research
-[PREVIEW] The first empirical study evaluating AI agents on functional microservice generation across real-world scenarios
 [CONTENT] This paper presents the first empirical study on whether AI agents can generate functional microservices across two scenarios — incremental generation within existing systems and clean-state generation from requirements alone. Agents achieved up to 95% integration test pass rates when starting from requirements, but only 65% unit test pass rates in incremental scenarios where tight API contract adherence is needed. The findings reveal that full autonomous microservice generation is not yet reliable, with human oversight remaining essential for architectural consistency.
 
 [Project Website](https://sa4s-serc.github.io/microservices/)
