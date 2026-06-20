@@ -73,6 +73,10 @@ const Index = () => {
 
       {/* ── Spotlight grid ── */}
       <section id="spotlight" className="w-full">
+        <div className="px-4 pt-10 pb-2 lg:px-[clamp(6rem,14vw,12rem)] lg:pt-12 lg:pb-4 text-center">
+          <h2 className="text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</h2>
+        </div>
+
         {/* Mobile: single column, image + title below */}
         <div className="lg:hidden flex flex-col gap-5 px-4 py-4">
           {spotlightItems.map((s, i) => (
