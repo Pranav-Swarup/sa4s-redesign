@@ -67,7 +67,7 @@ const News = () => {
             Get research updates, paper releases, and lab news directly in your inbox. Unsubscribe anytime.
           </p>
           <a
-            href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
+            href="mailto:sa4sserc@gmail.com?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
           >
             <Mail size={14} />

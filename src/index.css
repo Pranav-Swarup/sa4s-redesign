@@ -117,7 +117,7 @@ All colors MUST be HSL.
 }
 
 .vignette-overlay {
-  background: radial-gradient(ellipse at 50% 0%, transparent 55%, rgba(180,168,148,0.18) 100%);
+  background: radial-gradient(ellipse at 50% 0%, transparent 55%, rgba(0,0,0,0.18) 100%);
 }
 
 /* Safari compatibility: explicit -webkit- prefixes for backdrop-filter */

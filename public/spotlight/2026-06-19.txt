@@ -1,0 +1,11 @@
+[HOMEPAGE]
+[TITLE] SA4S at ICSA 2026 with 5 Papers and more!
+[TAG] Conference
+[PREVIEW] Five papers, a tutorial, and the SAML'26 panel at the flagship IEEE Software Architecture conference in Amsterdam
+[CONTENT] SA4S is represented at ICSA 2026 — the 23rd IEEE International Conference on Software Architecture — in Amsterdam with five research papers, a half-day tutorial, and a panel participation. This is one of our strongest showings at a single venue to date. The works span agentic AI for software architecture, sustainable ML systems, self-adaptive architectures, and LLM-assisted development workflows.
+
+[ICSA 2026 Website](https://conf.researchr.org/home/icsa-2026)
+[SAML Panel](https://sa-ml.github.io/saml2026/program/)
+[Browse Our Publications](/publications)
+[IMAGE] /images/spotlight/ICSA2026_WebsiteBanner.webp
+[DATE] 2026-06-19

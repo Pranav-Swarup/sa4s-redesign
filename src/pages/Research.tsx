@@ -3,20 +3,20 @@ import { publicUrl } from '@/lib/utils';
 
 const researchAreas = [
   {
-    title: 'Machine Learning for Software Architecture (ML4SA)',
-    description: 'ML4SA focuses on enhancing self-adaptive systems to handle run-time uncertainties, improving Quality of Service. Traditional self-adaptive systems address specific uncertainties but lack continuous improvement in adaptation capabilities. ML4SA integrates machine learning to enable systems to not only adapt but also improve their architecture over time — particularly relevant for microservice-based systems, robotics, and cyber-physical systems.',
+    title: 'AI for Software Architecture (Design-Time)',
+    description: 'This direction looks at how AI can support architects before a system is ever deployed. Work here covers using LLMs and agents to generate architectural decision records, recover traceability links, produce architecture views from source code, and manage architecture knowledge over the lifetime of a project. Recent work includes ArchBench, a benchmarking platform for evaluating LLMs on these tasks, and ArchView, which studies automated architecture view generation across hundreds of open-source repositories.',
   },
   {
-    title: 'Software Architecture for Machine Learning (SA4ML)',
-    description: 'SA4ML addresses the unique challenges of developing ML-enabled systems, which differ from traditional software due to probabilistic outputs, data quality dependence, and model drift. The intensive computational and energy demands of ML algorithms also impact overall system performance. SA4ML develops architectural patterns and tactics to improve the maintainability and scalability of ML-enabled systems in real-world production.',
+    title: 'AI for Software Architecture (Run-Time)',
+    description: 'This direction focuses on systems that can observe themselves, reason about what is happening, and reconfigure without human intervention. The group has worked extensively on MAPE-K based self-adaptive systems for ML pipelines and IoT deployments, studying how architectural patterns can help systems meet quality goals around performance, energy consumption, and reliability even as their environment changes.',
   },
   {
-    title: 'Software Architecture for Internet of Things',
-    description: 'The rise of IoT has transformed software development into creating systems of interconnected sensors and actuators operating in pervasive computing environments. The increasing popularity of IoT — driven by wearable technology and 5G — comes with challenges of heterogeneity, interoperability, security, and scalability. Research here develops hyper-scalable architectures and model-driven frameworks for large-scale IoT systems.',
+    title: 'Architecting AI Systems',
+    description: 'As AI moves into production, the question of how to structure and sustain AI-enabled systems becomes critical. This includes architectural patterns for multi-agent systems, sustainable MLOps practices that reduce unnecessary retraining, design guidelines for LLM-based pipelines, and empirical studies on how agentic systems behave in real software engineering workflows. Tools like HarmonE and the MOYA framework for agentic architectural patterns came out of this line of work.',
   },
   {
-    title: 'Green Software',
-    description: 'Green software focuses on reducing the environmental impact of software systems. By 2025, ICT is expected to consume 30% of the world\'s electricity and contribute 10% to the global carbon footprint. This research develops architecture-centric approaches for creating green software systems, applying them to real-life ML-enabled and IoT systems to produce energy-efficient and sustainable solutions at scale.',
+    title: 'Code Generation',
+    description: 'This direction examines whether AI agents can generate functional software components reliably enough to be useful in practice. Recent work evaluated agents on microservice generation across real integration scenarios and found meaningful gaps between unit and integration test pass rates. The group is interested in understanding where agent-generated code falls short architecturally, and what guardrails or evaluation frameworks can make generation more trustworthy.',
   },
 ];
 

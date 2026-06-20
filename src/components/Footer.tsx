@@ -30,7 +30,7 @@ const Footer = () => {
               <div className="text-[10px] text-white/60 tracking-wider uppercase mt-0.5">SERC · IIIT Hyderabad</div>
             </div>
             <a
-              href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
+              href="mailto:sa4sserc@gmail.com?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
               className="mt-1 inline-flex items-center gap-2 px-4 py-1.5 bg-[#1F4A30] text-[#EDE8DF] rounded-full text-xs font-medium hover:bg-[#2D6A4F] transition-colors duration-200"
             >
               <Mail size={12} />
@@ -43,8 +43,8 @@ const Footer = () => {
             <h3 className="text-xs text-white/60 tracking-[0.25em] uppercase font-semibold mb-4">Contact Us</h3>
             <div className="text-white/75 text-sm space-y-1 leading-relaxed">
               <p>
-                <a href="mailto:sa4s@iiit.ac.in" className="hover:text-white/90 transition-colors duration-150">
-                  sa4s@iiit.ac.in
+                <a href="mailto:sa4sserc@gmail.com" className="hover:text-white/90 transition-colors duration-150">
+                  sa4sserc@gmail.com
                 </a>
               </p>
             </div>

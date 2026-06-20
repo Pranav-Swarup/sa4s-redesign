@@ -1,6 +1,9 @@
-import { useState } from 'react';
-import { ArrowLeft, ArrowRight } from 'lucide-react';
+
+import { useState, useEffect } from 'react';
+import { ArrowLeft, ArrowRight, ExternalLink } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useSearchParams } from 'react-router-dom';
+import ReactMarkdown from 'react-markdown';
 import allSpotlightItems from 'virtual:spotlight';
 import { publicUrl } from '../lib/utils';
 
@@ -20,9 +23,39 @@ function tagClass(tag: string) {
 }
 
 function formatDate(dateStr: string) {
-  return new Date(dateStr).toLocaleDateString('en-GB', {
+  const d = new Date(dateStr);
+  if (isNaN(d.getTime())) return dateStr;
+  return d.toLocaleDateString('en-GB', {
     day: 'numeric', month: 'long', year: 'numeric',
   });
+}
+
+// ── Content renderer ─────────────────────────────────────────────────────────
+function SpotlightContent({ content }: { content: string }) {
+  return (
+    <ReactMarkdown
+      components={{
+        p: ({ children }) => (
+          <p className="mb-5 leading-relaxed text-[#3A342A]">
+            {children}
+          </p>
+        ),
+        a: ({ href, children }) => (
+          <a
+            href={href}
+            target={href?.startsWith('http') ? '_blank' : undefined}
+            rel={href?.startsWith('http') ? 'noopener noreferrer' : undefined}
+            className="inline-flex items-center gap-1.5 px-4 py-2 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200 no-underline mr-2 mb-2"
+          >
+            {children}
+            {href?.startsWith('http') && <ExternalLink size={12} />}
+          </a>
+        ),
+      }}
+    >
+      {content}
+    </ReactMarkdown>
+  );
 }
 
 // ── Card ─────────────────────────────────────────────────────────────────────
@@ -56,10 +89,7 @@ function Card({ item, onClick }: { item: SpotlightItem; onClick: () => void }) {
       {/* Body */}
       <div className="flex flex-col flex-1 p-5">
         <p className="text-[11px] text-[#9A8F80] mb-2">{formatDate(item.date)}</p>
-        <h3
-          style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
-          className="text-xl font-normal text-[#1A1710] leading-snug mb-2 group-hover:text-[#2D6A4F] transition-colors duration-200"
-        >
+        <h3 className="text-xl font-semibold text-[#1A1710] leading-snug mb-2 group-hover:text-[#2D6A4F] transition-colors duration-200">
           {item.title}
         </h3>
         <p className="text-xs text-[#7A7060] leading-relaxed line-clamp-3 flex-1">{item.preview}</p>
@@ -97,30 +127,24 @@ function Detail({ item, onBack }: { item: SpotlightItem; onBack: () => void }) {
         </span>
       )}
 
-      <h1
-        style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
-        className="text-4xl md:text-5xl font-normal text-[#1A1710] leading-tight mb-3"
-      >
+      <h1 className="text-4xl md:text-5xl font-bold text-[#1A1710] leading-tight mb-3">
         {item.title}
       </h1>
 
       <p className="text-sm text-[#9A8F80] mb-8">{formatDate(item.date)}</p>
 
       {item.image && (
-        <div className="rounded-2xl overflow-hidden mb-8 border border-[#D8D2C4]">
+        <div className="rounded-2xl overflow-hidden mb-8 border border-[#D8D2C4] aspect-video">
           <img
             src={publicUrl(item.image)}
             alt={item.title}
-            className="w-full object-cover max-h-80"
+            className="w-full h-full object-cover"
           />
         </div>
       )}
 
-      <div
-        style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
-        className="text-lg font-normal text-[#3A342A] leading-relaxed whitespace-pre-wrap mb-10"
-      >
-        {item.content}
+      <div className="mb-10">
+        <SpotlightContent content={item.content} />
       </div>
 
     </motion.div>
@@ -130,10 +154,28 @@ function Detail({ item, onBack }: { item: SpotlightItem; onBack: () => void }) {
 // ── Page ──────────────────────────────────────────────────────────────────────
 const Spotlight = () => {
   const [selected, setSelected] = useState<SpotlightItem | null>(null);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  useEffect(() => {
+    const itemDate = searchParams.get('item');
+    if (itemDate) {
+      const found = allSpotlightItems.find((s) => s.date === itemDate);
+      if (found) {
+        setSelected(found);
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+    }
+  }, []);
 
   const openItem = (item: SpotlightItem) => {
     setSelected(item);
+    setSearchParams({ item: item.date }, { replace: true });
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const goBack = () => {
+    setSelected(null);
+    setSearchParams({}, { replace: true });
   };
 
   return (
@@ -150,7 +192,7 @@ const Spotlight = () => {
       <div className="container mx-auto px-4 max-w-5xl py-14">
         <AnimatePresence mode="wait">
           {selected ? (
-            <Detail key="detail" item={selected} onBack={() => setSelected(null)} />
+            <Detail key="detail" item={selected} onBack={goBack} />
           ) : (
             <motion.div
               key="grid"

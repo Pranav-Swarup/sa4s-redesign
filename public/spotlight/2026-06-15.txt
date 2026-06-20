@@ -1,0 +1,12 @@
+[HOMEPAGE]
+[TITLE] LLMs for Architectural Refactoring: Monoliths to Microservices
+[TAG] Research
+[PREVIEW] An exploratory study on using LLMs to support monolith decomposition, presented at ICSA 2026
+[CONTENT] Decomposing monolithic systems into microservices is a notoriously difficult task, and this exploratory study looks at whether LLMs can meaningfully help. The work applies seven summarisation strategies across four LLMs to generate architectural views and candidate service decompositions, then evaluates the results using six established metrics against four open-source systems that have known reference microservice architectures.
+
+LLM-based decompositions outperformed traditional techniques on several architectural quality metrics including Cycle Independence (+15%), Data Transaction Purity (+8.5%), and Business Context Purity (+7.3%), suggesting LLMs are good at producing domain-coherent and architecturally clean boundaries. That said, specialised automated approaches remain stronger at recovering the exact ground-truth service structure. The study was presented at ICSA 2026 by Aneesh Sambu, Roberta Capuano, Eoan O'Dea, Karthik Vaidhyanathan, and Henry Muccini.
+
+[Read the Paper](/papers/2026/AI_Agents_Microservices.pdf)
+[ICSA 2026 Website](https://conf.researchr.org/home/icsa-2026)
+[IMAGE] /images/spotlight/Monolith_toMicroservices.png
+[DATE] 2026-06-24

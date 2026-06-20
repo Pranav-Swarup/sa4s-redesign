@@ -1,0 +1,12 @@
+[HOMEPAGE]
+[TITLE] LLM-Based Architecture View Generation: Where Are We Now?
+[TAG] Research
+[PREVIEW] An empirical evaluation of LLMs and agents for automatically generating software architecture views from source code
+[CONTENT] This paper empirically evaluates LLM-based and agentic approaches for automatically generating software architecture views from source code, analysing 4,137 views across 340 open-source repositories and 13 experimental configurations. ArchView, a custom-built agentic approach, consistently outperformed general-purpose agents and prompting strategies, achieving the best clarity results — though all approaches exhibited granularity mismatches by operating at code level rather than true architectural abstractions. The findings position LLMs and agents as useful assistive tools rather than autonomous architects, with practical value in accelerating documentation workflows when paired with human oversight.
+
+
+[ArchView Tool](https://sa4s-serc.github.io/ViewGeneration/)
+[View Evaluation](https://sa4s-serc.github.io/view_evaluation/)
+[Read the Paper](/papers/2026/ArchView.pdf)
+[IMAGE] /images/spotlight/ArchView.png
+[DATE] 2026-06-06

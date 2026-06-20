@@ -1,7 +1,8 @@
 
 import { useState, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import spotlightItems from 'virtual:spotlight';
+import allSpotlightItems from 'virtual:spotlight';
+const spotlightItems = allSpotlightItems.filter((s) => s.homepage);
 
 const INTERVAL_MS = 4000;
 

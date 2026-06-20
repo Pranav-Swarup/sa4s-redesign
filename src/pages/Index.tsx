@@ -7,7 +7,7 @@ import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
 import LogoCloud from '../components/LogoCloud';
 import allSpotlightItems from 'virtual:spotlight';
-const spotlightItems = allSpotlightItems.filter((s) => s.homepage).slice(0, 4);
+const spotlightItems = allSpotlightItems.filter((s) => s.homepage).slice(0, 10);
 import { publicUrl } from '../lib/utils';
 
 const inView = {
@@ -22,27 +22,27 @@ const inView = {
 const researchAreas = [
   {
     icon: <Brain size={18} />,
-    title: 'ML for Software Architecture',
-    abbr: 'ML4SA',
-    desc: 'Applying machine learning to predict, optimize, and evolve architectural decisions in complex systems.',
-  },
-  {
-    icon: <Cpu size={18} />,
-    title: 'Software Architecture for ML',
-    abbr: 'SA4ML',
-    desc: 'Designing robust, maintainable software architectures for production machine learning pipelines.',
+    title: 'AI for Software Architecture (Design-Time)',
+    abbr: 'AI4SA Design',
+    desc: 'Using LLMs and AI agents to support architectural decision-making, ADR generation, view generation, and architecture knowledge management before systems are deployed.',
   },
   {
     icon: <Zap size={18} />,
-    title: 'Intelligent IoT Systems',
-    abbr: 'IoT & CPS',
-    desc: 'Self-adaptive software for IoT and cyber-physical systems in dynamic, resource-constrained environments.',
+    title: 'AI for Software Architecture (Run-Time)',
+    abbr: 'AI4SA Runtime',
+    desc: 'Building self-adaptive systems that monitor, reason about, and reconfigure themselves at runtime to meet quality goals around performance, energy, and reliability.',
+  },
+  {
+    icon: <Cpu size={18} />,
+    title: 'Architecting AI Systems',
+    abbr: 'Arch4AI',
+    desc: 'Studying how to design and structure AI-enabled and agentic systems well, from ML pipelines and multi-agent architectures to sustainable MLOps and production deployment patterns.',
   },
   {
     icon: <Leaf size={18} />,
-    title: 'Green & Sustainable Computing',
-    abbr: 'Green SW',
-    desc: 'Energy-aware architectures and low-carbon ML practices for production systems at scale.',
+    title: 'Code Generation',
+    abbr: 'CodeGen',
+    desc: 'Evaluating and advancing the ability of AI agents to generate functional software components, including microservices, serverless functions, and architecture-conformant code at scale.',
   },
 ];
 
@@ -62,7 +62,7 @@ const Index = () => {
           Research updates, paper releases, and lab news from SA4S.
         </p>
         <a
-          href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
+          href="mailto:sa4sserc@gmail.com?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
           className="inline-flex items-center gap-2 px-5 py-2.5 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
         >
           <Mail size={14} />
@@ -73,18 +73,20 @@ const Index = () => {
 
       {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
       <section id="spotlight" className="w-full">
-        <div className="lg:px-[clamp(3rem,8vw,7rem)]">
-        <div className="grid grid-cols-2 h-screen gap-[3px] lg:gap-[clamp(0.375rem,0.6vw,0.75rem)] p-[3px] lg:p-0 bg-[#D8D2C4] lg:bg-transparent">
-          {spotlightItems.map((s, i) => (
+        <div className="px-4 py-4 lg:px-[clamp(6rem,14vw,12rem)] lg:py-8">
+        <div className="grid grid-cols-2 gap-3 lg:gap-5">
+          {spotlightItems.map((s, i) => {
+            const isLastOdd = spotlightItems.length % 2 === 1 && i === spotlightItems.length - 1;
+            return (
             <motion.div
               key={s.date}
-              className="relative overflow-hidden group cursor-pointer block"
+              className={`relative overflow-hidden rounded-xl group cursor-pointer aspect-video ${isLastOdd ? 'col-span-2 w-1/2 mx-auto' : ''}`}
               initial={{ opacity: 0 }}
               whileInView={{ opacity: 1 }}
               viewport={{ once: true }}
               transition={{ duration: 0.65, delay: i * 0.08 }}
             >
-              <Link to="/spotlight" className="absolute inset-0 z-10" aria-label={s.title} />
+              <Link to={`/spotlight?item=${s.date}`} className="absolute inset-0 z-10" aria-label={s.title} />
               {s.image && (
                 <img
                   src={publicUrl(s.image)}
@@ -93,31 +95,38 @@ const Index = () => {
                   loading={i < 2 ? 'eager' : 'lazy'}
                 />
               )}
-              {/* Gradient overlay */}
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/5" />
+              {/* Bottom gradient for tag/preview/explore */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/10 to-transparent" />
+              {/* Top gradient for title banner */}
+              <div className="absolute inset-0 bg-gradient-to-b from-black/50 via-black/5 to-transparent" />
               {/* Hover highlight border */}
               <div className="absolute inset-0 ring-inset ring-0 group-hover:ring-[1.5px] ring-white/25 transition-all duration-400" />
 
-              {/* Card content */}
-              <div className="absolute bottom-0 left-0 p-7">
+              {/* Title — top banner */}
+              <div className="absolute top-0 left-0 right-0 p-5">
+                <h3 className="text-base font-bold text-white leading-snug">
+                  {s.title}
+                </h3>
+              </div>
+
+              {/* Bottom content — tag, preview, explore */}
+              <div className="absolute bottom-0 left-0 p-6">
                 {s.tag && (
-                  <span className="text-[10px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
+                  <span className="text-[11px] tracking-[0.22em] uppercase font-semibold text-[#52B788]">
                     {s.tag}
                   </span>
                 )}
-                <h3 className="mt-2 text-xl font-bold text-white leading-snug max-w-[17rem]">
-                  {s.title}
-                </h3>
                 {s.preview && (
-                  <p className="mt-1.5 text-sm text-white/50 line-clamp-2 max-w-[17rem]">{s.preview}</p>
+                  <p className="mt-2 text-sm text-white/60 line-clamp-2 max-w-[17rem]">{s.preview}</p>
                 )}
-                <div className="mt-4 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
+                <div className="mt-3 flex items-center gap-1.5 text-white/60 text-sm font-medium group-hover:text-white transition-colors duration-200">
                   <span>Explore</span>
                   <ArrowRight size={13} className="group-hover:translate-x-1 transition-transform duration-150" />
                 </div>
               </div>
             </motion.div>
-          ))}
+            );
+          })}
         </div>
         </div>
       </section>
@@ -133,7 +142,7 @@ const Index = () => {
             <p className="text-xs text-[#6B6455] mt-0.5">Research updates, paper releases, and lab news. Unsubscribe anytime.</p>
           </div>
           <a
-            href="mailto:sa4s@iiit.ac.in?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
+            href="mailto:sa4sserc@gmail.com?subject=I%20wish%20to%20subscribe%20to%20the%20SA4S%20Newsletter.&body=Simply%20hit%20send%20on%20this%20mail%20and%20we%20will%20add%20you%20to%20our%20list%20%3A%29"
             className="flex-shrink-0 inline-flex items-center gap-2 px-5 py-2 bg-[#2D6A4F] text-[#EDE8DF] rounded-full text-sm font-medium hover:bg-[#1D5038] transition-colors duration-200"
           >
             <Mail size={14} />

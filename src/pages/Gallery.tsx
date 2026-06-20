@@ -31,7 +31,10 @@ const galleryImages: GalleryImage[] = [
   { id: '16', src: '/gallery/pic4.jpeg',                alt: 'Gallery Image 4',        caption: 'Gallery Image 4',        date: '2024-01-01', event: 'General' },
   { id: '17', src: '/gallery/pic5.jpeg',                alt: 'Gallery Image 5',        caption: 'Gallery Image 5',        date: '2024-01-01', event: 'General' },
   { id: '18', src: '/gallery/sustaind.png',             alt: 'SustAInd team',          caption: 'SustAInd team',          date: '2024-01-01', event: 'Project group' },
+  { id: '19', src: '/images/spotlight/2026sercdinner.jpg', alt: 'April 2026 Team Dinner', caption: 'April 2026 Team Dinner', date: '2026-04-01', event: 'Social' },
 ];
+
+const sortedGalleryImages = [...galleryImages].sort((a, b) => b.date.localeCompare(a.date));
 
 const Gallery = () => {
   const [selectedImageIndex, setSelectedImageIndex] = useState<number | null>(null);
@@ -69,7 +72,7 @@ const Gallery = () => {
       {/* Grid */}
       <div className="container mx-auto px-4 py-16">
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3 md:gap-4">
-          {galleryImages.map((image, index) => (
+          {sortedGalleryImages.map((image, index) => (
             <button
               key={image.id}
               onClick={() => openLightbox(index)}
@@ -121,14 +124,14 @@ const Gallery = () => {
               <ChevronRight size={40} />
             </button>
             <img
-              src={publicUrl(galleryImages[selectedImageIndex].src)}
-              alt={galleryImages[selectedImageIndex].alt}
+              src={publicUrl(sortedGalleryImages[selectedImageIndex].src)}
+              alt={sortedGalleryImages[selectedImageIndex].alt}
               className="max-w-full max-h-[80vh] object-contain rounded"
             />
             <div className="mt-3 text-center">
-              <p className="text-white/90 font-medium">{galleryImages[selectedImageIndex].caption}</p>
+              <p className="text-white/90 font-medium">{sortedGalleryImages[selectedImageIndex].caption}</p>
               <p className="text-white/50 text-sm mt-0.5">
-                {galleryImages[selectedImageIndex].event} · {new Date(galleryImages[selectedImageIndex].date).toLocaleDateString()}
+                {sortedGalleryImages[selectedImageIndex].event} · {new Date(sortedGalleryImages[selectedImageIndex].date).toLocaleDateString()}
               </p>
             </div>
           </div>

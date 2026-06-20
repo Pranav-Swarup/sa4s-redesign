@@ -1,0 +1,11 @@
+[HOMEPAGE]
+[TITLE] LEAF: Carbon Footprint Estimation for Cloud Deployments Before You Deploy
+[TAG] Research
+[PREVIEW] A layered framework for pre-deployment carbon estimation from Terraform configurations, developed with Lloyds Banking Group
+[CONTENT] Cloud infrastructure is a growing contributor to global carbon emissions, yet most sustainability tools only kick in after a system is already running. LEAF is a lightweight framework developed with Lloyds Offshore Global Services that flips this around, estimating carbon footprint from Terraform configurations before anything is deployed.
+
+The framework uses a three-layer approach: it parses Infrastructure-as-Code definitions, simulates expected workload behavior, and pulls in region-specific carbon intensity data to produce energy and emission estimates without needing access to application source code. Evaluated across three real-world projects, LEAF's simulations land within 15.7% of post-deployment measurements under realistic workloads, giving architects and developers a practical tool for making sustainability-informed decisions early in the provisioning process.
+
+[Read the Paper](/papers/2026/LEAF.pdf)
+[IMAGE] /images/spotlight/LEAF.png
+[DATE] 2026-06-05
