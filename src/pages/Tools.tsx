@@ -69,81 +69,80 @@ const Tools = () => {
   };
 
   return (
-    <div className="py-16">
-      <div className="container mx-auto px-4">
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-            Tools & Frameworks
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
-            Open-source tools and frameworks developed by our research group to advance 
-            self-adaptive systems and sustainable computing practices.
+    <div className="min-h-screen bg-[#FAF7F2]">
+
+      {/* Header */}
+      <div className="bg-[#0C2118] border-b border-[#1C4030] py-16">
+        <div className="container mx-auto px-4">
+          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">Open source</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Tools &amp; Frameworks</h1>
+          <p className="mt-3 text-[#8DB8A2] max-w-2xl">
+            Open-source tools and frameworks developed by our research group to advance self-adaptive systems and sustainable computing.
           </p>
         </div>
+      </div>
 
-        {/* Tools Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 max-w-6xl mx-auto">
-          {tools.map((tool, index) => (
-            <div
-              key={index}
-              className="bg-gray-50 rounded-xl p-8 hover:shadow-lg transition-all duration-300 border border-gray-200 group"
-            >
-              {/* Logo */}
-              <div className="flex justify-center mb-6">
-                <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  {tool.logo.startsWith('/') ? <img src={publicUrl(tool.logo)} alt={`${tool.name} logo`} className="w-16 h-16 object-contain" /> : tool.logo}
+      <div className="py-16">
+        <div className="container mx-auto px-4">
+
+          {/* Tools Grid */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-5 max-w-5xl mx-auto">
+            {tools.map((tool, index) => (
+              <div
+                key={index}
+                className="bg-[#F0EBE1] border border-[#D8D2C4] hover:border-[#2D6A4F]/40 rounded-xl p-7 transition-all duration-200 group"
+              >
+                <div className="flex justify-center mb-5">
+                  <div className="w-16 h-16 bg-[#FAF7F2] border border-[#D8D2C4] rounded-xl flex items-center justify-center group-hover:scale-105 transition-transform duration-200">
+                    {tool.logo.startsWith('/') ? (
+                      <img src={publicUrl(tool.logo)} alt={`${tool.name} logo`} className="w-12 h-12 object-contain" />
+                    ) : tool.logo}
+                  </div>
+                </div>
+                <div className="text-center mb-5">
+                  <h3 className="text-lg font-bold text-[#1A1710] mb-1">{tool.name}</h3>
+                  <p className="text-sm text-[#2D6A4F] font-medium mb-3">{tool.tagline}</p>
+                  <p className="text-sm text-[#6B6455] leading-relaxed">{tool.description}</p>
+                </div>
+                <div className="flex flex-wrap justify-center gap-2">
+                  {Object.entries(tool.links).map(([type, url]) => (
+                    <a
+                      key={type}
+                      href={url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-1.5 px-3 py-1.5 bg-[#FAF7F2] text-[#6B6455] hover:text-[#1A1710] hover:border-[#2D6A4F]/40 rounded-lg border border-[#D8D2C4] transition-all duration-150 text-xs font-medium"
+                    >
+                      {getLinkIcon(type)}
+                      <span>{getLinkLabel(type)}</span>
+                    </a>
+                  ))}
                 </div>
               </div>
+            ))}
+          </div>
 
-              {/* Content */}
-              <div className="text-center mb-6">
-                <h3 className="text-2xl font-bold text-gray-900 mb-2">
-                  {tool.name}
-                </h3>
-                <p className="text-sa4s-teal-600 font-medium mb-4">
-                  {tool.tagline}
-                </p>
-                <p className="text-gray-600 text-sm leading-relaxed">
-                  {tool.description}
-                </p>
+          {/* Call to Action */}
+          <div className="text-center mt-14 max-w-5xl mx-auto">
+            <div className="bg-[#0C2118] border border-[#1C4030] rounded-xl p-8">
+              <h2 className="text-xl font-bold text-[#EDE8DF] mb-3">Interested in Contributing?</h2>
+              <p className="text-sm text-[#8DB8A2] mb-6 max-w-lg mx-auto">
+                Our tools are open-source and we welcome contributions from the community.
+              </p>
+              <div className="flex flex-col sm:flex-row gap-3 justify-center">
+                <Link
+                  to="/work"
+                  className="px-6 py-2.5 bg-[#1F4A30] text-[#EDE8DF] hover:bg-[#2D6A4F] rounded-lg text-sm font-medium transition-colors duration-150 text-center"
+                >
+                  View All Projects
+                </Link>
+                <a
+                  href="mailto:karthik.vaidhyanathan@iiit.ac.in"
+                  className="px-6 py-2.5 border border-[#2D6A4F] text-[#8DB8A2] hover:bg-[#1F4A30] hover:text-[#EDE8DF] rounded-lg text-sm font-medium transition-all duration-150 text-center"
+                >
+                  Contact Us
+                </a>
               </div>
-
-              {/* Links */}
-              <div className="flex flex-wrap justify-center gap-3">
-                {Object.entries(tool.links).map(([type, url]) => (
-                  <a
-                    key={type}
-                    href={url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex items-center space-x-2 px-4 py-2 bg-white hover:bg-sa4s-teal-50 text-gray-700 hover:text-sa4s-teal-700 rounded-lg border border-gray-200 hover:border-sa4s-teal-200 transition-all duration-150 text-sm font-medium"
-                  >
-                    {getLinkIcon(type)}
-                    <span>{getLinkLabel(type)}</span>
-                  </a>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Call to Action */}
-        <div className="text-center mt-16">
-          <div className="bg-gradient-to-r from-sa4s-teal-500 to-sa4s-blue-500 rounded-2xl p-8 text-white">
-            <h2 className="text-2xl font-bold mb-4">
-              Interested in Contributing?
-            </h2>
-            <p className="text-lg mb-6 opacity-90">
-              Our tools are open-source and we welcome contributions from the community.
-            </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/work" className="bg-white text-sa4s-teal-600 hover:bg-gray-100 px-8 py-3 rounded-lg font-medium transition-all duration-150 text-center">
-                View All Projects
-              </Link>
-              <a href="mailto:karthik.vaidhyanathan@iiit.ac.in" className="border-2 border-white text-white hover:bg-white hover:text-sa4s-teal-600 px-8 py-3 rounded-lg font-medium transition-all duration-150 text-center">
-                Contact Us
-              </a>
             </div>
           </div>
         </div>

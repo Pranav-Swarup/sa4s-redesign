@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { ArrowLeft, Calendar, ExternalLink } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -8,21 +9,17 @@ import { getAllNewsItems, NewsItem } from '../data/newsLoader';
 import { publicUrl } from '../lib/utils';
 
 const News = () => {
-  const [newsItems, setNewsItems] = useState<NewsItem[]>([]);
+  const [newsItems, setNewsItems]     = useState<NewsItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<NewsItem | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading]         = useState(true);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const handleItemSelect = (item: NewsItem) => {
     setSelectedItem(item);
-
-    // On mobile screens, scroll to preview when an item is selected
     if (window.innerWidth < 1024 && previewRef.current) {
-      // Small timeout to allow React to render the new state content if needed
       setTimeout(() => {
-        const yOffset = -80; // Account for the sticky header
         if (previewRef.current) {
-          const y = previewRef.current.getBoundingClientRect().top + window.pageYOffset + yOffset;
+          const y = previewRef.current.getBoundingClientRect().top + window.pageYOffset - 80;
           window.scrollTo({ top: y, behavior: 'smooth' });
         }
       }, 50);
@@ -34,67 +31,66 @@ const News = () => {
       try {
         const items = await getAllNewsItems();
         setNewsItems(items);
-        if (items.length > 0) {
-          setSelectedItem(items[0]);
-        }
+        if (items.length > 0) setSelectedItem(items[0]);
       } catch (error) {
         console.error('Error loading news:', error);
       } finally {
         setLoading(false);
       }
     };
-
     loadNews();
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FAF7F2]">
+
       {/* Header */}
-      <div className="bg-gradient-to-r from-sa4s-teal-50 to-sa4s-blue-50 py-16">
+      <div className="bg-[#0C2118] border-b border-[#1C4030] py-16">
         <div className="container mx-auto px-4">
           <Link
             to="/"
-            className="inline-flex items-center text-sa4s-teal-600 hover:text-sa4s-teal-700 mb-6 transition-colors duration-150"
+            className="inline-flex items-center text-[#8DB8A2] hover:text-[#EDE8DF] mb-6 transition-colors duration-150 text-sm"
           >
-            <ArrowLeft size={20} className="mr-2" />
+            <ArrowLeft size={16} className="mr-2" />
             Back to Home
           </Link>
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Latest News
-          </h1>
-          <p className="text-xl text-gray-600 max-w-3xl">
-            Stay updated with the latest developments, achievements, and announcements from the SA4S research group.
+          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">News</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Latest News</h1>
+          <p className="mt-3 text-[#8DB8A2] max-w-2xl">
+            Developments, achievements, and announcements from the SA4S research group.
           </p>
         </div>
       </div>
 
       {/* Two-column layout */}
-      <div className="py-16">
+      <div className="py-12">
         <div className="container mx-auto px-4">
           {loading ? (
             <div className="flex justify-center items-center py-16">
-              <div className="text-gray-600">Loading news...</div>
+              <span className="text-sm text-[#6B6455]">Loading news…</span>
             </div>
           ) : (
-            <div className="flex flex-col-reverse lg:grid lg:grid-cols-3 gap-8">
-              {/* Left column - Headlines list */}
+            <div className="flex flex-col-reverse lg:grid lg:grid-cols-3 gap-6">
+
+              {/* Left — headline list */}
               <div className="lg:col-span-1">
-                <h2 className="text-xl font-semibold text-gray-900 mb-6">All News</h2>
-                <div className="space-y-4">
+                <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-5">All News</p>
+                <div className="space-y-2">
                   {newsItems.map((item, index) => (
                     <div
                       key={index}
                       onClick={() => handleItemSelect(item)}
-                      className={`p-4 rounded-lg border cursor-pointer transition-all duration-150 ${selectedItem === item
-                          ? 'border-sa4s-teal-600 bg-sa4s-teal-50'
-                          : 'border-gray-200 hover:border-gray-300 hover:bg-gray-50'
-                        }`}
+                      className={`p-4 rounded-lg border cursor-pointer transition-all duration-150 ${
+                        selectedItem === item
+                          ? 'border-[#2D6A4F] bg-[#EAE4D6]'
+                          : 'border-[#D8D2C4] bg-[#F0EBE1] hover:border-[#2D6A4F]/40 hover:bg-[#EAE4D6]'
+                      }`}
                     >
-                      <div className="flex items-center text-sm text-sa4s-teal-600 font-medium mb-2">
-                        <Calendar size={14} className="mr-2" />
+                      <div className="flex items-center text-xs text-[#2D6A4F] font-medium mb-1.5">
+                        <Calendar size={12} className="mr-1.5" />
                         {item.date}
                       </div>
-                      <h3 className="font-medium text-gray-900 line-clamp-2">
+                      <h3 className="text-sm font-medium text-[#1A1710] line-clamp-2 leading-snug">
                         {item.headline}
                       </h3>
                     </div>
@@ -102,15 +98,15 @@ const News = () => {
                 </div>
               </div>
 
-              {/* Right column - Expanded preview */}
+              {/* Right — expanded preview */}
               <div ref={previewRef} className="lg:col-span-2">
                 {selectedItem && (
-                  <div className="bg-white border border-gray-200 rounded-xl p-8 shadow-sm">
-                    <div className="flex items-center text-sm text-sa4s-teal-600 font-medium mb-4">
-                      <Calendar size={16} className="mr-2" />
+                  <div className="bg-[#F0EBE1] border border-[#D8D2C4] rounded-xl p-8">
+                    <div className="flex items-center text-xs text-[#2D6A4F] font-medium mb-4">
+                      <Calendar size={13} className="mr-1.5" />
                       {selectedItem.date}
                     </div>
-                    <h1 className="text-3xl font-bold text-gray-900 mb-4">
+                    <h1 className="text-2xl font-bold text-[#1A1710] mb-4 leading-snug">
                       {selectedItem.headline}
                     </h1>
                     {selectedItem.sourceUrl && (
@@ -118,14 +114,14 @@ const News = () => {
                         href={selectedItem.sourceUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 mb-6 text-sm font-semibold text-sa4s-teal-600 hover:text-sa4s-teal-700"
+                        className="inline-flex items-center gap-2 mb-6 text-sm font-medium text-[#2D6A4F] hover:text-[#1A1710] transition-colors duration-150"
                       >
-                        View original LinkedIn post
-                        <ExternalLink size={16} />
+                        View original post
+                        <ExternalLink size={14} />
                       </a>
                     )}
                     {selectedItem.description && (
-                      <div className="prose max-w-none">
+                      <div className="prose prose-sm max-w-none prose-headings:text-[#1A1710] prose-p:text-[#6B6455] prose-a:text-[#2D6A4F]">
                         <ReactMarkdown
                           rehypePlugins={[rehypeRaw]}
                           components={{
@@ -133,7 +129,7 @@ const News = () => {
                               <img
                                 {...props}
                                 src={src ? publicUrl(src) : undefined}
-                                className={`block my-6 w-full rounded-lg border border-gray-200 ${className ?? ''}`.trim()}
+                                className={`block my-6 w-full rounded-lg border border-[#D8D2C4] ${className ?? ''}`.trim()}
                                 loading="lazy"
                               />
                             ),

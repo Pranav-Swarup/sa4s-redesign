@@ -72,55 +72,52 @@ export default function BlogPost() {
 
   if (!post) {
     return (
-      <div className="min-h-screen bg-white flex items-center justify-center">
+      <div className="min-h-screen bg-[#FAF7F2] flex items-center justify-center">
         <div className="text-center">
-          <h1 className="text-4xl font-bold text-gray-900 mb-4">Post not found</h1>
-          <Link to="/blogs" className="text-sa4s-teal-600 hover:underline">
+          <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-3">Not found</p>
+          <h1 className="text-2xl font-bold text-[#1A1710] mb-4">Post not found</h1>
+          <Link to="/blogs" className="text-[#2D6A4F] hover:text-[#1A1710] text-sm underline transition-colors">
             Back to all posts
           </Link>
         </div>
       </div>
-);
+    );
   }
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FAF7F2]">
+
       {/* Header */}
-      <div className="bg-gradient-to-r from-sa4s-teal-50 to-sa4s-blue-50 py-12">
+      <div className="bg-[#0C2118] border-b border-[#1C4030] py-12">
         <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
-            <Button 
-              asChild 
-              variant="ghost" 
-              className="mb-6 text-sa4s-teal-600 hover:bg-sa4s-teal-50"
+            <Link
+              to="/blogs"
+              className="inline-flex items-center text-[#8DB8A2] hover:text-[#EDE8DF] mb-6 text-sm transition-colors duration-150"
             >
-              <Link to="/blogs" className="flex items-center">
-                <ArrowLeft size={16} className="mr-2" />
-                Back to all posts
-              </Link>
-            </Button>
-            <div className="mb-8">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 mb-6">
-                {post.title}
-              </h1>
-              <p className="text-xl text-gray-600 mb-8">
-                {post.excerpt}
-              </p>
-              <div className="flex items-center text-sm text-sa4s-teal-600">
-                <span className="bg-sa4s-teal-100 px-3 py-1 rounded-full text-xs font-medium">
+              <ArrowLeft size={15} className="mr-2" />
+              Back to all posts
+            </Link>
+            <h1 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#EDE8DF] mb-4 leading-snug">
+              {post.title}
+            </h1>
+            {post.excerpt && (
+              <p className="text-[#8DB8A2] mb-6 leading-relaxed max-w-2xl">{post.excerpt}</p>
+            )}
+            <div className="flex flex-wrap items-center gap-3 text-xs text-[#8DB8A2]">
+              {post.category && (
+                <span className="bg-[#1F4A30] text-[#8DB8A2] px-3 py-1 rounded font-medium tracking-wide">
                   {post.category}
                 </span>
-                <span className="mx-2">•</span>
-                <span className="flex items-center">
-                  <Calendar size={14} className="mr-1" />
-                  {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
-                </span>
-                <span className="mx-2">•</span>
-                <span className="flex items-center">
-                  <User size={14} className="mr-1" />
-                  {post.author}
-                </span>
-              </div>
+              )}
+              <span className="flex items-center gap-1">
+                <Calendar size={12} />
+                {new Date(post.date).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+              </span>
+              <span className="flex items-center gap-1">
+                <User size={12} />
+                {post.author}
+              </span>
             </div>
           </div>
         </div>
@@ -128,31 +125,27 @@ export default function BlogPost() {
 
       {/* Content */}
       <div className="container mx-auto px-4 py-12">
-        <div className="max-w-4xl mx-auto prose prose-lg prose-headings:font-bold prose-headings:text-gray-900 prose-p:text-gray-700 prose-p:mb-4 prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-4 prose-li:my-1 prose-strong:text-gray-900 prose-a:text-sa4s-teal-600 hover:prose-a:underline prose-img:rounded-lg prose-img:shadow-md">
+        <div className="max-w-4xl mx-auto prose prose-sm md:prose-base prose-headings:font-bold prose-headings:text-[#1A1710] prose-p:text-[#6B6455] prose-p:mb-4 prose-ul:list-disc prose-ul:pl-6 prose-ul:mb-4 prose-li:my-1 prose-strong:text-[#1A1710] prose-a:text-[#2D6A4F] hover:prose-a:underline prose-img:rounded-xl prose-img:border prose-img:border-[#D8D2C4]">
           {post && (
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeRaw]}
               components={{
-                h1: ({node, ...props}) => <h1 className="text-3xl md:text-4xl font-bold mt-8 mb-6" {...props} />,
-                h2: ({node, ...props}) => <h2 className="text-2xl font-bold mt-10 mb-4 text-gray-900" {...props} />,
-                h3: ({node, ...props}) => <h3 className="text-xl font-bold mt-8 mb-3 text-gray-900" {...props} />,
-                p: ({node, ...props}) => <p className="mb-4 leading-relaxed" {...props} />,
-                ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-6 space-y-2" {...props} />,
-                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-6 space-y-2" {...props} />,
-                li: ({node, ...props}) => <li className="mb-2" {...props} />,
-                a: ({node, ...props}) => <a className="text-sa4s-teal-600 hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
+                h1: ({node, ...props}) => <h1 className="text-2xl md:text-3xl font-bold mt-8 mb-5 text-[#1A1710]" {...props} />,
+                h2: ({node, ...props}) => <h2 className="text-xl font-bold mt-8 mb-4 text-[#1A1710]" {...props} />,
+                h3: ({node, ...props}) => <h3 className="text-base font-bold mt-6 mb-3 text-[#1A1710]" {...props} />,
+                p:  ({node, ...props}) => <p className="mb-4 leading-relaxed text-[#6B6455]" {...props} />,
+                ul: ({node, ...props}) => <ul className="list-disc pl-6 mb-5 space-y-1.5 text-[#6B6455]" {...props} />,
+                ol: ({node, ...props}) => <ol className="list-decimal pl-6 mb-5 space-y-1.5 text-[#6B6455]" {...props} />,
+                li: ({node, ...props}) => <li className="mb-1" {...props} />,
+                a:  ({node, ...props}) => <a className="text-[#2D6A4F] hover:underline" target="_blank" rel="noopener noreferrer" {...props} />,
                 img: ({node, ...props}) => {
                   const src = props.src ? publicUrl(props.src) : '';
                   return (
                     <div className="my-6">
-                      <img
-                        src={src}
-                        alt={props.alt || ''} 
-                        className="rounded-lg shadow-md w-full" 
-                      />
+                      <img src={src} alt={props.alt || ''} className="rounded-xl border border-[#D8D2C4] w-full" />
                       {props.alt && (
-                        <p className="text-center text-sm text-gray-500 mt-2">{props.alt}</p>
+                        <p className="text-center text-xs text-[#6B6455] mt-2">{props.alt}</p>
                       )}
                     </div>
                   );

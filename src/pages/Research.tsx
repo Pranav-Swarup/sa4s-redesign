@@ -4,62 +4,69 @@ import { publicUrl } from '@/lib/utils';
 const researchAreas = [
   {
     title: 'Machine Learning for Software Architecture (ML4SA)',
-    description: 'Machine Learning for Software Architecture (ML4SA) focuses on enhancing self-adaptive systems to handle run-time uncertainties, thereby improving Quality of Service (QoS). Traditional self-adaptive systems address specific uncertainties but lack continuous improvement in adaptation capabilities. ML4SA aims to integrate machine learning techniques to enable systems to not only adapt but also improve their architecture over time. This approach is particularly relevant for microservice-based systems, robotics, and cyber-physical systems (CPS), ensuring they can dynamically respond to changing conditions and enhance their performance and reliability.',
+    description: 'ML4SA focuses on enhancing self-adaptive systems to handle run-time uncertainties, improving Quality of Service. Traditional self-adaptive systems address specific uncertainties but lack continuous improvement in adaptation capabilities. ML4SA integrates machine learning to enable systems to not only adapt but also improve their architecture over time — particularly relevant for microservice-based systems, robotics, and cyber-physical systems.',
   },
   {
     title: 'Software Architecture for Machine Learning (SA4ML)',
-    description: 'Software Architecture for Machine Learning (SA4ML) addresses the unique challenges of developing ML-enabled systems, which differ significantly from traditional software due to factors like probabilistic outputs, data quality dependence, and model drift. The intensive computational and energy demands of ML algorithms also impact overall system performance. SA4ML aims to develop architectural patterns and tactics to improve the maintainability and scalability of ML-enabled systems. Given that a significant percentage of ML projects fail to reach production due to these challenges, this research area seeks to enhance the success rate and efficiency of deploying ML systems in real-world applications.',
+    description: 'SA4ML addresses the unique challenges of developing ML-enabled systems, which differ from traditional software due to probabilistic outputs, data quality dependence, and model drift. The intensive computational and energy demands of ML algorithms also impact overall system performance. SA4ML develops architectural patterns and tactics to improve the maintainability and scalability of ML-enabled systems in real-world production.',
   },
   {
     title: 'Software Architecture for Internet of Things',
-    description: 'The rise of the Internet of Things (IoT) has transformed software development into creating systems of interconnected sensors and actuators. These systems communicate and function through sophisticated software, leading to pervasive computing environments. The increasing popularity of IoT, driven by advancements like wearable technology and 5G, comes with challenges such as heterogeneity, interoperability, security, and scalability. Research in this area aims to develop hyper-scalable architectures and model-driven frameworks to address these issues, ensuring that large-scale IoT systems can be efficiently developed, maintained, and scaled.',
+    description: 'The rise of IoT has transformed software development into creating systems of interconnected sensors and actuators operating in pervasive computing environments. The increasing popularity of IoT — driven by wearable technology and 5G — comes with challenges of heterogeneity, interoperability, security, and scalability. Research here develops hyper-scalable architectures and model-driven frameworks for large-scale IoT systems.',
   },
   {
     title: 'Green Software',
-    description: 'Green software focuses on reducing the environmental impact of software systems, which are projected to consume a significant portion of global electricity and contribute to carbon emissions. By 2025, ICT is expected to consume 30% of the world’s electricity and contribute 10% to the global carbon footprint. This research area aims to develop architecture-centric approaches for creating green software systems, applying these methods to real-life ML-enabled and IoT systems. The goal is to create energy-efficient and sustainable software solutions that can mitigate the environmental impact of the growing ICT sector.',
+    description: 'Green software focuses on reducing the environmental impact of software systems. By 2025, ICT is expected to consume 30% of the world\'s electricity and contribute 10% to the global carbon footprint. This research develops architecture-centric approaches for creating green software systems, applying them to real-life ML-enabled and IoT systems to produce energy-efficient and sustainable solutions at scale.',
   },
 ];
 
 const collaborators = [
-    { name: 'Frame Lab, University of L\'Aquila', logo: '/images/collabpic/framelab.png' },
-    { name: 'DeepSE Group, Politechnico di Milano', logo: '/images/collabpic/deepse.png' },
-    { name: 'S2 Group, VU', logo: '/images/collabpic/s2.png' },
-    { name: 'Middlesex University', logo: '/images/collabpic/middlesex.png' },
-    { name: 'Linnaeus University', logo: '/images/collabpic/lnu.png' },
-    { name: 'Smart City Living Lab, IIIT Hyderabad', logo: '/images/collabpic/scrc.png' },
-    { name: 'MontyCloud', logo: '/images/collabpic/montycloud.png' },
-    { name: 'Qualcomm', logo: '/images/collabpic/qualcomm.png' },
-    { name: 'Lloyds Banking Group', logo: '/images/collabpic/lloyds-bank.jpg' },
-  ];
+  { name: 'Frame Lab, University of L\'Aquila', logo: '/images/collabpic/framelab.png' },
+  { name: 'DeepSE Group, Politechnico di Milano', logo: '/images/collabpic/deepse.png' },
+  { name: 'S2 Group, VU', logo: '/images/collabpic/s2.png' },
+  { name: 'Middlesex University', logo: '/images/collabpic/middlesex.png' },
+  { name: 'Linnaeus University', logo: '/images/collabpic/lnu.png' },
+  { name: 'Smart City Living Lab, IIIT Hyderabad', logo: '/images/collabpic/scrc.png' },
+  { name: 'MontyCloud', logo: '/images/collabpic/montycloud.png' },
+  { name: 'Qualcomm', logo: '/images/collabpic/qualcomm.png' },
+  { name: 'Lloyds Banking Group', logo: '/images/collabpic/lloyds-bank.jpg' },
+];
 
 const Research: React.FC = () => {
   return (
-    <div className="bg-gray-50">
-      <div className="relative bg-gradient-to-r from-sa4s-teal-50 to-sa4s-blue-50 py-16 text-center">
-        <h1 className="text-4xl font-bold tracking-tight text-gray-900 sm:text-5xl">Research Areas</h1>
-      </div>
+    <div className="bg-[#FAF7F2]">
 
-      <div className="relative px-4 pt-16 sm:px-6 lg:px-8">
-        <div className="mx-auto max-w-7xl">
-          <div className="grid gap-12">
-            {researchAreas.map((area, index) => (
-              <div key={index} className="rounded-lg bg-white p-6 shadow-lg">
-                <h2 className="mb-4 text-2xl font-bold text-gray-900">{area.title}</h2>
-                <p className="text-lg leading-7 text-gray-700">{area.description}</p>
-              </div>
-            ))}
-          </div>
+      {/* Header */}
+      <div className="bg-[#0C2118] border-b border-[#1C4030] py-16 text-center">
+        <div className="container mx-auto px-4">
+          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">Research</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Research Areas</h1>
         </div>
       </div>
 
-      <div className="bg-white py-16">
-        <div className="mx-auto max-w-7xl px-6 lg:px-8">
-          <h2 className="text-center text-3xl font-bold leading-8 text-gray-900">Our Collaborators</h2>
-          <div className="mx-auto mt-10 grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-5">
+      {/* Research Areas */}
+      <div className="px-4 py-16">
+        <div className="mx-auto max-w-4xl space-y-5">
+          {researchAreas.map((area, index) => (
+            <div key={index} className="bg-[#F0EBE1] border border-[#D8D2C4] rounded-xl p-7">
+              <h2 className="mb-3 text-base font-bold text-[#1A1710]">{area.title}</h2>
+              <p className="text-sm leading-relaxed text-[#6B6455]">{area.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      {/* Collaborators */}
+      <div className="bg-[#F0EBE1] border-t border-[#D8D2C4] py-16">
+        <div className="mx-auto max-w-5xl px-6 lg:px-8">
+          <h2 className="text-center text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-10">
+            Our Collaborators
+          </h2>
+          <div className="mx-auto grid max-w-lg grid-cols-2 items-center gap-x-8 gap-y-10 sm:max-w-xl sm:grid-cols-3 lg:mx-0 lg:max-w-none lg:grid-cols-5">
             {collaborators.map((collaborator) => (
               <div key={collaborator.name} className="flex justify-center">
                 <img
-                  className="max-h-24 w-full object-contain"
+                  className="max-h-20 w-full object-contain opacity-60 hover:opacity-100 transition-opacity duration-200"
                   src={publicUrl(collaborator.logo)}
                   alt={collaborator.name}
                 />

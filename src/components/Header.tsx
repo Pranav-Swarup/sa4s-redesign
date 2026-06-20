@@ -52,7 +52,7 @@ const Header = () => {
 
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 rounded text-[#8DB8A2] hover:text-[#EDE8DF] hover:bg-[#142E1E] transition-colors duration-150"
+            className="lg:hidden p-2 rounded text-[#b0d1c0] hover:text-[#EDE8DF] hover:bg-[#142E1E] transition-colors duration-150"
             aria-label="Toggle menu"
           >
             {isMenuOpen ? <X size={22} /> : <Menu size={22} />}

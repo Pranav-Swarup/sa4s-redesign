@@ -250,29 +250,29 @@ const Publications = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-[#FAF7F2]">
+
       {/* Header */}
-      <div className="bg-gradient-to-r from-sa4s-teal-50 to-sa4s-blue-50 py-16">
+      <div className="bg-[#0C2118] border-b border-[#1C4030] py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            Publications
-          </h1>
-          <p className="text-xl text-gray-600 max-w-2xl">
-            Our research contributions published in leading conferences and journals in software engineering and computing.
+          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">Research output</p>
+          <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Publications</h1>
+          <p className="mt-3 text-[#8DB8A2] max-w-2xl">
+            Research contributions published in leading conferences and journals in software engineering and computing.
           </p>
         </div>
       </div>
 
-      {/* Conference Banner */}
-      <div className="py-8 bg-gray-50 border-b border-gray-200">
+      {/* Conference banner */}
+      <div className="py-6 bg-[#F0EBE1] border-b border-[#D8D2C4]">
         <div className="container mx-auto px-4">
-          <div className="flex items-center space-x-8 overflow-x-auto pb-4">
+          <div className="flex items-center gap-8 overflow-x-auto pb-2">
             {conferences.map((conference) => (
               <div key={conference.name} className="flex-shrink-0">
                 <img
                   src={publicUrl(conference.logo)}
                   alt={conference.name}
-                  className="h-12 w-auto opacity-60 hover:opacity-100 transition-opacity duration-150"
+                  className="h-10 w-auto opacity-50 hover:opacity-90 transition-opacity duration-150"
                 />
               </div>
             ))}
@@ -280,34 +280,34 @@ const Publications = () => {
         </div>
       </div>
 
-      {/* Publications by Year */}
+      {/* Publications by year */}
       <div className="py-16">
         <div className="container mx-auto px-4 max-w-4xl">
-          <Accordion type="multiple" className="space-y-8">
+          <Accordion type="multiple" className="space-y-4">
             {publicationsByYear.map((yearData) => (
-              <AccordionItem key={yearData.year} value={yearData.year.toString()} className="border border-gray-200 rounded-lg">
-                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-gray-50">
+              <AccordionItem
+                key={yearData.year}
+                value={yearData.year.toString()}
+                className="border border-[#D8D2C4] rounded-xl overflow-hidden"
+              >
+                <AccordionTrigger className="px-6 py-4 hover:no-underline hover:bg-[#F0EBE1] bg-[#FAF7F2]">
                   <div className="flex items-center justify-between w-full">
-                    <h2 className="text-2xl font-bold text-gray-900">{yearData.year}</h2>
-                    <span className="text-sm text-gray-500 mr-4">
+                    <h2 className="text-xl font-bold text-[#1A1710]">{yearData.year}</h2>
+                    <span className="text-xs text-[#6B6455] mr-4">
                       {yearData.papers.length} publication{yearData.papers.length !== 1 ? 's' : ''}
                     </span>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-6">
-                  <ul className="space-y-4">
+                <AccordionContent className="px-6 pb-6 bg-[#F0EBE1]">
+                  <ul className="space-y-4 pt-2">
                     {yearData.papers.map((paper) => (
                       <li key={paper.id} className="leading-relaxed">
                         <div className="flex items-start">
-                          <span className="w-2 h-2 bg-sa4s-teal-500 rounded-full mr-4 flex-shrink-0 mt-2"></span>
-                          <div>
-                            <span className="text-gray-700">
-                              {paper.authors.join(', ')}.{" "}
-                            </span>
-                            <span className="italic text-gray-900 font-medium">
-                              "{paper.title}."{" "}
-                            </span>
-                            <span className="text-gray-700">
+                          <span className="w-1.5 h-1.5 bg-[#2D6A4F] rounded-full mr-4 flex-shrink-0 mt-2" />
+                          <div className="text-sm">
+                            <span className="text-[#6B6455]">{paper.authors.join(', ')}. </span>
+                            <span className="italic text-[#1A1710] font-medium">"{paper.title}." </span>
+                            <span className="text-[#6B6455]">
                               <em>{paper.venue}</em>
                               {paper.volume && `, vol. ${paper.volume}`}
                               {paper.pages && `, pp. ${paper.pages}`}
@@ -318,10 +318,10 @@ const Publications = () => {
                                 href={paper.doi.startsWith("http") ? paper.doi : `https://doi.org/${paper.doi}`}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="ml-2 text-sa4s-teal-600 hover:text-sa4s-teal-700 underline inline-flex items-center"
+                                className="ml-2 text-[#2D6A4F] hover:text-[#1D5038] underline inline-flex items-center gap-1"
                               >
                                 DOI
-                                <ExternalLink size={14} className="ml-1" />
+                                <ExternalLink size={12} />
                               </a>
                             )}
                           </div>
