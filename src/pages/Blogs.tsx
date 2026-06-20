@@ -10,14 +10,6 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import {
-  Pagination,
-  PaginationContent,
-  PaginationItem,
-  PaginationLink,
-  PaginationNext,
-  PaginationPrevious,
-} from '@/components/ui/pagination';
 
 const categories = ['All', ...Array.from(new Set(allPosts.map(p => p.category).filter(Boolean)))] as string[];
 
@@ -59,7 +51,6 @@ const Blogs = () => {
       {/* Header */}
       <div className="bg-[#0C2118] border-b border-[#1C4030] py-16">
         <div className="container mx-auto px-4">
-          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">Writing</p>
           <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Blogs</h1>
           <p className="mt-3 text-[#8DB8A2]">Insights, updates, and discoveries from our research community.</p>
         </div>
@@ -140,33 +131,25 @@ const Blogs = () => {
 
         {/* Pagination */}
         {totalPages > 1 && (
-          <Pagination>
-            <PaginationContent>
-              <PaginationItem>
-                <PaginationPrevious
-                  onClick={() => setCurrentPage(Math.max(1, currentPage - 1))}
-                  className={currentPage === 1 ? 'pointer-events-none opacity-40' : 'cursor-pointer'}
-                />
-              </PaginationItem>
-              {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                <PaginationItem key={page}>
-                  <PaginationLink
-                    onClick={() => setCurrentPage(page)}
-                    isActive={currentPage === page}
-                    className="cursor-pointer"
-                  >
-                    {page}
-                  </PaginationLink>
-                </PaginationItem>
-              ))}
-              <PaginationItem>
-                <PaginationNext
-                  onClick={() => setCurrentPage(Math.min(totalPages, currentPage + 1))}
-                  className={currentPage === totalPages ? 'pointer-events-none opacity-40' : 'cursor-pointer'}
-                />
-              </PaginationItem>
-            </PaginationContent>
-          </Pagination>
+          <div className="flex items-center justify-center gap-4 mt-8">
+            <button
+              onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+              disabled={currentPage === 1}
+              className="px-4 py-2 rounded-lg border border-[#D8D2C4] bg-[#F0EBE1] text-sm text-[#2D6A4F] font-medium disabled:opacity-40 disabled:pointer-events-none hover:border-[#2D6A4F]/40 hover:bg-[#EAE4D6] transition-all duration-150"
+            >
+              ← Prev
+            </button>
+            <span className="text-sm text-[#6B6455]">
+              Page {currentPage} of {totalPages}
+            </span>
+            <button
+              onClick={() => setCurrentPage((p) => Math.min(totalPages, p + 1))}
+              disabled={currentPage === totalPages}
+              className="px-4 py-2 rounded-lg border border-[#D8D2C4] bg-[#F0EBE1] text-sm text-[#2D6A4F] font-medium disabled:opacity-40 disabled:pointer-events-none hover:border-[#2D6A4F]/40 hover:bg-[#EAE4D6] transition-all duration-150"
+            >
+              Next →
+            </button>
+          </div>
         )}
       </div>
     </div>

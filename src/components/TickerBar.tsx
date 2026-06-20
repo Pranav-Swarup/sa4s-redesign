@@ -24,39 +24,36 @@ const TickerBar = () => {
     document.getElementById('spotlight')?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  if (!visible || spotlightItems.length === 0) return null;
-
   const item = spotlightItems[index];
 
   return (
-    <motion.div
+    <div
       className="fixed top-16 left-0 right-0 z-40 h-9 lg:h-12 bg-[#A8D8BA] border-b border-[#6CB898] overflow-hidden cursor-pointer"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.9 }}
-      onClick={scrollToSpotlight}
+      onClick={visible ? scrollToSpotlight : undefined}
       title="View spotlight"
       aria-label="Scroll to spotlight section"
     >
       <div className="flex items-center justify-center h-full px-4">
         <AnimatePresence mode="wait">
-          <motion.span
-            key={index}
-            className="flex items-center gap-2.5 text-[12px] lg:text-[14px] tracking-[0.08em] select-none"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            {item.tag && (
-              <span className="text-[#1D5038] font-bold uppercase tracking-[0.15em]">{item.tag}</span>
-            )}
-            {item.tag && <span className="text-[#2D6A4F] text-[8px]">◆</span>}
-            <span className="text-[#1A3D2A]">{item.title}</span>
-          </motion.span>
+          {visible && item && (
+            <motion.span
+              key={index}
+              className="flex items-center gap-2.5 text-[12px] lg:text-[14px] tracking-[0.08em] select-none"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+            >
+              {item.tag && (
+                <span className="text-[#1D5038] font-bold uppercase tracking-[0.15em]">{item.tag}</span>
+              )}
+              {item.tag && <span className="text-[#2D6A4F] text-[8px]">◆</span>}
+              <span className="text-[#1A3D2A]">{item.title}</span>
+            </motion.span>
+          )}
         </AnimatePresence>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

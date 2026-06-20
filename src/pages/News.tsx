@@ -8,10 +8,13 @@ import rehypeRaw from 'rehype-raw';
 import { getAllNewsItems, NewsItem } from '../data/newsLoader';
 import { publicUrl } from '../lib/utils';
 
+const PAGE_SIZE = 10;
+
 const News = () => {
-  const [newsItems, setNewsItems]     = useState<NewsItem[]>([]);
+  const [newsItems, setNewsItems]       = useState<NewsItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<NewsItem | null>(null);
-  const [loading, setLoading]         = useState(true);
+  const [loading, setLoading]           = useState(true);
+  const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const previewRef = useRef<HTMLDivElement>(null);
 
   const handleItemSelect = (item: NewsItem) => {
@@ -41,22 +44,17 @@ const News = () => {
     loadNews();
   }, []);
 
+  const visibleItems = newsItems.slice(0, visibleCount);
+  const hasMore = visibleCount < newsItems.length;
+
   return (
     <div className="min-h-screen bg-[#FAF7F2]">
 
       {/* Header */}
-      <div className="bg-[#0C2118] border-b border-[#1C4030] py-16">
+      <div className="bg-[#0C2118] border-b border-[#1C4030] py-16 text-center">
         <div className="container mx-auto px-4">
-          <Link
-            to="/"
-            className="inline-flex items-center text-[#8DB8A2] hover:text-[#EDE8DF] mb-6 transition-colors duration-150 text-sm"
-          >
-            <ArrowLeft size={16} className="mr-2" />
-            Back to Home
-          </Link>
-          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">News</p>
-          <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Latest News</h1>
-          <p className="mt-3 text-[#8DB8A2] max-w-2xl">
+          <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Latest News From Us</h1>
+          <p className="mt-3 text-[#8DB8A2]">
             Developments, achievements, and announcements from the SA4S research group.
           </p>
         </div>
@@ -76,7 +74,7 @@ const News = () => {
               <div className="lg:col-span-1">
                 <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-5">All News</p>
                 <div className="space-y-2">
-                  {newsItems.map((item, index) => (
+                  {visibleItems.map((item, index) => (
                     <div
                       key={index}
                       onClick={() => handleItemSelect(item)}
@@ -96,6 +94,15 @@ const News = () => {
                     </div>
                   ))}
                 </div>
+
+                {hasMore && (
+                  <button
+                    onClick={() => setVisibleCount((c) => c + PAGE_SIZE)}
+                    className="mt-4 w-full py-2.5 rounded-lg border border-[#D8D2C4] bg-[#F0EBE1] hover:border-[#2D6A4F]/40 hover:bg-[#EAE4D6] text-sm text-[#2D6A4F] font-medium transition-all duration-150"
+                  >
+                    More ({newsItems.length - visibleCount} remaining)
+                  </button>
+                )}
               </div>
 
               {/* Right — expanded preview */}
@@ -142,6 +149,7 @@ const News = () => {
                   </div>
                 )}
               </div>
+
             </div>
           )}
         </div>

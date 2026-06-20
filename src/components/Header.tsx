@@ -61,7 +61,7 @@ const Header = () => {
 
             <NavLink to="/" onClick={close} className="flex items-center space-x-3 shrink-0">
               <img src={publicUrl("/images/logos/sa4s.png")} alt="SA4S Logo" className="w-9 h-9 object-contain" />
-              <div className="hidden sm:block">
+              <div>
                 <div className="font-semibold text-[#EDE8DF] text-sm tracking-wide">SA4S Research Group</div>
                 <div className="text-[10px] text-[#8DB8A2] tracking-wider uppercase">SERC - IIIT Hyderabad</div>
               </div>
@@ -143,7 +143,7 @@ const Header = () => {
                 <>
                   <span
                     style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
-                    className={`text-2xl font-normal tracking-wide transition-all duration-150 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}
+                    className={`text-lg md:text-2xl font-normal tracking-wide transition-all duration-150 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}
                   >
                     {item.name}
                   </span>
