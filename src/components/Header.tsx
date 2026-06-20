@@ -23,8 +23,19 @@ const drawerNav = [
   { name: 'Gallery',    path: '/gallery' },
 ];
 
+// Mobile drawer shows every page
+const allNav = [...primaryNav, ...drawerNav];
+
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
 
   useEffect(() => {
     document.body.style.overflow = isOpen ? 'hidden' : '';
@@ -39,6 +50,8 @@ const Header = () => {
         ? 'text-[#EDE8DF] bg-[#1F4A30]'
         : 'text-[#C4DDD1] hover:text-[#EDE8DF] hover:bg-[#142E1E]'
     }`;
+
+  const visibleDrawerItems = isMobile ? allNav : drawerNav;
 
   return (
     <>
@@ -55,7 +68,8 @@ const Header = () => {
             </NavLink>
 
             <div className="flex items-center gap-0.5">
-              <nav className="flex items-center space-x-0.5">
+              {/* Primary nav — desktop only */}
+              <nav className="hidden md:flex items-center space-x-0.5">
                 {primaryNav.map((item) => (
                   <NavLink key={item.path} to={item.path} className={({ isActive }) => primaryLinkClass(isActive)}>
                     {item.name}
@@ -63,7 +77,7 @@ const Header = () => {
                 ))}
               </nav>
 
-              <div className="w-px h-5 bg-[#1C4030] mx-2" />
+              <div className="hidden md:block w-px h-5 bg-[#1C4030] mx-2" />
 
               <button
                 onClick={() => setIsOpen(true)}
@@ -89,7 +103,7 @@ const Header = () => {
 
       {/* Drawer */}
       <div
-        className={`fixed top-0 right-0 z-[70] h-full w-[420px] bg-[#0A1C12] border-l border-[#1C4030] shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
+        className={`fixed top-0 right-0 z-[70] h-full w-full md:w-[420px] bg-[#0A1C12] border-l border-[#1C4030] shadow-2xl flex flex-col transition-transform duration-300 ease-in-out ${
           isOpen ? 'translate-x-0' : 'translate-x-full'
         }`}
       >
@@ -107,7 +121,7 @@ const Header = () => {
 
         {/* Nav links */}
         <nav className="flex-1 overflow-y-auto px-8 py-8 flex flex-col gap-1">
-          {drawerNav.map((item, i) => (
+          {visibleDrawerItems.map((item, i) => (
             <NavLink
               key={item.path}
               to={item.path}
@@ -127,7 +141,10 @@ const Header = () => {
             >
               {({ isActive }) => (
                 <>
-                  <span style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }} className={`text-2xl font-normal tracking-wide transition-all duration-150 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}>
+                  <span
+                    style={{ fontFamily: "'EB Garamond', Georgia, serif", fontStyle: 'normal' }}
+                    className={`text-2xl font-normal tracking-wide transition-all duration-150 ${isActive ? 'translate-x-1' : 'group-hover:translate-x-1'}`}
+                  >
                     {item.name}
                   </span>
                   <ArrowRight
