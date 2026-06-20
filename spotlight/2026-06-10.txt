@@ -1,0 +1,10 @@
+[HOMEPAGE]
+[TITLE] ArchBench: Benchmarking LLMs on Software Architecture Tasks
+[TAG] Research
+[PREVIEW] The first unified platform for evaluating LLM performance across software architecture tasks, with a public leaderboard
+[CONTENT] ArchBench is the first unified benchmark platform for evaluating LLM capabilities on software architecture tasks — aggregating datasets from five research tasks including ADR generation, serverless component generation, and traceability link recovery under a standardised CLI evaluation pipeline and public leaderboard. The plugin architecture lets the community contribute new tasks and submit results without modifying the core framework, addressing a longstanding gap where the absence of shared evaluation standards made it impossible to compare or track LLM progress on architectural tasks.
+
+[Live Leaderboard](https://www.sabench.com/leaderboard)
+[Read the Paper](/papers/2026/ArchBench.pdf)
+[IMAGE] /images/spotlight/ArchBench.png
+[DATE] 2026-06-10

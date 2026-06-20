@@ -1,4 +1,3 @@
-[HOMEPAGE]
 [TITLE] Best Poster at ICSA 2024
 [TAG] Award
 [PREVIEW] Software Architecture Conference, Prague

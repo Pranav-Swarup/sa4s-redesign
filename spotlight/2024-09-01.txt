@@ -1,4 +1,3 @@
-[HOMEPAGE]
 [TITLE] Freshers Welcome 2024
 [TAG] Team
 [PREVIEW] Growing the SA4S Family
