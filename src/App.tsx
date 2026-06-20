@@ -22,6 +22,7 @@ const News = lazy(() => import("./pages/News"));
 const NotFound = lazy(() => import("./pages/NotFound"));
 const AgenticAI = lazy(() => import("./pages/AgenticAI"));
 const AutoSE = lazy(() => import("./pages/AutoSE"));
+const Spotlight = lazy(() => import("./pages/Spotlight"));
 
 const queryClient = new QueryClient();
 
@@ -46,6 +47,7 @@ const App = () => (
               <Route path="/vacancies" element={<Vacancies />} />
               <Route path="/gallery" element={<Gallery />} />
               <Route path="/news" element={<News />} />
+              <Route path="/spotlight" element={<Spotlight />} />
               <Route path="/agenticai" element={<AgenticAI />} />
               <Route path="/autose" element={<AutoSE />} />
               <Route path="*" element={<NotFound />} />
