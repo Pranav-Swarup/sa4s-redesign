@@ -1,6 +1,6 @@
+[HOMEPAGE]
 [TITLE] Best Poster at ICSA 2024
 [TAG] Award
 [PREVIEW] Software Architecture Conference
 [CONTENT] SA4S won the Best Poster award at the International Conference on Software Architecture 2024.
-[LINK] https://pranav-swarup.github.io/sa4s-redesign/publications
 [IMAGE] /images/home/icsa24_best_poster.jpeg
