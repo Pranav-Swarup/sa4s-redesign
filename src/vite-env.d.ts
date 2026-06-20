@@ -9,6 +9,7 @@ declare module 'virtual:spotlight' {
     content: string;
     link: string;
     image: string;
+    homepage: boolean;
   }
   const items: SpotlightItem[];
   export default items;

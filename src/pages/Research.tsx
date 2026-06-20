@@ -39,8 +39,9 @@ const Research: React.FC = () => {
       {/* Header */}
       <div className="bg-[#0C2118] border-b border-[#1C4030] py-16 text-center">
         <div className="container mx-auto px-4">
-          <p className="text-xs text-[#52B788] tracking-[0.25em] uppercase font-semibold mb-3">Research</p>
+          
           <h1 className="text-3xl md:text-4xl font-bold text-[#EDE8DF]">Research Areas</h1>
+          <p className="mt-4 text-[#8DB8A2] mx-auto">Building the foundations for smarter software systems that learn, adapt, and evolve to be sustainable</p>
         </div>
       </div>
 

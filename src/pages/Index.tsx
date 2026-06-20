@@ -6,7 +6,8 @@ import Hero from '../components/Hero';
 import PulseStrip from '../components/PulseStrip';
 import FeaturedNews from '../components/FeaturedNews';
 import LogoCloud from '../components/LogoCloud';
-import spotlightItems from 'virtual:spotlight';
+import allSpotlightItems from 'virtual:spotlight';
+const spotlightItems = allSpotlightItems.filter((s) => s.homepage).slice(0, 4);
 import { publicUrl } from '../lib/utils';
 
 const inView = {

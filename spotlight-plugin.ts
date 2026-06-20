@@ -10,14 +10,12 @@ export interface SpotlightItem {
   content: string;
   link: string;
   image: string;
+  homepage: boolean;
 }
 
 const VIRTUAL_ID = 'virtual:spotlight';
 const RESOLVED_ID = '\0virtual:spotlight';
 
-// ── Parser ────────────────────────────────────────────────────────────────
-// Handles both single-line and multi-line field values.
-// [KEY] starts a field; all subsequent lines until the next [KEY] are value.
 function parseFields(text: string): Record<string, string> {
   const fields: Record<string, string> = {};
   const lines = text.split('\n');
@@ -49,12 +47,10 @@ function parseSpotlightFile(filename: string, text: string): SpotlightItem | nul
 
   const date = filename.replace(/\.txt$/, '');
 
-  // PREVIEW defaults to first 150 chars of CONTENT
   const preview =
     f.PREVIEW ||
     (f.CONTENT ? f.CONTENT.replace(/\n/g, ' ').slice(0, 150).trimEnd() : '');
 
-  // IMAGE: bare filename → /images/spotlight/; absolute path → as-is
   const rawImage = f.IMAGE || '';
   const image = rawImage.startsWith('/') ? rawImage : rawImage ? `/images/spotlight/${rawImage}` : '';
 
@@ -66,6 +62,7 @@ function parseSpotlightFile(filename: string, text: string): SpotlightItem | nul
     content: f.CONTENT || '',
     link: f.LINK || '#',
     image,
+    homepage: 'HOMEPAGE' in f,
   };
 }
 
@@ -75,9 +72,8 @@ function loadSpotlightItems(root: string): SpotlightItem[] {
 
   const files = readdirSync(dir)
     .filter((f) => f.endsWith('.txt'))
-    .sort()      // lexicographic = chronological for YYYY-MM-DD names
-    .reverse()   // newest first
-    .slice(0, 4);
+    .sort()
+    .reverse(); // newest first, no slice — load all
 
   return files
     .map((f) => {
@@ -91,7 +87,6 @@ function loadSpotlightItems(root: string): SpotlightItem[] {
     .filter((x): x is SpotlightItem => x !== null);
 }
 
-// ── Vite plugin ───────────────────────────────────────────────────────────
 export function spotlightPlugin(): Plugin {
   let root = process.cwd();
 
