@@ -5,7 +5,7 @@ import { ChevronDown, Play, Pause } from 'lucide-react';
 import BonsaiTree from './BonsaiTree';
 import { publicUrl } from '../lib/utils';
 
-const TAGLINE = "building the next generation of intelligent, energy-efficient software";
+const TAGLINE = "building the next generation of intelligent and sustainable software systems";
 const FIXED_SEED = 97225; // tune this to pick your favourite tree
 const CANVAS_W = 100 * 10;  // COLS * CHAR_W
 const CANVAS_H = 40 * 20;   // ROWS * CHAR_H
@@ -39,6 +39,11 @@ const Hero = () => {
   }, []);
 
   useEffect(() => {
+    const interval = setInterval(() => setSeed(Date.now()), 12000);
+    return () => clearInterval(interval);
+  }, [seed]);
+
+  useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
     window.addEventListener('scroll', onScroll, { passive: true });
     return () => window.removeEventListener('scroll', onScroll);
@@ -46,35 +51,21 @@ const Hero = () => {
 
   return (
     /*
-     * Mobile:  flex-col — text (flex-1) stacks above tree (flex-shrink-0 at bottom).
-     * Desktop: block — tree is absolute bottom-right, scaled to min(55vw, natural size).
+     * Mobile:  h-[100svh-4rem] flex-col justify-between — text block anchored top,
+     *          tree anchored bottom. svh (small viewport height) never changes on
+     *          scroll so there's no layout shift when the iOS URL bar hides.
+     * Desktop: block — tree is absolute bottom-right.
      */
-    <section className="relative bg-[#FAF7F2] overflow-hidden flex flex-col min-h-[calc(100vh-4rem)] lg:block lg:min-h-[calc(100vh-6rem)]">
+    <section className="relative bg-[#FAF7F2] overflow-hidden flex flex-col justify-between h-[calc(100svh-4rem)] lg:block lg:h-auto lg:min-h-[calc(100svh-6rem)]">
 
-      {/* ── Subtle refresh button ─────────────────────────────────── */}
-      <button
-        onClick={regen}
-        className="absolute top-20 right-5 lg:right-20 z-20 text-2xl leading-none text-[#c4beb5] hover:text-[#7A7060] transition-colors duration-400 bg-transparent border-none cursor-pointer select-none"
-        aria-label="Regenerate bonsai tree"
-      >
-        ⟳
-      </button>
+      {/* ── Text block ────────────────────────────────────────────── */}
+      <div className="relative z-10 flex-1 lg:flex-none flex flex-col items-center lg:items-start text-center lg:text-left justify-start lg:justify-center lg:min-h-[calc(100svh-6rem)] lg:w-1/2 w-full px-6 lg:px-10 xl:px-16 pt-0 pb-0 lg:py-12 gap-0 lg:gap-8">
 
-      {/* ── Text column — comes first in DOM so it's above tree on mobile ── */}
-      <div className="relative z-10 flex flex-col justify-center flex-1 lg:flex-none lg:min-h-[calc(100vh-6rem)] lg:w-1/2 w-full px-6 lg:px-10 xl:px-16 py-8 lg:py-12 gap-5 lg:gap-8">
+        {/* Top spacer — 5 parts (mobile only) */}
+        <div className="flex-[5] min-h-0 order-[0] lg:hidden" />
 
-        {/* Garamond tagline — smaller on mobile to leave room for tree */}
-        <motion.p
-          className="font-garamond italic text-xl leading-snug sm:text-2xl md:text-3xl lg:text-4xl xl:text-[3.1rem] lg:leading-[1.18] text-[#1A1710]"
-          initial={{ opacity: 0, x: -16 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.5, ease: [0.25, 0, 0, 1], delay: 0.1 }}
-        >
-          {TAGLINE}
-        </motion.p>
-
-        {/* SA4S + subtitle */}
-        <div className="select-none">
+        {/* SA4S heading — order 2 mobile, order 3 desktop */}
+        <div className="select-none order-[2] lg:order-[3]">
           <div
             className="font-black leading-none tracking-tight text-[#2D6A4F]"
             style={{ fontSize: 'clamp(3.5rem, 10vw, 9rem)' }}
@@ -84,67 +75,84 @@ const Hero = () => {
               <motion.span
                 key={i}
                 className="inline-block"
-                initial={{ opacity: 0, y: 32 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{
-                  duration: 0.6,
-                  delay: 0.6 + i * 0.2,
-                  ease: [0.25, 0, 0, 1],
-                }}
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.7, delay: 0.5 + i * 0.15 }}
               >
                 {char}
               </motion.span>
             ))}
           </div>
-
           <motion.p
-            className="text-sm text-[#9A9080] font-medium tracking-wide mt-2.5"
+            className="text-sm text-[#9A9080] font-medium tracking-wide mt-1.5 lg:mt-2.5"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.7 }}
           >
             Research Group at SERC, IIIT Hyderabad
           </motion.p>
-
-          {/* Podcast button */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 2.2 }}
-            className="mt-5"
-          >
-            <button
-              onClick={togglePodcast}
-              className="inline-flex items-center gap-3 px-5 py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-sm font-medium shadow-sm"
-              aria-label={podcastPlaying ? 'Pause podcast' : 'Play podcast'}
-            >
-              <span className="flex-shrink-0 flex items-center justify-center w-6 h-6 rounded-full bg-[#C8C2B6]/60">
-                {podcastPlaying ? <Pause size={12} /> : <Play size={12} className="ml-0.5" />}
-              </span>
-              <span
-                className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
-                  podcastStarted ? 'max-w-0 opacity-0' : 'max-w-[8rem] opacity-100'
-                }`}
-              >
-                Our Podcast
-              </span>
-            </button>
-            <audio
-              ref={audioRef}
-              src={publicUrl("/LLMs%20for%20Architectural%20Design%20Decisions.mp3")}
-              onEnded={() => setPodcastPlaying(false)}
-            />
-          </motion.div>
         </div>
+
+        {/* SA4S→tagline spacer — 3 parts (3/4 of the equal slot) */}
+        <div className="flex-[3] min-h-0 order-[4] lg:hidden" />
+
+        {/* Garamond tagline — order 6 mobile, order 1 desktop */}
+        <motion.p
+          className="font-garamond italic text-2xl leading-snug sm:text-3xl md:text-3xl lg:text-4xl xl:text-[3.1rem] lg:leading-[1.18] text-[#1A1710] order-[6] lg:order-[1]"
+          initial={{ opacity: 0, x: -16 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 1.5, ease: [0.25, 0, 0, 1], delay: 0.1 }}
+        >
+          {TAGLINE}
+        </motion.p>
+
+        {/* Tagline→podcast spacer — 4 parts */}
+        <div className="flex-[4] min-h-0 order-[8] lg:hidden" />
+
+        {/* Podcast button */}
+        <motion.div
+          className="order-[10] lg:order-[5]"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.8, delay: 2.2 }}
+        >
+          <button
+            onClick={togglePodcast}
+            className="inline-flex items-center gap-2 lg:gap-3 px-3 py-1.5 lg:px-5 lg:py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-xs lg:text-sm font-medium shadow-sm"
+            aria-label={podcastPlaying ? 'Pause podcast' : 'Play podcast'}
+          >
+            <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-[#C8C2B6]/60">
+              {podcastPlaying ? <Pause size={10} /> : <Play size={10} className="ml-0.5" />}
+            </span>
+            <span
+              className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
+                podcastStarted ? 'max-w-0 opacity-0' : 'max-w-[8rem] opacity-100'
+              }`}
+            >
+              Our Podcast
+            </span>
+          </button>
+          <audio
+            ref={audioRef}
+            src={publicUrl("/LLMs%20for%20Architectural%20Design%20Decisions.mp3")}
+            onEnded={() => setPodcastPlaying(false)}
+          />
+        </motion.div>
+
+        {/* Bottom spacer — 4 parts (mobile only) */}
+        <div className="flex-[4] min-h-0 order-[12] lg:hidden" />
       </div>
 
-      {/* ── Bonsai ───────────────────────────────────────────────────
-           Mobile:  flex-shrink-0 item → sits at bottom of the column,
-                    centered, 85 vw wide (capped at 500 px).
-           Desktop: absolute bottom-0 right-0, scaled to min(55vw, 1000px).
-      ── */}
-      <div className="flex-shrink-0 flex justify-center pointer-events-none z-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[min(55vw,1000px)]">
-        <div className="w-[85vw] max-w-[500px] lg:w-full lg:max-w-none">
+      {/* ── Bonsai — anchored bottom on mobile, absolute bottom-right on desktop ── */}
+      <div className="relative flex-shrink-0 flex justify-center pointer-events-none z-0 lg:absolute lg:bottom-0 lg:right-0 lg:w-[min(55vw,1000px)]">
+        <button
+          onClick={regen}
+          className="absolute top-2 left-3 lg:top-4 lg:left-auto lg:right-4 z-20 pointer-events-auto text-2xl leading-none text-[#c4beb5] hover:text-[#7A7060] transition-colors duration-400 bg-transparent border-none cursor-pointer select-none"
+          aria-label="Regenerate bonsai tree"
+        >
+          ⟳
+        </button>
+        <div className="w-[95vw] max-w-[min(600px,56svh)] lg:w-full lg:max-w-none">
           <BonsaiTree
             seed={seed}
             onClick={regen}
@@ -157,7 +165,7 @@ const Hero = () => {
       <AnimatePresence>
         {showScrollHint && !scrolled && (
           <motion.div
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 pointer-events-none z-10"
+            className="absolute bottom-6 inset-x-0 mx-auto w-max flex flex-col items-center gap-1.5 pointer-events-none z-10"
             initial={{ opacity: 0, y: 6 }}
             animate={{ opacity: 0.38, y: 0 }}
             exit={{ opacity: 0, y: 4 }}

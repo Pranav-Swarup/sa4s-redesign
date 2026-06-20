@@ -56,10 +56,11 @@ const Index = () => {
 
       {/* ── Spotlight — Porsche-style 2×2 full-bleed grid ── */}
       <section id="spotlight" className="w-full">
-        <div className="px-6 pt-14 pb-5">
-          <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</p>
+        <div className="px-6 lg:px-[clamp(3rem,8vw,7rem)] pt-14 pb-6 text-center">
+          <h2 className="text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Spotlight</h2>
         </div>
-        <div className="grid grid-cols-2 h-screen gap-[3px] p-[3px] bg-[#D8D2C4]">
+        <div className="lg:px-[clamp(3rem,8vw,7rem)]">
+        <div className="grid grid-cols-2 h-screen gap-[3px] lg:gap-[clamp(0.375rem,0.6vw,0.75rem)] p-[3px] lg:p-0 bg-[#D8D2C4] lg:bg-transparent">
           {spotlightItems.map((s, i) => (
             <motion.a
               key={s.date}
@@ -104,6 +105,7 @@ const Index = () => {
             </motion.a>
           ))}
         </div>
+        </div>
       </section>
 
       {/* ── SustAInd ──────────────────────────────── */}
@@ -138,9 +140,8 @@ const Index = () => {
       {/* ── Research areas ────────────────────────── */}
       <section className="py-16 bg-[#FAF7F2]">
         <div className="container mx-auto px-4">
-          <motion.div className="mb-10" {...inView}>
-            <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-3">Research</p>
-            <h2 className="font-bold text-2xl text-[#1A1710]">What We Work On</h2>
+          <motion.div className="mb-10 text-center" {...inView}>
+            <h2 className="text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">What We Work On</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -171,7 +172,7 @@ const Index = () => {
           </div>
 
           <motion.div
-            className="mt-7"
+            className="mt-7 flex justify-center md:justify-start"
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}

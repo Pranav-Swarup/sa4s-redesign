@@ -36,7 +36,7 @@ const Header = () => {
 
           <NavLink to="/" className="flex items-center space-x-3">
             <img src={publicUrl("/images/logos/sa4s.png")} alt="SA4S Logo" className="w-9 h-9 object-contain" />
-            <div className="hidden sm:block">
+            <div className="block">
               <div className="font-semibold text-[#EDE8DF] text-sm tracking-wide">SA4S Research Group</div>
               <div className="text-[10px] text-[#8DB8A2] tracking-wider uppercase">SERC - IIIT Hyderabad</div>
             </div>

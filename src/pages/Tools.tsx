@@ -1,6 +1,7 @@
 
 import { Github, FileText, Youtube, ArrowRight, Download, Mail } from 'lucide-react';
 import { Link } from 'react-router-dom';
+import { publicUrl } from '../lib/utils';
 
 const Tools = () => {
   const tools = [
@@ -91,7 +92,7 @@ const Tools = () => {
               {/* Logo */}
               <div className="flex justify-center mb-6">
                 <div className="w-20 h-20 bg-white rounded-full flex items-center justify-center text-4xl shadow-sm group-hover:scale-110 transition-transform duration-300">
-                  {tool.logo.startsWith('/') ? <img src={tool.logo} alt={`${tool.name} logo`} className="w-16 h-16 object-contain" /> : tool.logo}
+                  {tool.logo.startsWith('/') ? <img src={publicUrl(tool.logo)} alt={`${tool.name} logo`} className="w-16 h-16 object-contain" /> : tool.logo}
                 </div>
               </div>
 

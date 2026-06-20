@@ -38,9 +38,8 @@ const FeaturedNews = () => {
   return (
     <section className="py-16 bg-[#FAF7F2]">
       <div className="container mx-auto px-4">
-        <div className="mb-10">
-          <p className="text-xs text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold mb-3">News</p>
-          <h2 className="font-bold text-2xl text-[#1A1710]">Latest from the Lab</h2>
+        <div className="mb-10 text-center">
+          <h2 className="text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] uppercase font-semibold">Latest from the Lab</h2>
         </div>
 
         {loading ? (
@@ -80,13 +79,15 @@ const FeaturedNews = () => {
           </div>
         )}
 
-        <Link
-          to="/news"
-          className="inline-flex items-center border border-[#D8D2C4] hover:border-[#2D6A4F] text-[#6B6455] hover:text-[#1A1710] px-5 py-2.5 rounded text-sm font-medium transition-all duration-200 group"
-        >
-          All news
-          <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-150" size={13} />
-        </Link>
+        <div className="flex justify-center md:justify-start">
+          <Link
+            to="/news"
+            className="inline-flex items-center border border-[#D8D2C4] hover:border-[#2D6A4F] text-[#6B6455] hover:text-[#1A1710] px-5 py-2.5 rounded text-sm font-medium transition-all duration-200 group"
+          >
+            All news
+            <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform duration-150" size={13} />
+          </Link>
+        </div>
       </div>
     </section>
   );

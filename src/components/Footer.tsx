@@ -1,49 +1,52 @@
 
-import { Github, Youtube } from 'lucide-react';
 import { publicUrl } from '../lib/utils';
 
 const Footer = () => {
   return (
-    <footer className="bg-gray-50 border-t border-gray-200 mt-20">
+    <footer className="bg-[#0C2118] border-t border-[#1C4030]">
       <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {/* Logo and Description */}
-          <div>
-            <div className="flex items-center space-x-3 mb-4">
-              <div className="w-16 h-16 flex items-center justify-center">
-                <img 
-                  src={publicUrl("/images/logos/sa4s.png")}
-                  alt="SA4S Logo" 
-                  className="h-full w-auto object-contain"
-                />
-              </div>
-              <div>
-                <div className="font-semibold text-gray-900">SA4S @ SERC</div>
-                <div className="text-sm text-gray-600">Research Group</div>
-              </div>
-            </div>
-            <p className="text-gray-600 text-sm leading-relaxed">
-              Software Architecture for Sustainability Research Group at IIIT-Hyderabad, 
-              advancing the frontiers of adaptive and energy-efficient software systems.
-            </p>
-          </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10 text-center">
 
-          {/* Address */}
-          <div>
-            <h3 className="font-semibold text-gray-900 mb-4">Address</h3>
-            <div className="text-gray-600 text-sm space-y-1">
+          {/* Left — Address */}
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="text-xs text-white/60 tracking-[0.25em] uppercase font-semibold mb-4">Address</h3>
+            <div className="text-white/75 text-sm space-y-1 leading-relaxed">
               <p>International Institute of Information Technology</p>
               <p>Gachibowli, Hyderabad</p>
               <p>Telangana 500032, India</p>
             </div>
           </div>
 
+          {/* Middle — Logo & Title */}
+          <div className="flex flex-col items-center justify-center gap-3">
+            <img
+              src={publicUrl("/images/logos/sa4s.png")}
+              alt="SA4S Logo"
+              className="w-14 h-14 object-contain"
+            />
+            <div className="text-center">
+              <div className="font-semibold text-white/90 text-sm tracking-wide">SA4S Research Group</div>
+              <div className="text-[10px] text-white/60 tracking-wider uppercase mt-0.5">SERC · IIIT Hyderabad</div>
+            </div>
+          </div>
+
+          {/* Right — Contact */}
+          <div className="flex flex-col items-center justify-center">
+            <h3 className="text-xs text-white/60 tracking-[0.25em] uppercase font-semibold mb-4">Contact Us</h3>
+            <div className="text-white/75 text-sm space-y-1 leading-relaxed">
+              <p>
+                <a href="mailto:sa4s@iiit.ac.in" className="hover:text-white/90 transition-colors duration-150">
+                  sa4s@iiit.ac.in
+                </a>
+              </p>
+            </div>
+          </div>
 
         </div>
 
-        <div className="border-t border-gray-200 mt-8 pt-8 text-center">
-          <p className="text-gray-500 text-sm">
-            © 2026 SA4S @ SERC - IIIT-Hyderabad
+        <div className="border-t border-[#1C4030] mt-10 pt-6 text-center">
+          <p className="text-white/40 text-xs tracking-wide">
+            © 2026 SA4S @ SERC · IIIT Hyderabad
           </p>
         </div>
       </div>
