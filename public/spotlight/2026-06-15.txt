@@ -6,6 +6,7 @@
 LLM-based decompositions outperformed traditional techniques on several architectural quality metrics including Cycle Independence (+15%), Data Transaction Purity (+8.5%), and Business Context Purity (+7.3%), suggesting LLMs are good at producing domain-coherent and architecturally clean boundaries. That said, specialised automated approaches remain stronger at recovering the exact ground-truth service structure. The study was presented at ICSA 2026 by Aneesh Sambu, Roberta Capuano, Eoan O'Dea, Karthik Vaidhyanathan, and Henry Muccini.
 
 [Read the Paper](/papers/2026/AI_Agents_Microservices.pdf)
+[Project Page](https://sambuaneesh.github.io/llms4arch/)
 [ICSA 2026 Website](https://conf.researchr.org/home/icsa-2026)
 [IMAGE] /images/spotlight/Monolith_toMicroservices.png
 [DATE] 2026-06-24

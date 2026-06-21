@@ -59,17 +59,19 @@ The dev server runs at `http://localhost:5173`.
 Create a new file in `public/spotlight/` named `YYYY-MM-DD.txt`:
 
 ```
+[HOMEPAGE]
 [TITLE] Your spotlight title
 [TAG] Conference / Award / Paper
-[PREVIEW] One-sentence teaser shown on the card
-[CONTENT] Full markdown content for the detail page
-[LINK] /relevant-page-or-external-url
+[CONTENT] Full markdown content for the detail page.
+Links in content become green pill buttons automatically — use standard markdown link syntax.
 [IMAGE] /images/spotlight/your-image.jpg
 [DATE] YYYY-MM-DD
-[HOMEPAGE] true
 ```
 
-Items flagged `[HOMEPAGE] true` appear on the home page spotlight grid (max 4). All items appear on the `/spotlight` archive page. The TickerBar below the header also pulls its rotating content from these files automatically.
+- Files with `[HOMEPAGE]` appear on the homepage spotlight grid (up to 10, sorted newest-first) and in the TickerBar.
+- Files without `[HOMEPAGE]` appear only on the `/spotlight` archive page.
+- All links belong in `[CONTENT]` as markdown links — there is no separate `[LINK]` or `[PREVIEW]` field.
+- Cards on the homepage deep-link to the detail view via `?item=DATE` query param.
 
 ### News items
 
@@ -113,7 +115,7 @@ Section heading style: `text-xl lg:text-2xl text-[#2D6A4F] tracking-[0.25em] upp
 
 ## Mailing List
 
-The site uses a zero-infrastructure mailto approach for newsletter subscriptions. Subscribe buttons across the site open a pre-filled email to `sa4s@iiit.ac.in` with subject `I wish to subscribe to the SA4S Newsletter.` — recipients are managed manually via BCC. This keeps subscriber email addresses entirely off third-party servers.
+The site uses a zero-infrastructure mailto approach for newsletter subscriptions. Subscribe buttons across the site open a pre-filled email to `sa4sserc@gmail.com` with subject `I wish to subscribe to the SA4S Newsletter.` — recipients are managed manually via BCC. This keeps subscriber email addresses entirely off third-party servers.
 
 ---
 

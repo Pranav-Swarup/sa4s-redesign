@@ -4,6 +4,85 @@ All notable changes to the SA4S website are documented here, grouped by developm
 
 ---
 
+## Session 4 — June 2026 (Spotlight Overhaul & UI Polish)
+
+### Spotlight system
+
+- **Dynamic homepage grid**: spotlight cards now pull all `[HOMEPAGE]`-tagged `.txt` files (up to 10), sorted newest-first. Previously capped at 4 hardcoded items.
+- **Deep linking**: each card links to `/spotlight?item=DATE`; the Spotlight page reads the `?item` query param on load and opens the matching detail view. Back navigation clears the param.
+- **Card layout redesign**: title moved to a top banner overlay on desktop cards; tag and "Explore" prompt remain at the bottom. Cards use `aspect-video` (16:9) with `rounded-xl` edges. Desktop: 2-column grid; odd last card centered at 50% column width. Mobile: single full-width column, image fills the card, title rendered below the image.
+- **Overlay gradients reduced**: bottom and top gradients lightened so images read clearly without being too dark.
+- **Detail view image**: locked to `aspect-video` (16:9) ratio.
+- **Removed `[PREVIEW]` field**: preview text stripped from all cards and all `.txt` files. Tag label remains.
+- **Removed `[LINK]` field**: all links now live in `[CONTENT]` as markdown links, which the Spotlight detail page renders as green pill buttons (via ReactMarkdown custom `a` component). External links get an `ExternalLink` icon.
+- **Font**: Spotlight page switched from Garamond to the site's default sans-serif.
+- **`[HOMEPAGE]` removed** from 2024 spotlight entries — those items no longer appear on the homepage or TickerBar.
+- **"Spotlight" section heading** added on the homepage above the grid, matching the "What We Work On" style.
+
+### New spotlight cards added
+
+| Date | Title |
+|---|---|
+| 2026-06-24 | LLMs for Architectural Refactoring: Monoliths to Microservices |
+| 2026-06-20 | ICSA 2026 Tutorial |
+| 2026-06-19 | We are at ICSA 2026 with 5 Papers, Tutorial, and the SAML 2026 Panel |
+| 2026-06-15 | LLMs for Architectural Refactoring: Monoliths to Microservices (ICSA) |
+| 2026-06-10 | ArchBench |
+| 2026-06-08 | AI Agents for Microservice Generation |
+| 2026-06-06 | ArchView |
+| 2026-06-05 | LEAF |
+| 2026-05-15 | 2026 Lab Cohort Welcome |
+
+### TickerBar
+
+- Now filters to `[HOMEPAGE]`-tagged items only — stays in sync with the homepage grid automatically.
+- Mobile height increased (`h-9` → `h-11`) to accommodate longer titles.
+- Mobile overflow detection: if the label text is wider than the bar, it switches to a seamless CSS marquee scroll (`@keyframes marquee`, two copies of the label). Static centered layout used otherwise.
+
+### Homepage
+
+- **Research areas** updated to four new directions with matching Lucide icons:
+  - AI for Software Architecture (Design-Time) — `Layers`
+  - AI for Software Architecture (Run-Time) — `Activity`
+  - Architecting AI Systems — `Network`
+  - Code Generation — `Code2`
+- News section heading renamed from "Featured News" to **"News from the Lab"**.
+- All section buttons ("All research areas", "All news") centered on all screen sizes.
+- **"Explore our research" button** added to the Hero alongside the podcast button — green pill, links to `/research`. On mobile the buttons stack vertically (research above podcast), both full-width with consistent padding. On desktop they sit side by side.
+- Podcast button smaller on mobile (`px-2.5 py-1`, `text-[11px]`, smaller icon container).
+- Tagline ("building the next generation…") changed from italic to upright.
+
+### Research page
+
+- Four research area descriptions rewritten to match the updated homepage directions, referencing recent SA4S outputs (ArchBench, ArchView, LEAF, HarmonE, MOYA, microservices generation study).
+
+### Gallery
+
+- Added **April 2026 Team Dinner** photo (`2026sercdinner.jpg`).
+- Gallery now sorted newest-first.
+
+### Publications
+
+- **Fixed LaTeX regex bug**: `\ss` was being passed raw to `new RegExp()`, where `\s` is interpreted as the whitespace character class — causing titles like "Generative AI for software architecture" to render as "Generative AI forßoftware architecture". All accent-map keys are now properly escaped before use in RegExp.
+- **Added title fixup** for `DBLP:conf/ecsa/BhattBRV25` (HarmonE 2025 ECSA paper): the DBLP entry uses a `\(\mathscr{H}\)` math macro for the H, which the math-stripping pass removes entirely, leaving "armonE". Fixed via `TITLE_FIXUPS`.
+
+### LogoCloud
+
+- Removed SA4S logo from the "Part of" strip — now shows only IIIT Hyderabad and SERC.
+- Both logos link to their respective websites (`iiit.ac.in`, `serc.iiit.ac.in`).
+- Layout changed from 3-column grid to `flex justify-center gap-16` for clean centering.
+
+### Layout / navigation
+
+- **Scroll to top on route change**: `Layout.tsx` now calls `window.scrollTo({ top: 0, behavior: 'instant' })` on every `pathname` change, so navigating between pages always starts at the top.
+
+### Footer & email
+
+- Footer vignette changed from white to black (`radial-gradient` using `rgba(0,0,0,0.18)`).
+- All mailto addresses updated from `sa4s@iiit.ac.in` to **`sa4sserc@gmail.com`** site-wide (subscribe buttons, footer contact, newsletter strips).
+
+---
+
 ## Session 3 — June 2026 (Polish & Newsletter)
 
 ### Removed

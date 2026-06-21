@@ -126,11 +126,11 @@ const Hero = () => {
           </Link>
           <button
             onClick={togglePodcast}
-            className="w-full lg:w-auto inline-flex justify-center items-center gap-2 lg:gap-3 px-3 py-2 lg:px-5 lg:py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-xs lg:text-sm font-medium shadow-sm"
+            className="lg:w-auto inline-flex justify-center items-center gap-1.5 lg:gap-3 px-2.5 py-1 lg:px-5 lg:py-2.5 rounded-full bg-[#E8E2D8] border border-[#C8C2B6] text-[#5A5040] hover:bg-[#DDD7CB] hover:text-[#3A3028] transition-all duration-200 text-[11px] lg:text-sm font-medium shadow-sm"
             aria-label={podcastPlaying ? 'Pause podcast' : 'Play podcast'}
           >
-            <span className="flex-shrink-0 flex items-center justify-center w-5 h-5 lg:w-6 lg:h-6 rounded-full bg-[#C8C2B6]/60">
-              {podcastPlaying ? <Pause size={10} /> : <Play size={10} className="ml-0.5" />}
+            <span className="flex-shrink-0 flex items-center justify-center w-4 h-4 lg:w-6 lg:h-6 rounded-full bg-[#C8C2B6]/60">
+              {podcastPlaying ? <Pause size={8} /> : <Play size={8} className="ml-0.5" />}
             </span>
             <span
               className={`overflow-hidden whitespace-nowrap transition-all duration-300 ${
